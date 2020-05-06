@@ -3,7 +3,12 @@ y{
 }
 
 body{
-
+    background-position: center 0;
+         background-repeat: no-repeat;
+         background-attachment:fixed;
+         background-size: cover;
+        -webkit-background-size: cover;/* 兼容Webkit内核浏览器如Chrome和Safari */
+        -o-background-size: cover;/* 兼容Opera */
     background-image:url(../../images/test.JPG);
    }
 
@@ -68,15 +73,14 @@ i{
 }
 
 .btn{
-    text-indent: 20px;
-    padding: 0 10px;
+    position:absolute;
     height: 35px;
-    border-radius: 18px;
     width: 310px;
-    font-size: 16px;
-    box-sizing: border-box;
-    margin:0 auto;
-    text-align:center
+    border-radius: 28px;
+    margin-top:10px;
+    left:50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 20px;
 }
 button{
     display: block;
