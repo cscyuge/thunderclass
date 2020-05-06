@@ -1,0 +1,24 @@
+*{
+    margin:0;
+    padding:0;
+}
+a{
+    font-size: 12px;
+    text-decoration: 0;
+    color:#222;
+}
+a,
+input,
+button{
+    outline: none;
+}
+ul,ol,li{
+    list-style: none;
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight: 100;
+}
+img{
+    display: block;
+    border: 0;
+}
