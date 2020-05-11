@@ -102,6 +102,15 @@
         var timestamp = Date.parse(new Date());
         var access_key = null;
         var token = null;
+        console.log(account);
+        if (account == ""){
+            alert("请输入用户名!");
+            return false;
+        }else if (password==""){
+            alert("请输入密码!");
+            return false;
+        }
+
         $.ajax(
             {
                 url:'proxy/get_access_key.php',

@@ -7,6 +7,8 @@
     <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
     <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/user.css">
+    
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
@@ -28,7 +30,7 @@
                 $("#login").attr("style","display:block;");    
                 $("#logout").attr("style","display:none;");
                 $("#modifypw").attr("style","display:none;");
-                $("#user").text("");   
+                $("#user").text("用户名");   
             }
             console.log("hello");
             console.log("hii");
@@ -38,10 +40,54 @@
 
 </head>
 <body>
-    <button type = "button" id = "user" onclick = "user()"></button>
-    <button type = "button" id = "login" onclick = "login()">登录</button>
-    <button type = "button" id = "logout" onclick = "logout()">退出登录</button>
-    <button type = "button" id = "modifypw" onclick = "modifypw()">修改密码</button>
+    <ul class="nav">
+        <img src="images/logo1.png" class="logo" />
+        <ul class="one">
+            <li>
+                <a href="#">课程分类</a>
+                <ul class="nav2">
+                    <li><a href="#">产品1</a></li>
+                    <li><a href="#">产品2</a></li>
+                    <li><a href="#">产品3</a></li>
+                </ul>
+            </li>
+        </ul>
+        <form action="" method="post" class="sea" >
+            <input class="search" type="text" name="keyword" placeholder="请输入关键词" id="text" />
+            <input type="image" src="images/search.png" id="search">
+        </form>
+    
+        <ul class="other">
+            <li>
+                <a href="#">我的学习</a>
+                <ul class="nav2">
+                    <li><a href="#">产品1</a></li>
+                    <li><a href="#">产品2</a></li>
+                    <li><a href="#">产品3</a></li>
+                </ul>
+            </li>
+            <li><img src="images/message.png" class="messages" onclick="" > </li>
+            <li><img src="images/cart.png" class="cart" onclick="" > </li>
+            
+            <li>
+                <a href="#" id = "login" onclick="login()">登录</a>
+            </li>
+            
+            <li>
+                <a href="#" id = "user" onclick="user()">用户名</a>
+                <ul class = "nav2">
+                    <li><a href="#" id = "modifypw" onclick = "modifypw()">修改密码</a></li>
+                    <li><a href="#" id = "logout" onclick = "logout()">退出登录</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </ul>
+    <div class="setin" >
+        <button class="btn" type = "button" id = "my_info" onclick = "goToInfo()">个人资料</button>
+        <button  class="btn" type = "button" id = "set" onclick = "goToInfo()">设置</button>
+    </div>
+    
 </body>
 <script>
     function logout(){
