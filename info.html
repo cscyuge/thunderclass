@@ -49,7 +49,7 @@
                             }
                             $('#mail').attr("value",mail);
                             $('#tel').attr("value",tel);
-                            $('#condition').attr("value",condition);
+                            $('#condition').val(condition);
                             $('#role').val(role);
                             
 
@@ -120,7 +120,8 @@
        </div>
        <br/>
            <p><span style="display:inline-block;width:100px;text-align:right;">个性宣言</span>
-               <textarea style="width:400px;height:100px;  id= 'condition' name= "condition" placeholder="用一段话介绍自己，会在你的个人页面显示，最多输入80字"/></textarea> </p>
+               <textarea style="width:400px;height:100px;"  id= 'condition' name= "condition" placeholder="用一段话介绍自己，会在你的个人页面显示，最多输入80字" ></textarea>
+            </p>
        </div>
         <br/>
         <div class="info"><p>个人认证</p></div>
@@ -158,16 +159,16 @@
         mail = form.get("mail");
         tel = form.get("tel");
         role = form.get("role");
-        
+        console.log(condition);
         var token = localStorage.getItem("token");
         var account = localStorage.getItem("account");
-            
+        var info = { username:username, sex: sex, tel: tel, condition:condition, mail:mail, blog:"", role:role, extra:"{}"};
         $.ajax(
             {
                 url:'proxy/set_user_info.php',
                 type: 'POST',
                 dataType: 'json',
-                data:{account:account, token:token, username:username, sex: sex, tel: tel, condition:condition, mail:mail, blog:"", role:role, extra:"{}"},
+                data:{account:account, token:token, info:info},
                 success : function(obj,textstatus){
                     console.log(obj);
                     alert("修改成功")
