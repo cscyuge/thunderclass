@@ -24,13 +24,23 @@
                 $("#login").attr("style","display:none;");    
                 $("#logout").attr("style","display:block;");
                 $("#modifypw").attr("style","display:block;");
+                $("#my_study").attr("style","display:block;");
+                $("#messages").attr("style","display:block;");
+                $("#cart").attr("style","display:block;");
+                $("#my_info").attr("style","display:block;");
+                $("#set").attr("style","display:block;");
                 $("#user").text(account);
             }else{
                 $("#user").attr("style","display:none;");
                 $("#login").attr("style","display:block;");    
                 $("#logout").attr("style","display:none;");
                 $("#modifypw").attr("style","display:none;");
-                $("#user").text("用户名");   
+                $("#my_study").attr("style","display:none;");
+                $("#messages").attr("style","display:none;");
+                $("#cart").attr("style","display:none;");
+                $("#my_info").attr("style","display:none;");
+                $("#set").attr("style","display:none;");
+                $("#user").text("");   
             }
             console.log("hello");
             console.log("hii");
@@ -58,7 +68,7 @@
         </form>
     
         <ul class="other">
-            <li>
+            <li id = "my_study">
                 <a href="#">我的学习</a>
                 <ul class="nav2">
                     <li><a href="#">产品1</a></li>
@@ -66,24 +76,24 @@
                     <li><a href="#">产品3</a></li>
                 </ul>
             </li>
-            <li><img src="images/message.png" class="messages" onclick="" > </li>
-            <li><img src="images/cart.png" class="cart" onclick="" > </li>
+            <li id = "messages"><img src="images/message.png" class="messages" onclick="" > </li>
+            <li id = "cart"><img src="images/cart.png" class="cart" onclick="" > </li>
             
-            <li>
-                <a href="#" id = "login" onclick="login()">登录</a>
+            <li id = "login">
+                <a href="#" onclick="login()">登录</a>
             </li>
             
             <li>
-                <a href="#" id = "user" onclick="user()">用户名</a>
+                <a href="#" id = "user" onclick="user()"></a>
                 <ul class = "nav2">
-                    <li><a href="#" id = "modifypw" onclick = "modifypw()">修改密码</a></li>
-                    <li><a href="#" id = "logout" onclick = "logout()">退出登录</a></li>
+                    <li id = "modifypw"><a href="#" onclick = "modifypw()">修改密码</a></li>
+                    <li id = "logout" ><a href="#" onclick = "logout()">退出登录</a></li>
                 </ul>
             </li>
         </ul>
 
     </ul>
-    <div class="setin" >
+    <div class="setin">
         <button class="btn" type = "button" id = "my_info" onclick = "goToInfo()">个人资料</button>
         <button  class="btn" type = "button" id = "set" onclick = "goToInfo()">设置</button>
     </div>
