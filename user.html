@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>我的</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/user.css">
     <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
     <script src="js/vue.js"></script>
@@ -22,6 +24,40 @@
 
 </head>
 <body>
+<ul class="nav">
+    <img src="images/logo1.png" class="logo" />
+    <ul class="one">
+        <li>
+            <a href="#">课程分类</a>
+            <ul class="nav2">
+                <li><a href="#">产品1</a></li>
+                <li><a href="#">产品2</a></li>
+                <li><a href="#">产品3</a></li>
+            </ul>
+        </li>
+    </ul>
+    <form action="" method="post" class="sea" >
+        <input class="search" type="text" name="keyword" placeholder="请输入关键词" id="text" />
+        <input type="image" src="images/search.png" id="search">
+    </form>
+
+    <ul class="other">
+        <li>
+            <a href="#">我的学习</a>
+            <ul class="nav2">
+                <li><a href="#">产品1</a></li>
+                <li><a href="#">产品2</a></li>
+                <li><a href="#">产品3</a></li>
+            </ul>
+        </li>
+        <li><img src="images/message.png" class="messages" onclick="" > </li>
+        <li><img src="images/cart.png" class="cart" onclick="" > </li>
+    </ul>
+</ul>
+<div class="setin" >
+    <button class="btn" type = "button" id = "my_info" onclick = "goToInfo()">个人资料</button>
+    <button  class="btn" type = "button" id = "set" onclick = "goToInfo()">设置</button>
+</div>
     <button type = "button" id = "info" onclick = "goToInfo()">个人资料</button>
     
 </body>
