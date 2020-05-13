@@ -11,7 +11,7 @@ li{
 }
 .nav{
     width: 100%;
-    background-color: #0e0e0e;
+    background-color: #ffffff;
     height: 40px; /*高度改为自动高度*/
     margin-left: 0;
     min-width:1366px;/*使屏幕在缩小时导航栏也不会挤到下一行*/
@@ -28,24 +28,22 @@ li{
 }
 
 .nav .one li a{
-    position:relative;
+    top:50px;/*课程分类高度*/
+   position:relative;
     left:40px;
     display: block;
     height: 40px;
     width: 100px;
     text-align: center;
-    background-color: #0e0e0e;
+    background-color: #ffffff;
     line-height: 40px;
-    color: #fff;
+    color: #0e0e0e;
 }
 .nav li:hover .nav2{
     display: block;
 }
 .nav .one li a:hover{  /*更改悬停时颜色，两个ul要分开*/
-    background-color:#999999;
-}
-.nav .other li a:hover{
-    background-color:#999999;
+   background-color:#999999;
 }
 
 .nav .other .nav2 {/*调整二级导航栏的位置*/
@@ -56,7 +54,6 @@ li{
     float: right;
     width:100px;/*使二级导航栏竖排*/
 }
-
 .nav .one .nav2 {
     display: none;
     position: absolute;
@@ -64,6 +61,8 @@ li{
     float:left;
     left:-25px;
 }
+
+
 .logo{
     position:relative;
     left:30px;
@@ -79,16 +78,19 @@ li{
     height:43px;
     top:5px;
 }
-.nav .other li a{ /*控制后三栏的样式*/
+.nav .other li a{ /*控制登录的样式*/
     display: block;
     height: 40px;
     width: 100px;
     text-align: center;
-    background-color: #0e0e0e;
+    background-color: #62c462;
     line-height: 40px;
-    color: #fff;
+    color: #0e0e0e;
     float:right;
+    border-radius: 15px;
+    margin-left:100px;
 }
+
 .date-group{
     position: relative;
 }
@@ -106,13 +108,147 @@ li{
     right: -38px;
     top: 5px;
 }
-.setin{
+.pic{
+    background-image:url(../../images/index.png);
+    background-size:100%;
+    z-index: -1;
+    background-repeat: no-repeat;
+    float:left;
     min-width:1366px;
-    background-color: #62c462;
-    left:0px;
     text-align:center;
     line-height: 0px;
     width:100%;
-    height:300px;
-    margin-top: -20px; display: list-item;
+    height:400px;
+   display: list-item;
+    position:absolute;
+}
+ .button_one{
+     width:700px;
+     margin-left:100px;
+     position:relative;
+     left:700px;
+ }
+
+.button_one li { /*控制后三栏的样式*/
+    display:inline-block;
+    margin-left:20px;
+    transform: translate(-50%, 0);
+}
+p{
+    font-size:20px;
+   margin-left:180px;
+   margin-top:450px;
+}
+.p_live{
+    font-size:20px;
+    margin-left:180px;
+    margin-top:50px;
+}
+.green{
+    background-color:#7aba7b;
+    width:180px;
+    height:100px;
+    border-radius: 10px 10px 10px 10px ;
+    font-size:20px;
+    line-height: 50px;/*让div中的文字内容垂直居中*/
+    text-align: center;/*让文字水平居中*/
+    font:#eeeeee;/*文字颜色*/
+    font-weight:bold
+}
+.blue{
+    background-color:#0e90d2;
+    width:180px;
+    height:100px;
+    border-radius: 10px 10px 10px 10px ;
+    font-size:20px;
+    line-height: 50px;/*让div中的文字内容垂直居中*/
+    text-align: center;/*让文字水平居中*/
+    font-weight:bold
+}
+.dark_blue{
+    background-color:#002a80;
+    width:180px;
+    height:100px;
+    border-radius: 10px 10px 10px 10px ;
+    font-size:20px;
+    line-height: 50px;/*让div中的文字内容垂直居中*/
+    text-align: center;/*让文字水平居中*/
+    font-weight:bold
+}
+.red{
+    background-color:#dd1144;
+    width:180px;
+    height:100px;
+    border-radius: 10px 10px 10px 10px ;
+    font-size:20px;
+    line-height: 50px;/*让div中的文字内容垂直居中*/
+    text-align: center;/*让文字水平居中*/
+    font-weight:bold
+
+}
+.purple{
+    background-color:#d59392;
+    width:180px;
+    height:100px;
+    border-radius: 10px 10px 10px 10px ;
+    font-size:20px;
+    line-height: 50px;/*让div中的文字内容垂直居中*/
+    text-align: center;/*让文字水平居中*/
+    font-weight:bold
+
+}
+.orange{
+    background-color:#f89406;
+    width:180px;
+    height:100px;
+    border-radius: 10px 10px 10px 10px ;
+    font-size:20px;
+    line-height: 50px;/*让div中的文字内容垂直居中*/
+    text-align: center;/*让文字水平居中*/
+    font-weight:bold
+
+}
+.category{
+    width:1500px;
+    margin-left:250px;
+    position:relative;
+
+}
+.category li { /*控制后三栏的样式*/
+    display:inline-block;
+    margin-left:20px;
+    transform: translate(-50%, 0);
+}
+.live{
+    position:relative;/*没有这一句，下一句就不起作用*/
+    top:-10px;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+}
+.class li{
+    position:relative;
+    height:100px;
+   /* display:inline-block;/*这里缩放依然存在问题，不使用就无法在同一行，使用了放缩就出问题*/
+}
+.class{
+    position:relative;
+    left:150px;
+    box-sizing: border-box;  /*border计算在width中*/
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    width: 30%;
+    height: 150px;
+    display:inline-block;
+}
+.d_live{
+    position:relative;
+    width:100%;
+    float:left;
+    display:block;
+}
+.font{
+    left:100px;
+    top:-100px;
+    width:200px;
 }

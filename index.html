@@ -7,7 +7,7 @@
     <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
     <script src="js/vue.js"></script>
-    <link rel="stylesheet" href="bootstrap/css/user.css">
+    <link rel="stylesheet" href="bootstrap/css/index.css">
     
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
@@ -52,15 +52,15 @@
 <body>
     <ul class="nav">
         <img src="images/logo1.png" class="logo" />
-        <ul class="one">
-            <li>
-                <a href="#">课程分类</a>
-                <ul class="nav2">
-                    <li><a href="#">产品1</a></li>
-                    <li><a href="#">产品2</a></li>
-                    <li><a href="#">产品3</a></li>
-                </ul>
-            </li>
+            <ul class="one">
+                <li>
+                    <a href="#">课程分类⏷</a>
+                    <ul class="nav2">
+                        <li><a href="#">产品1</a></li>
+                        <li><a href="#">产品2</a></li>
+                        <li><a href="#">产品3</a></li>
+                    </ul>
+                </li>
         </ul>
         <form action="" method="post" class="sea" >
             <input class="search" type="text" name="keyword" placeholder="请输入关键词" id="text" />
@@ -68,21 +68,9 @@
         </form>
     
         <ul class="other">
-            <li id = "my_study">
-                <a href="#">我的学习</a>
-                <ul class="nav2">
-                    <li><a href="#">产品1</a></li>
-                    <li><a href="#">产品2</a></li>
-                    <li><a href="#">产品3</a></li>
-                </ul>
-            </li>
-            <li id = "messages"><img src="images/message.png" class="messages" onclick="" > </li>
-            <li id = "cart"><img src="images/cart.png" class="cart" onclick="" > </li>
-            
             <li id = "login">
                 <a href="#" onclick="login()">登录</a>
             </li>
-            
             <li>
                 <a href="#" id = "user" onclick="user()"></a>
                 <ul class = "nav2">
@@ -91,13 +79,55 @@
                 </ul>
             </li>
         </ul>
-
     </ul>
-    <div class="setin">
-        <button class="btn" type = "button" id = "my_info" onclick = "goToInfo()">个人资料</button>
-        <button  class="btn" type = "button" id = "set" onclick = "goToInfo()">设置</button>
+         <ul class = "button_one">
+             <li id = "modifypw"><a href="#" onclick = "modifypw()">关注领福利</a></li>
+             <li id = "logout" ><a href="#" onclick = "logout()">下载中心</a></li>
+             <li id = "logout" ><a href="#" onclick = "logout()">会员中心</a></li>
+         </ul>
+    <div class="pic"></div>
+   <p>系统化学习路径 </p>
+    <ul class = "category">
+        <li class="green"><a href="#" onclick = ""><span style="color:#eeeeee">职场通用技能</span><br/><span style="color:#eeeeee">课程体系</span></a></li>
+        <li class="blue"><a href="#" onclick = ""><span style="color:#eeeeee">编程与开发</span><br/><span style="color:#eeeeee">课程体系</span></a></li>
+        <li class="dark_blue"><a href="#" onclick = ""><span style="color:#eeeeee">AI与数据科学</span><br/><span style="color:#eeeeee">课程体系</span></a></li>
+        <li class="purple"><a href="#" onclick = ""><span style="color:#eeeeee">产品与运营</span><br/><span style="color:#eeeeee">课程体系</span></a></li>
+        <li class="orange"><a href="#" onclick = ""><span style="color:#eeeeee">设计创意</span><br/><span style="color:#eeeeee">课程体系</span></a></li>
+        <li class="red"><a href="#" onclick = ""><span style="color:#eeeeee">电商运营</span><br/><span style="color:#eeeeee">课程体系</span></a></li>
+    </ul>
+    <p class="p_live">课堂直播</p>
+    <div class="d_live">
+    <ul class = "class">
+         <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+         <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
+             <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
+    </ul>
+    <ul class = "class">
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
+            <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
+    </ul>
+    <ul class = "class">
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
+            <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
+    </ul>
+    <ul class = "class">
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
+            <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
+    </ul>
+    <ul class = "class">
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
+            <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
+    </ul>
+    <ul class = "class">
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
+            <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
+    </ul>
     </div>
-    
 </body>
 <script>
     function logout(){
