@@ -19,50 +19,58 @@
         function get_token(){
             var token = localStorage.getItem("token");
             var account = localStorage.getItem("account");
-            $.ajax(
-                {
-                    url:'proxy/pub_msg.php',
-                    type: 'POST',
-                    dataType: 'json',
-                    data:{account:account, token:token},
-                    success : function(obj,textstatus){
-                        console.log(obj);
-                        if (obj.code == 200){
-                            obj = obj.data;
-                            obj = $.parseJSON(obj);
-                            username = obj.username;
-                            sex = obj.sex;
-                            tel = obj.tel;
-                            condition = obj.condition;
-                            mail = obj.mail;
-                            blog = obj.blog;
-                            role = obj.role;
-                            extra = obj.extra;
-                            $('#username').attr("value",username);
-                            if (sex == 0){
-                                $('#female').attr("checked","");
-                            }else if (sex == 1){
-                                $('#male').attr("checked","");
-                            }else{
-                                $('#unknown').attr("checked","");
+            if (token){
+                $.ajax(
+                    {
+                        url: 'proxy/pub_msg.php',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {account: account, token: token},
+                        success: function (obj, textstatus) {
+                            // alert(token);
+                            // alert(account);
+                            console.log(obj);
+                            if (obj.code == 200) {
+                                obj = obj.data;
+                                obj = $.parseJSON(obj);
+                                username = obj.username;
+                                sex = obj.sex;
+                                tel = obj.tel;
+                                condition = obj.condition;
+                                mail = obj.mail;
+                                blog = obj.blog;
+                                role = obj.role;
+                                extra = obj.extra;
+                                $('#username').attr("value", username);
+                                if (sex == 0) {
+                                    $('#female').attr("checked", "");
+                                } else if (sex == 1) {
+                                    $('#male').attr("checked", "");
+                                } else {
+                                    $('#unknown').attr("checked", "");
+                                }
+                                $('#mail').attr("value", mail);
+                                $('#tel').attr("value", tel);
+                                $('#condition').val(condition);
+                                $('#role').val(role);
+
+                            } else {
+                                alert("获取消息错误");
                             }
-                            $('#mail').attr("value",mail);
-                            $('#tel').attr("value",tel);
-                            $('#condition').val(condition);
-                            $('#role').val(role);
 
-                        }else{
-                            alert("用户认证过期，请重新登录");
-                            localStorage.clear();
-                            window.location.href = 'index.html';
+                        },
+                        error: function (xhr) {
+                            // console.log(xhr.responseText);
+                            alert("服务器错误");
                         }
-                    },
-                    error : function(xhr){
-                        console.log(xhr.responseText);
-                    }
 
-                }
-            )
+                    }
+                )
+            }else{
+                alert("用户认证过期，请重新登录");
+                localStorage.clear();
+                window.location.href = 'index.html';
+            }
         }
     </script>
 </head>
