@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/message.css">
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="js/vue.js"></script>
+    <!-- 异步提交的库 -->
+    <script src="js/vue-resource.js"></script>
+
+    <script>
+        $(function(){
+            get_token();
+        });
+        function get_token(){
+            var token = localStorage.getItem("token");
+            var account = localStorage.getItem("account");
+            $.ajax(
+                {
+                    url:'proxy/pub_msg.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:{account:account, token:token},
+                    success : function(obj,textstatus){
+                        console.log(obj);
+                        if (obj.code == 200){
+                            obj = obj.data;
+                            obj = $.parseJSON(obj);
+                            username = obj.username;
+                            sex = obj.sex;
+                            tel = obj.tel;
+                            condition = obj.condition;
+                            mail = obj.mail;
+                            blog = obj.blog;
+                            role = obj.role;
+                            extra = obj.extra;
+                            $('#username').attr("value",username);
+                            if (sex == 0){
+                                $('#female').attr("checked","");
+                            }else if (sex == 1){
+                                $('#male').attr("checked","");
+                            }else{
+                                $('#unknown').attr("checked","");
+                            }
+                            $('#mail').attr("value",mail);
+                            $('#tel').attr("value",tel);
+                            $('#condition').val(condition);
+                            $('#role').val(role);
+
+
+                        }else{
+                            alert("用户认证过期，请重新登录");
+                            localStorage.clear();
+                            window.location.href = 'index.html';
+                        }
+                    },
+                    error : function(xhr){
+                        console.log(xhr.responseText);
+                    }
+
+                }
+            )
+        }
+    </script>
+</head>
+<body>
+<ul class="nav">
+    <a href="index.html"><img src="images/logo1.png" class="logo" /></a>
+
+    <ul class="one">
+        <li>
+            <a href="#">课程分类</a>
+            <ul class="nav2">
+                <li><a href="#">产品1</a></li>
+                <li><a href="#">产品2</a></li>
+                <li><a href="#">产品3</a></li>
+            </ul>
+        </li>
+    </ul>
+    <form id ="sea" class="sea" >
+        <input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" />
+        <img type="image" src="images/search.png" id="search" onclick="search_my()" />
+    </form>
+
+    <ul class="other">
+        <li>
+            <a href="#">我的学习</a>
+            <ul class="nav2">
+                <li><a href="#">产品1</a></li>
+                <li><a href="#">产品2</a></li>
+                <li><a href="#">产品3</a></li>
+            </ul>
+        </li>
+        <li><img src="images/message.png" class="messages" onclick="" > </li>
+        <li><img src="images/cart.png" class="cart" onclick="" > </li>
+    </ul>
+</ul>
+<div class="d_msg">
+<ul class="msg" >
+    <li><a href="#" onclick = "">● 系统消息</a></li>
+    <li><a href="#" onclick = "">● 课程消息</a></li>
+    <li><a href="#" onclick = "">● 我的消息</a></li>
+</ul>
+    <div id="test"></div>
+</div>
+</body>
+</html>
