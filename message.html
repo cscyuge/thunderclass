@@ -13,19 +13,21 @@
     <script src="js/vue-resource.js"></script>
 
     <script>
+
         $(function(){
             get_token();
         });
         function get_token(){
             var token = localStorage.getItem("token");
             var account = localStorage.getItem("account");
+            var timestamp=new Date().getTime();
             if (token){
                 $.ajax(
                     {
-                        url: 'proxy/pub_msg.php',
+                        url: 'proxy/get_msg.php',
                         type: 'POST',
                         dataType: 'json',
-                        data: {account: account, token: token},
+                        data: {account: account,since:timestamp ,communicator:"system", token: token},
                         success: function (obj, textstatus) {
                             // alert(token);
                             // alert(account);
@@ -33,26 +35,9 @@
                             if (obj.code == 200) {
                                 obj = obj.data;
                                 obj = $.parseJSON(obj);
-                                username = obj.username;
-                                sex = obj.sex;
-                                tel = obj.tel;
-                                condition = obj.condition;
-                                mail = obj.mail;
-                                blog = obj.blog;
-                                role = obj.role;
-                                extra = obj.extra;
-                                $('#username').attr("value", username);
-                                if (sex == 0) {
-                                    $('#female').attr("checked", "");
-                                } else if (sex == 1) {
-                                    $('#male').attr("checked", "");
-                                } else {
-                                    $('#unknown').attr("checked", "");
-                                }
-                                $('#mail').attr("value", mail);
-                                $('#tel').attr("value", tel);
-                                $('#condition').val(condition);
-                                $('#role').val(role);
+                                msg= obj.msg;
+                              console.log(msg);
+                                $('#msg').attr("value", msg);
 
                             } else {
                                 alert("获取消息错误");
@@ -112,7 +97,8 @@
     <li><a href="#" onclick = "">● 课程消息</a></li>
     <li><a href="#" onclick = "">● 我的消息</a></li>
 </ul>
-    <div id="test"></div>
+    <p><span style="display:inline-block;width:100px;text-align:right;">消息</span>
+        <input type="text" name="msg" id="msg" value="" required/>*</p>
 </div>
 </body>
 </html>
