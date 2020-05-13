@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索课程</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/user.css">
+    
+    <!-- 异步提交的库 -->
+    <script src="js/vue-resource.js"></script>
+
+    <script>
+        $(function(){
+            get_token();
+            show_courses();
+        });
+        function get_token(){
+            var token = localStorage.getItem("token");
+            var account = localStorage.getItem("account");
+            if (token){
+                $("#user").attr("style","display:block;");
+                $("#login").attr("style","display:none;");    
+                $("#logout").attr("style","display:block;");
+                $("#modifypw").attr("style","display:block;");
+                $("#my_study").attr("style","display:block;");
+                $("#messages").attr("style","display:block;");
+                $("#cart").attr("style","display:block;");
+                $("#my_info").attr("style","display:block;");
+                $("#set").attr("style","display:block;");
+                $("#user").text(account);
+            }else{
+                $("#user").attr("style","display:none;");
+                $("#login").attr("style","display:block;");    
+                $("#logout").attr("style","display:none;");
+                $("#modifypw").attr("style","display:none;");
+                $("#my_study").attr("style","display:none;");
+                $("#messages").attr("style","display:none;");
+                $("#cart").attr("style","display:none;");
+                $("#my_info").attr("style","display:none;");
+                $("#set").attr("style","display:none;");
+                $("#user").text("");   
+            }
+            console.log("hello");
+            console.log("hii");
+            console.log(token);
+        }
+
+        function create_course_div(course){
+            html = "";
+            temp = "<div id = couse_id>";
+            temp = temp.replace(/course_id/,course.course_id);
+            html+=temp;
+            if (course.s_account == "undefined"){
+                html+="老师发布<br>";
+                html+="教师:"+course.t_account+"<br>";
+            }else{
+                html+="学生发布<br>";
+                html+="学生:"+course.s_account+"<br>";
+            }
+            var info = JSON.parse(course.info);
+            html += "课程类别："+course.category+"<br>";
+            html += "课程名："+info.title+"<br>";
+            html += "状态："+course.status+"<br>";
+            var begin = new Date(course.start_time);
+            var end = new Date(course.finish_time);
+            html += "开始时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
+            html += "结束时间："+ (end.toLocaleDateString().replace(/\//g, "-") + " " + end.toTimeString().substr(0, 8)) + "<br>";
+            var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
+            button=button.replace(/course_id/,course.course_id);
+            html += button;
+            html += "<br><br>";
+            html += "</div>";
+            return html;
+        }
+
+        function show_courses(){
+            // console.log(Date.parse(new Date()));
+            // console.log(localStorage.getItem("public_courses_dict"));
+            var courses = localStorage.getItem("public_courses_dict");
+            courses = JSON.parse(courses);
+            var ulObj = document.createElement("ul");
+            for (var key in courses){
+                for (var i=0, n=courses[key].length;i<n;i++){
+                    course = courses[key][i];
+                    console.log(course);
+                    var liObj = document.createElement("li");
+                    tempHTML = create_course_div(course);
+                    liObj.innerHTML = tempHTML;
+                    ulObj.appendChild(liObj);
+                }
+            }
+            $("#course_list").append(ulObj);
+        }
+    </script>
+
+</head>
+<body>
+    <ul class="nav">
+        <a href="index.html"><img src="images/logo1.png" class="logo" /></a>
+        <ul class="one">
+            <li>
+                <a href="#">课程分类</a>
+                <ul class="nav2">
+                    <li><a href="#">产品1</a></li>
+                    <li><a href="#">产品2</a></li>
+                    <li><a href="#">产品3</a></li>
+                </ul>
+            </li>
+        </ul>
+        <form id ="sea" class="sea" >
+            <input class="search" type="text" name="keyword" placeholder="输入关键字搜索课程" id="text" />
+            <img type="image" src="images/search.png" id="search" onclick="search_public()" />
+        </form>
+    
+        <ul class="other">
+            <li id = "my_study">
+                <a href="#">我的学习</a>
+                <ul class="nav2">
+                    <li><a href="#">产品1</a></li>
+                    <li><a href="#">产品2</a></li>
+                    <li><a href="#">产品3</a></li>
+                </ul>
+            </li>
+            <li id = "messages"><img src="images/message.png" class="messages" onclick="" > </li>
+            <li id = "cart"><img src="images/cart.png" class="cart" onclick="" > </li>
+            
+            <li id = "login">
+                <a href="#" onclick="login()">登录</a>
+            </li>
+            
+            <li>
+                <a href="#" id = "user" onclick="user()"></a>
+                <ul class = "nav2">
+                    <li id = "modifypw"><a href="#" onclick = "modifypw()">修改密码</a></li>
+                    <li id = "logout" ><a href="#" onclick = "logout()">退出登录</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </ul>
+    <div id = "course_list" >搜索结果：</div>
+    
+</body>
+<script>
+    function logout(){
+        localStorage.clear();
+        location.replace("index.html");
+    }
+    function login(){
+        window.location.href = "login.html";
+    }
+    function user(){
+        window.location.href = "user.html";
+    }
+    function modifypw(){
+        window.location.href = "modifypw.html";
+    }
+
+    function check(course_id){
+        // alert(course_id);
+        var token = localStorage.getItem("token");
+        var account = localStorage.getItem("account");
+        if (token){
+            $.ajax(
+            {
+                url:'proxy/check_course.php',
+                async: false,
+                type: 'POST',
+                dataType: 'json',
+                data:{account:account,token:token,course_id:course_id},
+                success : function(obj,textstatus){
+                    console.log(obj.data);
+                    if (obj.data=="Success"){
+                        alert("选课成功");
+                        localStorage.removeItem("public_courses_dict");
+                        search_public();
+                        // alert(localStorage.getItem("public_courses_dict"));
+                        document.location.reload(true);
+                    }else{
+                        alert("选课失败");
+                    }
+                },
+                error : function(xhr){
+                    console.log(xhr.responseText);
+                    alert("选课失败");
+                }
+                
+            }
+        )
+        }else{
+            alert("请先登录");
+            window.location.href = "login.html";
+        } 
+    }
+
+    function search_public(){
+        var param = new FormData(document.getElementById("sea"));
+        var keyword = param.get('keyword');
+        console.log(keyword);
+        $.ajax(
+            {
+                url:'proxy/search_public_courses.php',
+                async: false,
+                type: 'POST',
+                dataType: 'json',
+                data:{field:keyword},
+                success : function(obj,textstatus){
+                    console.log(obj.data);
+                    localStorage.setItem("public_courses_dict",JSON.stringify(obj.data));
+                    document.location.reload(true);
+                },
+                error : function(xhr){
+                    console.log(xhr.responseText);
+                }
+                
+            }
+        )
+
+    }
+</script>
+
+</html>

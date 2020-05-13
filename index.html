@@ -51,20 +51,22 @@
 </head>
 <body>
     <ul class="nav">
-        <img src="images/logo1.png" class="logo" />
-            <ul class="one">
-                <li>
-                    <a href="#">课程分类⏷</a>
-                    <ul class="nav2">
-                        <li><a href="#">产品1</a></li>
-                        <li><a href="#">产品2</a></li>
-                        <li><a href="#">产品3</a></li>
-                    </ul>
-                </li>
+
+        <a href="index.html"><img src="images/logo1.png" class="logo" /></a>
+        <ul class="one">
+            <li>
+                <a href="#">课程分类</a>
+                <ul class="nav2">
+                    <li><a href="#">产品1</a></li>
+                    <li><a href="#">产品2</a></li>
+                    <li><a href="#">产品3</a></li>
+                </ul>
+            </li>
+
         </ul>
-        <form action="" method="post" class="sea" >
-            <input class="search" type="text" name="keyword" placeholder="请输入关键词" id="text" />
-            <input type="image" src="images/search.png" id="search">
+        <form id ="sea" class="sea" >
+            <input class="search" type="text" name="keyword" placeholder="输入关键字搜索课程" id="text" />
+            <img type="image" src="images/search.png" id="search" onclick="search_public()" />
         </form>
     
         <ul class="other">
@@ -80,6 +82,7 @@
             </li>
         </ul>
     </ul>
+
          <ul class = "button_one">
              <li id = "modifypw"><a href="#" onclick = "modifypw()">关注领福利</a></li>
              <li id = "logout" ><a href="#" onclick = "logout()">下载中心</a></li>
@@ -128,6 +131,8 @@
             <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
     </ul>
     </div>
+
+
 </body>
 <script>
     function logout(){
@@ -142,6 +147,30 @@
     }
     function modifypw(){
         window.location.href = "modifypw.html";
+    }
+
+    function search_public(){
+        var param = new FormData(document.getElementById("sea"));
+        var keyword = param.get('keyword');
+        console.log(keyword);
+        $.ajax(
+            {
+                url:'proxy/search_public_courses.php',
+                type: 'POST',
+                dataType: 'json',
+                data:{field:keyword},
+                success : function(obj,textstatus){
+                    console.log(obj.data); 
+                    localStorage.setItem("public_courses_dict",JSON.stringify(obj.data));
+                    window.location.href = "search_public.html";
+                },
+                error : function(xhr){
+                    console.log(xhr.responseText);
+                }
+                
+            }
+        )
+
     }
 </script>
 
