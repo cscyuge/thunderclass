@@ -157,11 +157,15 @@ li{
     top: 5px;
 }
 .messages{
+    display:inline;/*放大后有空隙*/
+    vertical-align: middle;
     width: 25px;
     height:25px;
     margin-top:8px;
 }
 .cart{
+    display:inline;
+    vertical-align: middle;
     left:10px;
     width: 25px;
     height:25px;
