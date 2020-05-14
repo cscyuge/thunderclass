@@ -105,10 +105,12 @@ li{
     right: -38px;
     top: 5px;
 }
+.search{
+    border-radius: 15px;
+}
 .messages{
-    width: 25px;
-    height:25px;
-    margin-top:8px;
+    width: 28px;
+    height:28px;
 }
 .cart{
     left:10px;
@@ -133,4 +135,15 @@ li{
     border-radius: 20px 20px 20px 20px ;
     margin-right:50px;
     margin-top:100px;
+    position:relative;
+    top:-100px;
+
+}
+.portrait{
+    position:relative;
+    top:100px;
+    left:-500px;
+    width:150px;
+    height:150px;
+    border-radius:50%;
 }

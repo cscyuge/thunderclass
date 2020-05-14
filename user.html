@@ -70,7 +70,21 @@
             $("#course_list").append(ulObj);
         }
     </script>
-
+<!--修改placeholder颜色，不同浏览器不同-->
+    <style>
+        input::-webkit-input-placeholder{
+            color:whitesmoke;
+        }
+        input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+            color:whitesmoke;
+        }
+        input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+            color:whitesmoke;
+        }
+        input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+            color:whitesmoke;
+        }
+    </style>
 </head>
 <body>
 <ul class="nav">
@@ -87,7 +101,7 @@
         </li>
     </ul> 
     <form id ="sea" class="sea" >   
-        <input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" />
+        <input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" style="background-color: grey;border-radius: 15px" />
         <img type="image" src="images/search.png" id="search" onclick="search_my()" />
     </form>
 
@@ -100,11 +114,12 @@
                 <li><a href="#">产品3</a></li>
             </ul>
         </li>
-        <li><img src="images/message.png" class="messages" onclick="" > </li>
+        <li> <a href="message.html"><img src="images/message.png" class="messages" onclick="" > </a></li>
         <li><img src="images/cart.png" class="cart" onclick="" > </li>
     </ul>
 </ul>
 <div class="setin" >
+    <li><a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" > </a></li>
     <button class="btn" type = "button" id = "my_info" onclick = "goToInfo()">个人资料</button>
     <button  class="btn" type = "button" id = "set" onclick = "goToInfo()">设置</button>
 </div>
