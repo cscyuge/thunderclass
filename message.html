@@ -16,7 +16,50 @@
 
         $(function(){
             get_token();
+            show_courses();
         });
+
+        function create_course_div(course){
+            html = "";
+            temp = "<div id = course_id>";
+            temp = temp.replace(/course_id/,course._t);
+            html+=temp;
+            if (course.sender == "system"){
+                html+="系统发布<br>";
+                html+="消息:"+course.msg+"<br>";
+            }else{
+                html+="学生发布<br>";
+                html+="学生:"+course.msg+"<br>";
+            }
+            html += "发送者："+course.sender+"<br>";
+            var begin = new Date(course._t);
+            html += "发送时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
+           // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
+            //button=button.replace(/course_id/,course.course_id);
+           // html += button;
+            html += "<br><br>";
+            html += "</div>";
+            return html;
+        }
+
+        function show_courses(){
+            // console.log(Date.parse(new Date()));
+            // console.log(localStorage.getItem("public_courses_dict"));
+            var courses = localStorage.getItem("msg_dict");
+            courses = JSON.parse(courses);//解析对象之前要JSON.parse
+            var ulObj = document.createElement("ul");
+                for (var i=0, n=courses.length;i<n;i++){
+                    course = courses[i];
+                    console.log(course);
+                    var liObj = document.createElement("li");
+                    tempHTML = create_course_div(course);
+                    liObj.innerHTML = tempHTML;
+                    ulObj.appendChild(liObj);
+                }
+            }
+            $("#course_list").append(ulObj);
+        }
+
         function get_token(){
             var token = localStorage.getItem("token");
             var account = localStorage.getItem("account");
@@ -34,9 +77,11 @@
                             console.log(obj);
                             if (obj.code == 200) {
                                 obj = obj.data;
+                                msg=obj[0].msg;
                                 obj = $.parseJSON(obj);
-                                msg= obj.msg;
-                              console.log(msg);
+                                localStorage.setItem("msg_dict",JSON.stringify(obj.data));
+                                document.location.reload(true);
+
                                 $('#msg').attr("value", msg);
 
                             } else {
