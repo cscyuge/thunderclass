@@ -16,7 +16,7 @@
 
         $(function(){
             get_token();
-            show_courses();
+           // show_courses();
         });
 
         function create_course_div(course){
@@ -42,7 +42,7 @@
             return html;
         }
 
-        function show_courses(){
+      /*  function show_courses(){
             // console.log(Date.parse(new Date()));
             // console.log(localStorage.getItem("public_courses_dict"));
             var courses = localStorage.getItem("msg_dict");
@@ -57,7 +57,7 @@
                     ulObj.appendChild(liObj);
                 }
             $("#course_list").append(ulObj);
-        }
+        }*/
 
         function get_token(){
             var token = localStorage.getItem("token");
@@ -75,14 +75,19 @@
                             // alert(account);
                             console.log(obj);
                             if (obj.code == 200) {
+                                console.log("1");
                                 obj = obj.data;
-                                msg=obj[0].msg;
+                                console.log("2");
+                                 msg=obj[0].msg;
+                                console.log("3");
                                 obj = $.parseJSON(obj);
+                                console.log("4");
                                 localStorage.setItem("msg_dict",JSON.stringify(obj.data));
+                                console.log("5");
                                 document.location.reload(true);
-
+                                console.log("6");
                                 $('#msg').attr("value", msg);
-
+                                console.log("7");
                             } else {
                                 alert("获取消息错误");
                             }
@@ -100,6 +105,7 @@
                 localStorage.clear();
                 window.location.href = 'index.html';
             }
+            console.log("helloaaa");
         }
     </script>
 </head>
