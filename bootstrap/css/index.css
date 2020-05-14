@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    z-index:100;
 }
 
 a{
@@ -23,7 +24,7 @@ li{
 }
 .nav .other li{  /*控制登录向右对齐*/
     position:relative;
-    left:750px;
+    left:700px;
     margin-right: 10px;
 }
 
@@ -42,6 +43,7 @@ li{
 .nav li:hover .nav2{
     display: block;
 }
+
 .nav .one li a:hover{  /*更改悬停时颜色，两个ul要分开*/
    background-color:#999999;
 }
@@ -90,15 +92,6 @@ li{
     border-radius: 13px;
     margin-left:100px;
 }
-.other_one{
-    position: relative;
- 
-}
-.other_three{
-    position: relative;
-
-}
-
 .date-group{
     position: relative;
 }
@@ -116,6 +109,10 @@ li{
     right: -38px;
     top: 5px;
 }
+.help{
+    z-index: 5;
+}
+
 .pic{
     background-color: #0e90d2;
     background-image:url(../../images/index.png);
@@ -132,12 +129,16 @@ li{
     position:absolute;
 }
  .button_one{
-     width:700px;
+     width:250px;
      margin-left:100px;
      position:relative;
-     left:700px;
+     left:1500px;
  }
-
+.other{
+    position:absolute;
+    left:550px;
+    z-index:10;
+}
 .button_one li { /*控制后三栏的样式*/
     position:relative;
     display:inline-block;
