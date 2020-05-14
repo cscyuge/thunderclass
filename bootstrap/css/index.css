@@ -21,9 +21,9 @@ li{
     margin-right: 10px;
     position: relative;
 }
-.nav .other li{  /*控制后三栏的向右对齐*/
+.nav .other li{  /*控制登录向右对齐*/
     position:relative;
-    left:700px;
+    left:750px;
     margin-right: 10px;
 }
 
@@ -117,6 +117,7 @@ li{
     top: 5px;
 }
 .pic{
+    background-color: #0e90d2;
     background-image:url(../../images/index.png);
     background-size:100%;
     z-index: -1;     /*控制图片优先级低于导航栏 否则二级导航栏会被遮挡*/
@@ -138,8 +139,10 @@ li{
  }
 
 .button_one li { /*控制后三栏的样式*/
+    position:relative;
     display:inline-block;
-    margin-left:20px;
+    margin-left:12px;
+    left:-140px;
     transform: translate(-50%, 0);
 }
 p{
