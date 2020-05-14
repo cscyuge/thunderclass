@@ -9,7 +9,7 @@ body{
          background-size: cover;
         -webkit-background-size: cover;/* 兼容Webkit内核浏览器如Chrome和Safari */
         -o-background-size: cover;/* 兼容Opera */
-    background-image:url(../../images/test.JPG);
+    background-image:url(../../images/test1.JPG);
    }
 
 

@@ -81,14 +81,18 @@ li{
 .nav .other li a{ /*控制登录的样式*/
     display: block;
     height: 40px;
-    width: 100px;
+    width: 140px;
     text-align: center;
     background-color: #62c462;
     line-height: 40px;
     color: #0e0e0e;
     float:right;
-    border-radius: 15px;
+    border-radius: 13px;
     margin-left:100px;
+}
+.other{
+    position: relative;
+    z-index: 2;
 }
 
 .date-group{
@@ -111,7 +115,7 @@ li{
 .pic{
     background-image:url(../../images/index.png);
     background-size:100%;
-    z-index: -1;
+    z-index: -1;     /*控制图片优先级低于导航栏 否则二级导航栏会被遮挡*/
     background-repeat: no-repeat;
     float:left;
     min-width:1366px;
