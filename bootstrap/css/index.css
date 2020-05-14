@@ -90,7 +90,11 @@ li{
     border-radius: 13px;
     margin-left:100px;
 }
-.other{
+.other_one{
+    position: relative;
+    z-index: 2;
+}
+.other_three{
     position: relative;
     z-index: 2;
 }

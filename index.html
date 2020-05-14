@@ -19,7 +19,7 @@
         function get_token(){
             var token = localStorage.getItem("token");
             var account = localStorage.getItem("account");
-            if (token){
+           if (token) {
                 $("#user").attr("style","display:block;");
                 $("#login").attr("style","display:none;");    
                 $("#logout").attr("style","display:block;");
@@ -73,11 +73,11 @@
             <li id = "login">
                 <a href="#" onclick="login()">登录</a>
             </li>
-            <li>
+            <li class="other_one">
                 <a href="#" id = "user" onclick="user()"></a>
                 <ul class = "nav2">
-                    <li id = "modifypw"><a href="#" onclick = "modifypw()">修改密码</a></li>
-                    <li id = "logout" ><a href="#" onclick = "logout()">退出登录</a></li>
+                    <li class="other_three" id = "modifypw"><a href="#" onclick = "modifypw()">修改密码</a></li>
+                    <li class="other_three" id = "logout" ><a href="#" onclick = "logout()">退出登录</a></li>
                 </ul>
             </li>
         </ul>
