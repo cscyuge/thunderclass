@@ -71,8 +71,10 @@
                         dataType: 'json',
                         data: {account: account,communicator:"system", token: token},
                         success: function (obj, textstatus) {
+                            console.log(token);
+                            console.log(account);
                             // alert(token);
-                            // alert(account);
+                             //alert(account);
                             console.log(obj);
                             if (obj.code == 200) {
                                 console.log("1");
