@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 $method = 'POST';
 $headers = array("Content-type:application/json", "charset:utf-8");
 
-$url = "http://47.94.201.157:9090/login/modify_password/";
+$url = "http://47.94.201.157:9090/api/dkt/login/modify_password/";
 $res = http_request($method,$url,$_POST,$headers);
 $res = json_encode($res);
 echo $res;

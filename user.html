@@ -107,7 +107,7 @@
 
     <ul class="other">
         <li>
-            <a href="#">我的学习</a>
+            <a href="my_course.html">我的学习</a>
             <ul class="nav2">
                 <li><a href="#">产品1</a></li>
                 <li><a href="#">产品2</a></li>
@@ -154,7 +154,7 @@
                     console.log(obj.data);
                     localStorage.setItem("my_courses_keyword",keyword);
                     localStorage.setItem("my_courses_list",obj.data.toString());
-                    // alert(obj.data.toString());
+                     alert(obj.data.toString());
                     document.location.reload(true);
                 },
                 error : function(xhr){

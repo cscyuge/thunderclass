@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的课程</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/my_course.css">
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="js/vue.js"></script>
+    <!-- 异步提交的库 -->
+    <script src="js/vue-resource.js"></script>
+
+    <script>
+        $(function(){
+            get_token();
+            show_courses();
+            get_time();
+        });
+       function get_time(){
+           var date=new Date();
+           var h=date.getHours();//获取当前时间
+           $('#time').attr("欢迎您访问简明现代魔法图书馆～～");
+           if(h>=0&& h<12){
+            $('#time').text("欢迎您访问简明现代魔法图书馆～～");
+           }else if(h>=12 && h<18){
+               $('#time').text("欢迎您访问简明现代魔法图书馆～～");
+           }else if(h>=18 && h<=24){
+               $('#time').text("欢迎您访问简明现代魔法图书馆2～～");
+           }
+       }
+        function get_token(){
+            var token = localStorage.getItem("token");
+        }
+
+        function create_course_div(info){
+            html = "";
+            temp = "<div>";
+            html+=temp;
+            var info = JSON.parse(info);
+            html += "课程名："+info.title+"<br>";
+            var button="";
+            var button = "<button onclick=\"goToClass()\">"+"开始上课"+"</button>";
+            // button=button.replace(/course_id/,course.course_id);
+            html += button;
+            html += "<br><br>";
+            html += "</div>";
+            return html;
+        }
+
+        function show_courses(){
+            // console.log(Date.parse(new Date()));
+            // console.log(localStorage.getItem("public_courses_dict"));
+            var courses = localStorage.getItem("my_courses_list");
+            var keyword = localStorage.getItem("my_courses_keyword");
+            if (keyword){
+                $("#text").attr("placeholder",keyword);
+            }
+            if (courses){
+                //pass
+            }else if (keyword){
+                search_my();
+                courses = localStorage.getItem("my_courses_list");
+            }else{
+                keyword="";
+                localStorage.setItem("my_courses_keyword",keyword);
+                search_my();
+                courses = localStorage.getItem("my_courses_list");
+            }
+
+            courses = courses.split(",");
+            var ulObj = document.createElement("ul");
+            for (var i=0, n=courses.length;i<n;i++){
+                course = courses[i];
+                console.log(course);
+                var liObj = document.createElement("li");
+                tempHTML = create_course_div(course);
+                liObj.innerHTML = tempHTML;
+                ulObj.appendChild(liObj);
+            }
+
+            $("#course_list").append(ulObj);
+        }
+    </script>
+    <!--修改placeholder颜色，不同浏览器不同-->
+    <style>
+        input::-webkit-input-placeholder{
+            color:#0e0e0e;
+        }
+        input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+            color:#0e0e0e;
+        }
+        input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+            color:#0e0e0e;
+        }
+        input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+            color:#0e0e0e;
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+    <a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" > </a>
+    <P  id="time">尊敬的用户：</P>
+</div>
+<ul class="one">
+    <li><a href="#">近期课程</a></li>
+    <li><a href="#">课程计划信息</a></li>
+</ul>
+<form id ="sea" class="sea" >
+    <input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" style="border-radius: 15px" />
+    <img type="image" src="images/search.png" id="search" onclick="search_my()" />
+</form>
+
+<br/><br/>
+<ul class="two">
+    <li><a href="#">按学习时间顺序</a></li>
+    <li><a href="#">按学科分类</a></li>
+</ul>
+<br/>
+<div id = "course_list" >我的课程：</div>
+
+</body>
+<script>
+  function search_my(){
+var param = new FormData(document.getElementById("sea"));
+var keyword = param.get('keyword');
+var account = localStorage.getItem('account');
+console.log(keyword);
+$.ajax(
+{
+url:'proxy/search_my_courses.php',
+async: false,
+type: 'POST',
+dataType: 'json',
+data:{account:account,field:keyword},
+success : function(obj,textstatus){
+console.log(obj.data);
+localStorage.setItem("my_courses_keyword",keyword);
+localStorage.setItem("my_courses_list",obj.data.toString());
+alert(obj.data.toString());
+document.location.reload(true);
+},
+error : function(xhr){
+console.log(xhr.responseText);
+}
+
+}
+)
+}
+</script>
+</html>
