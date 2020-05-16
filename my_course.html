@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="bootstrap/css/my_course.css">
     <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/change_section.js"></script>
     <script src="js/vue.js"></script>
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
@@ -15,6 +16,7 @@
     <script>
         $(function(){
             get_token();
+            getId();
             show_courses();
             get_time();
         });
@@ -81,7 +83,10 @@
             }
 
             $("#course_list").append(ulObj);
+            $("#course_list1").append(ulObj);
         }
+
+
     </script>
     <!--修改placeholder颜色，不同浏览器不同-->
     <style>
@@ -104,10 +109,12 @@
     <a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" > </a>
     <P  id="time">尊敬的用户：</P>
 </div>
+<nav>
 <ul class="one">
-    <li><a href="#">近期课程</a></li>
-    <li><a href="#">课程计划信息</a></li>
+    <li class="special"><a href="#album">近期课程</a></li>
+    <li><a href="#dynamic">课程计划信息</a></li>
 </ul>
+</nav>
 <form id ="sea" class="sea" >
     <input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" style="border-radius: 15px" />
     <img type="image" src="images/search.png" id="search" onclick="search_my()" />
@@ -119,7 +126,13 @@
     <li><a href="#">按学科分类</a></li>
 </ul>
 <br/>
-<div id = "course_list" >我的课程：</div>
+
+<section class="sys_msg" id="album">
+    <div id = "course_list" >我的课程：</div>
+</section>
+<section  class="courses_msg" id="dynamic">
+    <div id = "course_list1" >我的课程1：</div>
+</section>
 
 </body>
 <script>
