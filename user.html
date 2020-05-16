@@ -56,7 +56,7 @@
                 courses = localStorage.getItem("my_courses_list");    
             }
 
-            courses = courses.split(",");
+            courses = courses.split("LIST_SPLIT_FLAG");
             var ulObj = document.createElement("ul");
             for (var i=0, n=courses.length;i<n;i++){
                 course = courses[i];
@@ -153,8 +153,15 @@
                 success : function(obj,textstatus){
                     console.log(obj.data);
                     localStorage.setItem("my_courses_keyword",keyword);
-                    localStorage.setItem("my_courses_list",obj.data.toString());
-                     alert(obj.data.toString());
+                    var data = obj.data;
+                    var data_string = "";
+                    for (var i=0, n = data.length; i< n ;i++){
+                        if (i !== 0 ){
+                            data_string+="LIST_SPLIT_FLAG";
+                        }
+                        data_string += data[i].toString();
+                    }
+                    localStorage.setItem("my_courses_list",data_string);
                     document.location.reload(true);
                 },
                 error : function(xhr){
