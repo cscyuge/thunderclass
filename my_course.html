@@ -49,6 +49,26 @@
             html += "</div>";
             return html;
         }
+        function create_course_div2(info){
+            html = "";
+            temp = "<div class='course_div'>";
+            html+=temp;
+            var info = JSON.parse(info);
+            html += "课程名："+info.title+"<br>";
+            var button="";
+            var button = "<button onclick=\"goToClass()\">"+"开始上课"+"</button>";
+            // button=button.replace(/course_id/,course.course_id);
+            html += button;
+            var button1 = "<button onclick=\"\">"+"补充评价"+"</button>";
+            html += button1;
+            var button2 = "<button onclick=\"\">"+"联系老师"+"</button>";
+            html += button2;
+            var button3 = "<button onclick=\"\">"+"查看课程信息"+"</button>";
+            html += button3;
+            html += "<br><br>";
+            html += "</div>";
+            return html;
+        }
 
         function show_courses(){
             // console.log(Date.parse(new Date()));
@@ -72,17 +92,21 @@
 
             courses = courses.split(",");
             var ulObj = document.createElement("ul");
+            var ulObj2 = document.createElement("ul");
             for (var i=0, n=courses.length;i<n;i++){
                 course = courses[i];
                 console.log(course);
                 var liObj = document.createElement("li");
+                var liObj2 = document.createElement("li");
                 tempHTML = create_course_div(course);
+                tempHTML2 = create_course_div2(course);
                 liObj.innerHTML = tempHTML;
+                liObj2.innerHTML = tempHTML2;
                 ulObj.appendChild(liObj);
+                ulObj2.appendChild(liObj2);
             }
-
+            $("#course_list1").append(ulObj2);
             $("#course_list").append(ulObj);
-            $("#course_list1").append(ulObj);
         }
 
 
@@ -134,6 +158,8 @@
 <section  class="courses_msg" id="dynamic">
     <div id = "course_list1" >我的课程1：</div>
 </section>
+
+
 </body>
 <script>
   function search_my(){

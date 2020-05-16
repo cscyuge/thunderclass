@@ -6,6 +6,9 @@
 a{
     text-decoration: none;
 }
+body{
+    background-color:#FFFAF0;
+}
 li{
     list-style: none;
 }
@@ -67,8 +70,12 @@ li{
     height:60px;
 }
 .course_div{
-    background-color: #eeeeee;
+    background-image: url(../../images/course_img1.jpg);
+    background-size:cover;
     position:relative;
     width:120px;
     height:130px;
+}
+.course_div ul li{
+padding:80px 0;
 }
