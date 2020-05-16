@@ -23,13 +23,12 @@
        function get_time(){
            var date=new Date();
            var h=date.getHours();//获取当前时间
-           $('#time').attr("欢迎您访问简明现代魔法图书馆～～");
            if(h>=0&& h<12){
-            $('#time').text("欢迎您访问简明现代魔法图书馆～～");
+            $('#time').text("大佬，早上好！");
            }else if(h>=12 && h<18){
-               $('#time').text("欢迎您访问简明现代魔法图书馆～～");
+               $('#time').text("大佬，下午好！");
            }else if(h>=18 && h<=24){
-               $('#time').text("欢迎您访问简明现代魔法图书馆2～～");
+               $('#time').text("大佬 晚上好！");
            }
        }
         function get_token(){
@@ -38,9 +37,12 @@
 
         function create_course_div(info){
             html = "";
-            temp = "<div>";
+            temp = "<div class='course_div'>";
             html+=temp;
             var info = JSON.parse(info);
+            var course_img="";
+            var course_img="<img src="images/course_img.jpg" class="course_img" onclick="" >";
+            html += course_img;
             html += "课程名："+info.title+"<br>";
             var button="";
             var button = "<button onclick=\"goToClass()\">"+"开始上课"+"</button>";
@@ -107,7 +109,9 @@
 <body>
 <div class="top">
     <a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" > </a>
-    <P  id="time">尊敬的用户：</P>
+    <P id="time">尊敬的用户：</P>
+    <br/><br/><br/>
+    <p>stay hungry,stay foolish</p>
 </div>
 <nav>
 <ul class="one">
@@ -133,7 +137,6 @@
 <section  class="courses_msg" id="dynamic">
     <div id = "course_list1" >我的课程1：</div>
 </section>
-
 </body>
 <script>
   function search_my(){
