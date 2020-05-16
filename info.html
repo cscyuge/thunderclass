@@ -66,6 +66,8 @@
                 }
             )
         }
+
+
     </script>
 
 </head>
@@ -86,12 +88,12 @@
         </ul>
        <form action="" method="post" class="sea" >
             <input class="search" type="text" name="keyword" placeholder="请输入关键词" id="text" />
-           <input type="image" src="images/search.png" id="search">
+           <a href="user.html"><img type="image" src="images/search.png" id="search"  /></a>
         </form>
 
          <ul class="other">
         <li>
-            <a href="#">我的学习</a>
+            <a href="my_course.html">我的学习</a>
             <ul class="nav2">
                 <li><a href="#">产品1</a></li>
                 <li><a href="#">产品2</a></li>
@@ -172,7 +174,7 @@
                 data:{account:account, token:token, info:info},
                 success : function(obj,textstatus){
                     console.log(obj);
-                    alert("修改成功")
+                    alert("修改成功");
                     location.replace("info.html");
                 },
                 error : function(xhr){

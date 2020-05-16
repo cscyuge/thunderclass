@@ -75,6 +75,19 @@ li{
     position:relative;
     width:120px;
     height:130px;
+    left:400px;
+}
+.course_div_two{
+    position:relative;
+    width:120px;
+    height:130px;
+    left:700px;
+}
+.course_div_two button{
+    background-color: #FFE4E1;
+    width:100px;
+    height:45px;
+    margin-top:20px;
 }
 .course_div ul li{
 padding:80px 0;
