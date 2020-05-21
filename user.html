@@ -28,7 +28,7 @@
             var info = JSON.parse(info);
             html += "课程名："+info.title+"<br>";
             var button="";
-            var button = "<button onclick=\"goToClass()\">"+"开始上课"+"</button>";
+            var button = "<button onclick=\"goToClass(" + info.course_id +")\">"+"开始上课"+"</button>";
             // button=button.replace(/course_id/,course.course_id);
             html += button;
             html += "<br><br>";
@@ -114,6 +114,7 @@
                 <li><a href="#">产品3</a></li>
             </ul>
         </li>
+        <li><a href="publish_course.html">发布任务</a></li>
         <li> <a href="message.html"><img src="images/message.png" class="messages" onclick="" > </a></li>
         <li><img src="images/cart.png" class="cart" onclick="" > </li>
     </ul>
@@ -131,11 +132,29 @@
 <script>
     function goToInfo(){
         window.location.href = "info.html";
+
     }
 
-    function goToClass(){
-        url = 'http://39.97.67.70:3000/#/zh-CN/whiteboard/guest/19c69690936011eaa55f91c00e8a23a4/';
-        window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
+    function goToClass(course_id){
+        var account = localStorage.getItem('account');
+        var token = localStorage.getItem('token');
+        $.ajax(
+            {
+                url:'proxy/get_room_url.php',
+                async: false,
+                type: 'POST',
+                dataType: 'json',
+                data:{account:account,field:keyword},
+                success : function(obj,textstatus){
+                    console.log(obj.data);
+                    url = obj.data.url;
+                    window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
+                },
+                error : function(xhr){
+                    console.log(xhr.responseText);
+                }
+            }
+        )
     }
 
     function search_my(){
