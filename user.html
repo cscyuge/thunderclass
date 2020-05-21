@@ -21,15 +21,15 @@
             var token = localStorage.getItem("token");
         }
 
-        function create_course_div(info){
+        function create_course_div(course){
+            console.log(course);
+            course_id = course.course_id;
             html = "";
             temp = "<div>";
             html+=temp;
-            var info = JSON.parse(info);
-            html += "课程名："+info.title+"<br>";
-            var button="";
-            var button = "<button onclick=\"goToClass(" + info.course_id +")\">"+"开始上课"+"</button>";
-            // button=button.replace(/course_id/,course.course_id);
+            html += "课程名："+course.title+"<br>";
+            var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
+            button=button.replace(/course_id/,course_id);
             html += button;
             html += "<br><br>";
             html += "</div>";
@@ -55,12 +55,10 @@
                 search_my();
                 courses = localStorage.getItem("my_courses_list");    
             }
-
-            courses = courses.split("LIST_SPLIT_FLAG");
+            courses = JSON.parse(courses);
             var ulObj = document.createElement("ul");
             for (var i=0, n=courses.length;i<n;i++){
                 course = courses[i];
-                console.log(course);
                 var liObj = document.createElement("li");
                 tempHTML = create_course_div(course);
                 liObj.innerHTML = tempHTML;
@@ -144,11 +142,16 @@
                 async: false,
                 type: 'POST',
                 dataType: 'json',
-                data:{account:account,field:keyword},
+                data:{account:account,token:token,course_id:course_id},
                 success : function(obj,textstatus){
-                    console.log(obj.data);
-                    url = obj.data.url;
-                    window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
+                    console.log(obj);
+                    code = obj.code;
+                    if (code == 200) {
+                        url = obj.data;
+                        window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
+                    }else{
+                        alert(obj.data);
+                    }
                 },
                 error : function(xhr){
                     console.log(xhr.responseText);
@@ -170,17 +173,17 @@
                 dataType: 'json',
                 data:{account:account,field:keyword},
                 success : function(obj,textstatus){
-                    console.log(obj.data);
+                    console.log(obj);
                     localStorage.setItem("my_courses_keyword",keyword);
                     var data = obj.data;
-                    var data_string = "";
+                    var temp_list =[];
                     for (var i=0, n = data.length; i< n ;i++){
-                        if (i !== 0 ){
-                            data_string+="LIST_SPLIT_FLAG";
-                        }
-                        data_string += data[i].toString();
+                        course_id = data[i].course_id;
+                        info = JSON.parse(data[i].info);
+                        info["course_id"]=course_id;
+                        temp_list.push(info);
                     }
-                    localStorage.setItem("my_courses_list",data_string);
+                    localStorage.setItem("my_courses_list",JSON.stringify(temp_list));
                     document.location.reload(true);
                 },
                 error : function(xhr){
