@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="bootstrap/css/publish_course.css">
     <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/change_section.js"></script>
     <script src="js/vue.js"></script>
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
     <script>
         $(function(){
+            getId();
             get_token();
 
         });
@@ -67,29 +69,39 @@
         <li><img src="images/cart.png" class="cart" onclick="" > </li>
     </ul>
 </ul>
-<div class="setin" >
-</div>
 
-<div>发布一个新任务：<br>
+
+<div class="section">
+    <ul class="u_section" >
+        <nav>
+            <ul>
+                <li class="special"><a href="#album">发布课程</a></li>
+                <li><a href="#dynamic">已发布课程</a></li>
+            </ul>
+        </nav>
+    </ul>
+</div>
+<section class="sys_msg" id="album">
+<div class="task">
     <form id = "task">
 
-        <p>课程名：
+        <p><span style="display:inline-block;width:100px;text-align:right;">课程名：</span>
             <input id="title" name = "title"/>
         </p>
 
-        <p>开始时间：
+        <p><span style="display:inline-block;width:100px;text-align:right;">开始时间：</span>
             <input type="date" id="start_time" name="start_time" />
         </p>
 
-        <p>结束时间：
+        <p><span style="display:inline-block;width:100px;text-align:right;">结束时间：</span>
             <input type="date" id="end_time" name = "end_time"/>
         </p>
 
-        <p>课时数：
+        <p><span style="display:inline-block;width:100px;text-align:right;">课时数：</span>
             <input oninput = "value=value.replace(/[^\d]/g,'')" id="course_num" name = "course_num"/>
         </p>
 
-        <p>课程类别：
+        <p><span style="display:inline-block;width:100px;text-align:right;">课程类别：</span>
             <select id = 'category' name = 'category' class="box">
                 <option value = "default" checked="">默认</option>
                 <option value = "Basic subjects">基础课程</option>
@@ -98,10 +110,14 @@
 
         </p>
 
-        <button class="btn" onclick="public_course()" type="button">提交</button>
+        <button class="btn" onclick="public_course()" type="button">立即发布</button>
+        <button class="btn" onclick="window.open('user.html')" type="button">取消</button>
     </form>
 </div>
-
+</section>
+<section class="courses_msg" id="dynamic">
+    aaa
+</section>
 
 </body>
 <script>
