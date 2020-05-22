@@ -93,7 +93,10 @@
             //console.log(Date.parse(new Date()));
             //console.log(localStorage.getItem("public_courses_dict"));
             var courses = localStorage.getItem("msg_dict");
+           console.log("第1次");
+           console.log(courses);
             courses = JSON.parse(courses);//解析对象之前要JSON.parse
+           console.log("第2次");
            console.log(courses);
            console.log(courses.length);
             var ulObj = document.createElement("ul");
