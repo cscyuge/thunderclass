@@ -18,7 +18,7 @@
             getId();
            // showSection(id);
             get_token();
-           // show_courses();
+            show_courses();
         });
         /*把相应section的id和用户点击的导航栏href值比较，改变各个section的display属性*/
         function showSection(id) {
@@ -89,11 +89,13 @@
             return html;
         }
 
-      /*  function show_courses(){
-            // console.log(Date.parse(new Date()));
-            // console.log(localStorage.getItem("public_courses_dict"));
+       function show_courses(){
+            //console.log(Date.parse(new Date()));
+            //console.log(localStorage.getItem("public_courses_dict"));
             var courses = localStorage.getItem("msg_dict");
             courses = JSON.parse(courses);//解析对象之前要JSON.parse
+           console.log("数组长度");
+           console.log(courses.length);
             var ulObj = document.createElement("ul");
                 for (var i=0, n=courses.length;i<n;i++){
                     course = courses[i];
@@ -104,7 +106,7 @@
                     ulObj.appendChild(liObj);
                 }
             $("#course_list").append(ulObj);
-        }*/
+        }
 
       function get_token(){
             var token = localStorage.getItem("token");
@@ -234,6 +236,6 @@
     </div>
 </section>
 
-<!--<div id = "course_list" >搜索结果：</div>-->
+<div id = "course_list" >搜索结果：</div>
 </body>
 </html>
