@@ -134,9 +134,9 @@
                                 console.log("2");
                                  msg=obj[0].msg;
                                 console.log("3");
-                                obj = $.parseJSON(obj);
+                                obj = $.parseJSON(obj[0]);
                                 console.log("4");
-                                localStorage.setItem("msg_dict",JSON.stringify(obj.data));
+                                localStorage.setItem("msg_dict",JSON.stringify(obj));
                                 console.log("5");
                                 document.location.reload(true);
                                 console.log("6");
@@ -240,5 +240,6 @@
 </section>
 
 <div id = "course_list" >搜索结果：</div>
+<input type="text" name="username" id="msg" value="" required/>
 </body>
 </html>
