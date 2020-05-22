@@ -133,8 +133,9 @@
 
                                 var data = obj.data;
                                 var temp_list =[];
-                                console.log(data.length);
-                                for (var i=0, n = data.length; i< n ;i++){
+                                l=data.length;
+                                console.log(l);
+                                for (var i=0; i< l ;i++){
                                     info = JSON.parse(data[i].info);
                                     temp_list.push(info);
                                 }
