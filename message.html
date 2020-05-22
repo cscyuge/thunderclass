@@ -86,9 +86,10 @@
 
         function create_course_div2(course){
             html = "";
-            temp = "<div id = course_id , style="width:300px; margin-top:8px;"> <span style="float:right;">";
+            temp = "<div id = course_id  style="width:300px; margin-top:8px;">";
             temp = temp.replace(/course_id/,course._t);
             html+=temp;
+            html+= "<span style="float:right;">;
             html+=course.msg+"<br>";
             var begin = new Date(course._t);
             html += (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
@@ -100,7 +101,7 @@
             html += "</div>";
             return html;
         }
-        function create_course_div3(course){
+       function create_course_div3(course){
             html = "";
             temp = "<div id = course_id >";
             temp = temp.replace(/course_id/,course._t);
