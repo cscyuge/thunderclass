@@ -71,7 +71,7 @@
             html = "";
             temp = "<div id = course_id>";
             temp = temp.replace(/course_id/,course._t);
-            html+=temp;
+             html+=temp;
              html+="系统发布<br>";
              html+="消息:"+course.msg+"<br>";
             var begin = new Date(course._t);
@@ -176,7 +176,7 @@
                                     temp_list.push(info);
                                 }
                                 localStorage.setItem("msg_list",JSON.stringify(temp_list));
-                              //  document.location.reload(true);
+                                document.location.reload();
 
                             } else {
                                 alert("获取消息错误");
@@ -275,4 +275,32 @@
 </section>
 
 </body>
+<script>
+    /*function send(){
+        var form = new FormData( document.getElementById("dialog"));
+        condition = form.get("condition");
+        console.log(condition);
+        var token = localStorage.getItem("token");
+        var account = localStorage.getItem("account");
+        var info = {account:account, receiver: , tel: tel, condition:condition, mail:mail, blog:"", role:role, extra:"{}"};
+        $.ajax(
+            {
+                url:'proxy/set_user_info.php',
+                type: 'POST',
+                dataType: 'json',
+                data:{account:account, token:token, info:info},
+                success : function(obj,textstatus){
+                    console.log(obj);
+                    alert("修改成功");
+                    location.replace("info.html");
+                },
+                error : function(xhr){
+                    console.log(xhr.responseText);
+                }
+
+            }
+        )
+    }
+*/
+</script>
 </html>
