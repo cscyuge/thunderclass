@@ -18,7 +18,7 @@
             getId();
            // showSection(id);
             get_token();
-            //show_courses();
+            show_courses();
         });
         /*把相应section的id和用户点击的导航栏href值比较，改变各个section的display属性*/
         function showSection(id) {
@@ -121,7 +121,7 @@
                         url: 'proxy/get_msg.php',
                         type: 'POST',
                         dataType: 'json',
-                        async:false,
+                        async:true,
                         data: {account: account,communicator:"system", token: token},
                         success: function (obj, textstatus) {
                             console.log(token);
@@ -238,6 +238,5 @@
 </section>
 
 <div id = "course_list" >搜索结果：</div>
-<input type="text" name="username" id="msg" value="" required/>
 </body>
 </html>
