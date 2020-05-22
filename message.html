@@ -136,7 +136,7 @@
                                 var l=data.length;
                                 console.log(l);
                                 for ( var i=0; i< l ;i++){
-                                    info = JSON.parse(eval('(' + data + ')')[i]);
+                                    info = JSON.parse(eval('(' + data[i] + ')') );
                                     temp_list.push(info);
                                 }
                                 localStorage.setItem("msg_list",JSON.stringify(temp_list));
