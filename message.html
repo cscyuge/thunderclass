@@ -130,21 +130,17 @@
                             console.log(obj);
                             if (obj.code == 200) {
                                 console.log("1");
-                                obj = obj.data;
-                                console.log(obj);
-                                console.log(obj[1]);
-                                console.log(obj[1].msg);
-                                console.log("2");
-                                 msg=obj[0].msg;
-                                console.log("3");
-                                obj = $.parseJSON(obj[0]);
-                                console.log("4");
-                                localStorage.setItem("msg_dict",JSON.stringify(obj));
-                                console.log("5");
+
+                                var data = obj.data;
+                                var temp_list =[];
+                                console.log(data.length);
+                                for (var i=0, n = data.length; i< n ;i++){
+                                    info = JSON.parse(data[i].info);
+                                    temp_list.push(info);
+                                }
+                                localStorage.setItem("msg_list",JSON.stringify(temp_list));
                                 document.location.reload(true);
-                                console.log("6");
-                                $('#msg').attr("value", msg);
-                                console.log("7");
+
                             } else {
                                 alert("获取消息错误");
                             }
