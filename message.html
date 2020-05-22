@@ -131,9 +131,9 @@
                             console.log(obj);
                             if (obj.code == 200) {
                                 var data = obj.data;
-                                var l=data.length;
+                               // var l=data.length;
                                 var temp_list =[];
-                                for (var i=0, n = l; i< n ;i++){
+                                for (var i=0 ; i< 3;i++){
                                     info = JSON.stringify(data[i]);
                                     temp_list.push(info);
                                 }
