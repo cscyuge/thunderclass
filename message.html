@@ -69,7 +69,7 @@
         function create_course_div(course){
             html = "";
             temp = "<div id = course_id>";
-            temp = temp.replace(/course_id/,course._t);
+          /*  temp = temp.replace(/course_id/,course._t);
             html+=temp;
             if (course.sender == "system"){
                 html+="系统发布<br>";
@@ -83,7 +83,7 @@
             html += "发送时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
            // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
             //button=button.replace(/course_id/,course.course_id);
-           // html += button;
+           // html += button;*/
             html += "<br><br>";
             html += "</div>";
             return html;
@@ -130,10 +130,8 @@
                              //alert(account);
                             console.log(obj);
                             if (obj.code == 200) {
-                                console.log("1");
                                 var data = obj.data;
                                 var l=data.length;
-                                console.log(data.length);
                                 var temp_list =[];
                                 for (var i=0, n = l; i< n ;i++){
                                     info = JSON.stringify(data[i]);
