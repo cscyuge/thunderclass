@@ -92,7 +92,7 @@
        function show_courses(){
             //console.log(Date.parse(new Date()));
             //console.log(localStorage.getItem("public_courses_dict"));
-            var courses = localStorage.getItem("msg_dict");
+            var courses = localStorage.getItem("msg_list");
            console.log("第1次");
            console.log(courses);
             courses = JSON.parse(courses);//解析对象之前要JSON.parse
@@ -121,6 +121,7 @@
                         url: 'proxy/get_msg.php',
                         type: 'POST',
                         dataType: 'json',
+                        async:true,
                         data: {account: account,communicator:"system", token: token},
                         success: function (obj, textstatus) {
                             console.log(token);
@@ -135,7 +136,7 @@
                                 console.log(data.length);
                                 var temp_list =[];
                                 for (var i=0, n = l; i< n ;i++){
-                                    info = JSON.parse(data[i]);
+                                    info = JSON.stringify(data[i]);
                                     temp_list.push(info);
                                 }
                                 localStorage.setItem("msg_list",JSON.stringify(temp_list));
