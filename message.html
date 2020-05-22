@@ -69,7 +69,7 @@
         function create_course_div(course){
             html = "";
             temp = "<div id = course_id>";
-          /*  temp = temp.replace(/course_id/,course._t);
+            temp = temp.replace(/course_id/,course._t);
             html+=temp;
             if (course.sender == "system"){
                 html+="系统发布<br>";
@@ -89,7 +89,7 @@
             return html;
         }
 
-       /*function show_courses(){
+       function show_courses(){
             //console.log(Date.parse(new Date()));
             //console.log(localStorage.getItem("public_courses_dict"));
             var courses = localStorage.getItem("msg_list");
@@ -109,7 +109,7 @@
                     ulObj.appendChild(liObj);
                 }
             $("#course_list").append(ulObj);
-        }*/
+        }
 
       function get_token(){
             var token = localStorage.getItem("token");
@@ -121,7 +121,7 @@
                         url: 'proxy/get_msg.php',
                         type: 'POST',
                         dataType: 'json',
-                        async:true,
+                        async:false,
                         data: {account: account,communicator:"system", token: token},
                         success: function (obj, textstatus) {
                             console.log(token);
@@ -131,14 +131,14 @@
                             console.log(obj);
                             if (obj.code == 200) {
                                 var data = obj.data;
-                               // var l=data.length;
+                               var l=data.length;
                                 var temp_list =[];
-                                for (var i=0 ; i< 3;i++){
+                                for (var i=0, n=l; i< n;i++){
                                     info = JSON.stringify(data[i]);
                                     temp_list.push(info);
                                 }
                                 localStorage.setItem("msg_list",JSON.stringify(temp_list));
-                                document.location.reload(true);
+                              //  document.location.reload(true);
 
                             } else {
                                 alert("获取消息错误");
