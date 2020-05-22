@@ -86,12 +86,28 @@
 
         function create_course_div2(course){
             html = "";
-            temp = "<div id = course_id>";
+            temp = "<div id = course_id , style="width:300px; margin-top:8px;"> <span style="float:right;">";
             temp = temp.replace(/course_id/,course._t);
             html+=temp;
             html+=course.msg+"<br>";
             var begin = new Date(course._t);
-            html += "发送时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
+            html += (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
+            // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
+            //button=button.replace(/course_id/,course.course_id);
+            // html += button;*/
+            html += "<br><br>";
+            html += "</span>";
+            html += "</div>";
+            return html;
+        }
+        function create_course_div3(course){
+            html = "";
+            temp = "<div id = course_id >";
+            temp = temp.replace(/course_id/,course._t);
+            html+=temp;
+            html+=course.msg+"<br>";
+            var begin = new Date(course._t);
+            html += (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
             // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
             //button=button.replace(/course_id/,course.course_id);
             // html += button;*/
@@ -118,10 +134,13 @@
                     var liObj = document.createElement("li");
                     var liObj2 = document.createElement("li");
                     course= JSON.parse(course);
+                    var account = localStorage.getItem("account");
                     if(course.sender=="system")
                     { var tempHTML = create_course_div(course);}
-                    else
+                    else if(course.sender==account)//如果是自己发的消息
                     { var tempHTML2 = create_course_div2(course);}
+                    else
+                    {  tempHTML2 = create_course_div3(course);}
                     liObj.innerHTML = tempHTML;
                     liObj2.innerHTML = tempHTML2;
                     ulObj.appendChild(liObj);
