@@ -94,7 +94,7 @@
             //console.log(localStorage.getItem("public_courses_dict"));
             var courses = localStorage.getItem("msg_dict");
             courses = JSON.parse(courses);//解析对象之前要JSON.parse
-           console.log("数组长度");
+           console.log(courses);
            console.log(courses.length);
             var ulObj = document.createElement("ul");
                 for (var i=0, n=courses.length;i<n;i++){
