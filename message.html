@@ -136,8 +136,8 @@
                     var account = localStorage.getItem("account");
                     if(course.sender=="system")
                     { var tempHTML = create_course_div(course);}
-                    else if(course.sender==account)//如果是自己发的消息
-                    { var tempHTML2 = create_course_div2(course);}
+                    /*else if(course.sender==account)//如果是自己发的消息
+                    { var tempHTML2 = create_course_div2(course);}*/
                     else
                     {  tempHTML2 = create_course_div3(course);}
                     liObj.innerHTML = tempHTML;
