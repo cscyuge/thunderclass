@@ -119,9 +119,9 @@
                     var liObj2 = document.createElement("li");
                     course= JSON.parse(course);
                     if(course.sender=="system")
-                    { var tempHTML = create_course_div(c_course);}
+                    { var tempHTML = create_course_div(course);}
                     else
-                    { var tempHTML2 = create_course_div2(c_course);}
+                    { var tempHTML2 = create_course_div2(course);}
                     liObj.innerHTML = tempHTML;
                     liObj2.innerHTML = tempHTML2;
                     ulObj.appendChild(liObj);
