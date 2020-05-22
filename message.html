@@ -86,10 +86,9 @@
 
         function create_course_div2(course){
             html = "";
-            temp = "<div id = course_id  style="width:300px; margin-top:8px;">";
+            temp = "<div id = course_id >";
             temp = temp.replace(/course_id/,course._t);
             html+=temp;
-            html+= "<span style="float:right;">;
             html+=course.msg+"<br>";
             var begin = new Date(course._t);
             html += (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
@@ -97,7 +96,6 @@
             //button=button.replace(/course_id/,course.course_id);
             // html += button;*/
             html += "<br><br>";
-            html += "</span>";
             html += "</div>";
             return html;
         }
