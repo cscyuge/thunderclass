@@ -73,19 +73,31 @@
             temp = "<div id = course_id>";
             temp = temp.replace(/course_id/,course._t);
             html+=temp;
-            if (course.sender == "system"){
-                html+="系统发布<br>";
-                html+="消息:"+course.msg+"<br>";
-            }else{
-                html+="学生发布<br>";
-                html+="学生:"+course.msg+"<br>";
-            }
-            html += "发送者："+course.sender+"<br>";
+             html+="系统发布<br>";
+             html+="消息:"+course.msg+"<br>";
             var begin = new Date(course._t);
             html += "发送时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
            // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
             //button=button.replace(/course_id/,course.course_id);
            // html += button;*/
+            html += "<br><br>";
+            html += "</div>";
+            return html;
+        }
+
+        function create_course_div2(course){
+            //console.log(course);
+            course= JSON.parse(course);
+            html = "";
+            temp = "<div id = course_id>";
+            temp = temp.replace(/course_id/,course._t);
+            html+=temp;
+            html+=course.msg+"<br>";
+            var begin = new Date(course._t);
+            html += "发送时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
+            // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
+            //button=button.replace(/course_id/,course.course_id);
+            // html += button;*/
             html += "<br><br>";
             html += "</div>";
             return html;
@@ -102,15 +114,24 @@
            console.log(courses);
            console.log(courses.length);
             var ulObj = document.createElement("ul");
+           var ulObj2 = document.createElement("ul");
                 for (var i=0, n=courses.length;i<n;i++){
                     course = courses[i];
                     console.log(course);
                     var liObj = document.createElement("li");
-                    tempHTML = create_course_div(course);
+                    var liObj2 = document.createElement("li");
+                    c_course= JSON.parse(course);
+                    if(c_course.sender=="system")
+                    tempHTML = create_course_div(c_course);
+                    else
+                    tempHTML2 = create_course_div2(c_course);
                     liObj.innerHTML = tempHTML;
+                    liObj2.innerHTML = tempHTML2;
                     ulObj.appendChild(liObj);
+                    ulObj2.appendChild(liObj2);
                 }
             $("#course_list").append(ulObj);
+           $("#course_list2").append(ulObj2);
         }
 
       function get_token(){
@@ -210,8 +231,7 @@
 </ul>
 </div>
 <section class="sys_msg" id="album">
-    <p><span style="font-weight: bold">系统通知：</span> 2020年5月11日 13：00</p>
-    <p>您已成功开通会员，截止日期至2020年6月11日，感谢您的支持</p>
+    <p><div id = "course_list" ></div></p>
 </section>
 <section  class="courses_msg" id="dynamic">
     <div class="course_msg">
@@ -229,7 +249,7 @@
         <a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" > 灰灰灰 </a>
     </div>
     <div class="chat_area">
-
+        <div id = "course_list2" ></div>
     </div>
     <div class="chat">
         <form id ="dialog">
@@ -239,6 +259,5 @@
     </div>
 </section>
 
-<div id = "course_list" >搜索结果：</div>
 </body>
 </html>
