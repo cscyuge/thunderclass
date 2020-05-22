@@ -130,13 +130,15 @@
                             console.log(obj);
                             if (obj.code == 200) {
                                 console.log("1");
-
                                 var data = obj.data;
-                                var temp_list =[];
                                 var l=data.length;
-                                console.log(l);
-
-                                localStorage.setItem("msg_list",JSON.stringify(data));
+                                console.log(data.length);
+                                var temp_list =[];
+                                for (var i=0, n = l; i< n ;i++){
+                                    info = JSON.parse(data[i]);
+                                    temp_list.push(info);
+                                }
+                                localStorage.setItem("msg_list",JSON.stringify(temp_list));
                                 document.location.reload(true);
 
                             } else {
