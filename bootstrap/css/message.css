@@ -229,12 +229,8 @@ li{
     top:-550px;
     left:300px;
 }
-.msg_background div{
-    margin-top: 10px;/*两个消息之间距离*/
-    position:relative;
+.sys_msg .msg_background div{
     background-color: #eeeeee;
     width:900px;
     height:100px;
-    top:-550px;
-    left:300px;
 }
