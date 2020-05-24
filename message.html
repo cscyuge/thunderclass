@@ -138,8 +138,9 @@
                     { var tempHTML = create_course_div(course);}
                     /*else if(course.sender==account)//如果是自己发的消息
                     { var tempHTML2 = create_course_div2(course);}*/
-                    else
-                    {  tempHTML2 = create_course_div3(course);}
+                    if(course.sender!="system")
+                    {  tempHTML2 = create_course_div3(course);
+                    localStorage.setItem("person_name", "course.sender");}
                     liObj.innerHTML = tempHTML;
                     liObj2.innerHTML = tempHTML2;
                     ulObj.appendChild(liObj);
@@ -246,7 +247,7 @@
 </ul>
 </div>
 <section class="sys_msg" id="album">
-    <div id = "course_list" >1</div>
+    <div id = "course_list" class="msg_background">1</div>
 </section>
 <section  class="courses_msg" id="dynamic">
     <div class="course_msg">
@@ -269,30 +270,31 @@
     <div class="chat">
         <form id ="dialog">
             <textarea style="width:586px;height:100px;"  id= 'condition' name= "condition" placeholder="回复一下吧~" ></textarea>
-            <button class="btnn" onclick="" type="button">发送</button>
+            <button class="btnn" onclick="send()" type="button">发送</button>
         </form>
     </div>
 </section>
 
 </body>
 <script>
-    /*function send(){
+    function send(){
         var form = new FormData( document.getElementById("dialog"));
         condition = form.get("condition");
         console.log(condition);
         var token = localStorage.getItem("token");
         var account = localStorage.getItem("account");
-        var info = {account:account, receiver: , tel: tel, condition:condition, mail:mail, blog:"", role:role, extra:"{}"};
+       var person= localStorage.getItem("lastname");
+        var info = {account:account, receiver: person, msg:condition, token:token};
         $.ajax(
             {
-                url:'proxy/set_user_info.php',
+                url:'proxy/pub_msg.php',
                 type: 'POST',
                 dataType: 'json',
-                data:{account:account, token:token, info:info},
+                data:{info:info},
                 success : function(obj,textstatus){
                     console.log(obj);
-                    alert("修改成功");
-                    location.replace("info.html");
+                    alert("发送成功");
+                    location.replace("message.html");
                 },
                 error : function(xhr){
                     console.log(xhr.responseText);
