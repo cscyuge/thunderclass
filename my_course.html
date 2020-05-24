@@ -35,7 +35,7 @@
             var token = localStorage.getItem("token");
         }
 
-        function create_course_div(info){
+        function create_course_div(course){
             course_id = course.course_id;
             html = "";
             temp = "<div class='course_div'>";
@@ -50,7 +50,7 @@
             html += "</div>";
             return html;
         }
-        function create_course_div2(info){
+        function create_course_div2(course){
             course_id = course.course_id;
             html = "";
             temp = "<div class='course_div'>";
@@ -58,12 +58,12 @@
            // var info = JSON.parse(info);
             html += "<p>《"+info.title+"》</p>"+"<br>";
             var button="";
-            var button = "<button onclick=\"goToClass()\">"+"开始上课"+"</button>";
+            var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
              button=button.replace(/course_id/,course.course_id);
             html += button;
             div_two="<div class='course_div_two'>";
             html+=div_two;
-            var button1 = "<button onclick=\"\">"+"补充评价"+"</button>";
+            var button1 = "<button onclick=\"goToEvaluate(\'course_id\')\">"+"评价课程"+"</button>";//怎么加‘/’
             html += button1;
             var button2 = "<button onclick=\"\">"+"联系老师"+"</button>";
             html += button2;
@@ -243,5 +243,11 @@ $.ajax(
       url = 'http://39.97.67.70:3000/#/zh-CN/whiteboard/guest/19c69690936011eaa55f91c00e8a23a4/';
       window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
   }
+
+  function goToEvaluate(course_id){
+        var parm1=course_id;
+        var myurl="evaluate.html"+"?"+"parm1="+parm1;
+        window.location.assign(myurl);
+    }
 </script>
 </html>
