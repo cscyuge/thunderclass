@@ -140,7 +140,7 @@
                     { var tempHTML2 = create_course_div2(course);}*/
                     if(course.sender!="system")
                     {  tempHTML2 = create_course_div3(course);
-                    localStorage.setItem("person_name", "course.sender");}
+                    localStorage.setItem("person_name", course.sender);}
                     liObj.innerHTML = tempHTML;
                     liObj2.innerHTML = tempHTML2;
                     ulObj.appendChild(liObj);
