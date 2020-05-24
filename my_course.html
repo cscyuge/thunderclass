@@ -64,6 +64,7 @@
             div_two="<div class='course_div_two'>";
             html+=div_two;
             var button1 = "<button onclick=\"goToEvaluate(\'course_id\')\">"+"评价课程"+"</button>";//怎么加‘/’
+            button1=button1.replace(/course_id/,course.course_id);
             html += button1;
             var button2 = "<button onclick=\"\">"+"联系老师"+"</button>";
             html += button2;
