@@ -279,11 +279,12 @@
 <script>
     function send(){
         var form = new FormData( document.getElementById("dialog"));
-        condition = form.get("condition");
+        var condition = form.get("condition");
         var token = localStorage.getItem("token");
         var account = localStorage.getItem("account");
        var person= localStorage.getItem("person_name");
        console.log(person);
+        console.log("aqc");
        console.log(condition);
         var info = {account:account, receiver: person, msg:condition, token:token};
         $.ajax(
