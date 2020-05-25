@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>个人资料</title>
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/reset.css">
     <link rel="stylesheet" href="bootstrap/css/info.css">
@@ -29,7 +28,7 @@
         </script>
 </head>
 <body>
-<form>
+<form id='info'>
     <p><span style="display:inline-block;width:100px;text-align:right;">课程ID</span>  <!--span让输入框对齐-->
         <input type="text" id="txt" />*</p>
 <p><span style="display:inline-block;width:100px;text-align:right;">课程评分</span>
@@ -53,7 +52,7 @@
         console.log(grade);
         var token = localStorage.getItem("token");
         var account = localStorage.getItem("account");
-        var info = {grade: grade, evaluation:evaluation,course_id:course_id};
+        var info = {course_id:course_id, evaluation:evaluation,grade: grade};
         $.ajax(
             {
                 url:'proxy/course_evaluate.php',
