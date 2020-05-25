@@ -41,7 +41,7 @@
             temp = "<div class='course_div'>";
             html+=temp;
            // var info = JSON.parse(info);
-            html += "<p>《"+info.title+"》</p>"+"<br>";
+            html += "<p>《"+course.title+"》</p>"+"<br>";
             var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
             button=button.replace(/course_id/,course_id);
             html += button;
