@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>课程</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/user.css">
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/getUrlParam.js"></script>
+    <!-- 异步提交的库 -->
+    <script src="js/vue-resource.js"></script>
+
+    <script>
+        $(function(){
+            get_token();
+            show_course();
+        });
+    </script>
+
+</head>
+<body>
+
+<div id = "course" >课程：</div>
+
+</body>
+
+<script>
+    function get_token(){
+        var token = localStorage.getItem("token");
+    }
+
+    function create_course_div(course){
+        console.log(course);
+        course_id = course.course_id;
+        html = "";
+        temp = "<div>";
+        html+=temp;
+        html += "课程名："+course.title+"<br>";
+        var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
+        button=button.replace(/course_id/,course_id);
+        html += button;
+        html += "<br><br><br>";
+
+        button = "<button onclick=\"publish_homework(\'course_id\')\">"+"发布作业"+"</button>";
+        button=button.replace(/course_id/,course_id);
+        html += button;
+        html += "<br><br><br>";
+
+        button = "<button onclick=\"goToHomework(\'course_id\')\">"+"查看作业"+"</button>";
+        button=button.replace(/course_id/,course_id);
+        html += button;
+        html += "<br><br><br>";
+
+
+        html += "<br><br>";
+        html += "</div>";
+        return html;
+    }
+
+    function show_course(){
+        var course_id = UrlParam.paramValues('cid');
+        course_id = course_id[0];
+        var title = UrlParam.paramValues('title');
+        title = title[0];
+        var course = new Object();
+        course.title = title;
+        course.course_id = course_id;
+        console.log(course);
+        var liObj = document.createElement("li");
+        tempHTML = create_course_div(course);
+        liObj.innerHTML = tempHTML;
+        var ulObj = document.createElement("ul");
+        ulObj.appendChild(liObj);
+
+        $("#course").append(ulObj);
+    }
+
+    function goToClass(course_id){
+        var account = localStorage.getItem('account');
+        var token = localStorage.getItem('token');
+        $.ajax(
+            {
+                url:'proxy/get_room_url.php',
+                async: false,
+                type: 'POST',
+                dataType: 'json',
+                data:{account:account,token:token,course_id:course_id},
+                success : function(obj,textstatus){
+                    console.log(obj);
+                    code = obj.code;
+                    if (code == 200) {
+                        url = obj.data;
+                        window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
+                    }else{
+                        alert(obj.data);
+                    }
+                },
+                error : function(xhr){
+                    console.log(xhr.responseText);
+                }
+            }
+        )
+    }
+    
+    function publish_homework(course_id) {
+        window.location.href = "publish_homework.html?cid="+course_id;
+
+    }
+    
+    function goToHomework(course_id) {
+        window.location.href = "homework.html?cid="+course_id;
+    }
+</script>
+</html>

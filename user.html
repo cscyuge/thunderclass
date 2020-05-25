@@ -9,6 +9,7 @@
     <script src="js/jquery.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/getUrlParam.js"></script>
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
@@ -17,58 +18,9 @@
             get_token();
             show_courses();
         });
-        function get_token(){
-            var token = localStorage.getItem("token");
-        }
-
-        function create_course_div(course){
-            console.log(course);
-            course_id = course.course_id;
-            html = "";
-            temp = "<div>";
-            html+=temp;
-            html += "课程名："+course.title+"<br>";
-            var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
-            button=button.replace(/course_id/,course_id);
-            html += button;
-            html += "<br><br>";
-            html += "</div>";
-            return html;
-        }
-
-        function show_courses(){
-            // console.log(Date.parse(new Date()));
-            // console.log(localStorage.getItem("public_courses_dict"));
-            var courses = localStorage.getItem("my_courses_list");
-            var keyword = localStorage.getItem("my_courses_keyword");
-            if (keyword){
-                $("#text").attr("placeholder",keyword);
-            }
-            if (courses){
-                //pass
-            }else if (keyword){
-                search_my();
-                courses = localStorage.getItem("my_courses_list");
-            }else{
-                keyword="";
-                localStorage.setItem("my_courses_keyword",keyword);
-                search_my();
-                courses = localStorage.getItem("my_courses_list");    
-            }
-            courses = JSON.parse(courses);
-            var ulObj = document.createElement("ul");
-            for (var i=0, n=courses.length;i<n;i++){
-                course = courses[i];
-                var liObj = document.createElement("li");
-                tempHTML = create_course_div(course);
-                liObj.innerHTML = tempHTML;
-                ulObj.appendChild(liObj);
-            }
-            
-            $("#course_list").append(ulObj);
-        }
     </script>
-<!--修改placeholder颜色，不同浏览器不同-->
+
+    <!--修改placeholder颜色，不同浏览器不同-->
     <style>
         input::-webkit-input-placeholder{
             color:whitesmoke;
@@ -100,7 +52,7 @@
     </ul> 
     <form id ="sea" class="sea" >   
         <input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" style="background-color: grey;border-radius: 15px" />
-        <img type="image" src="images/search.png" id="search" onclick="search_my()" />
+        <img type="image" src="images/search.png" id="search" onclick="reload()" />
     </form>
 
     <ul class="other">
@@ -135,6 +87,13 @@
 
     }
 
+    function reload(){
+        var param = new FormData(document.getElementById("sea"));
+        var keyword = param.get('keyword');
+        console.log(keyword);
+        window.location.href = "user.html?wd="+keyword;
+    }
+
     function goToClass(course_id){
         var account = localStorage.getItem('account');
         var token = localStorage.getItem('token');
@@ -162,11 +121,10 @@
         )
     }
 
-    function search_my(){
-        var param = new FormData(document.getElementById("sea"));
-        var keyword = param.get('keyword');
+    function search_my(keyword){
         var account = localStorage.getItem('account');
         console.log(keyword);
+        var courses = null;
         $.ajax(
             {
                 url:'proxy/search_my_courses.php',
@@ -176,7 +134,6 @@
                 data:{account:account,field:keyword},
                 success : function(obj,textstatus){
                     console.log(obj);
-                    localStorage.setItem("my_courses_keyword",keyword);
                     var data = obj.data;
                     var temp_list =[];
                     for (var i=0, n = data.length; i< n ;i++){
@@ -186,8 +143,7 @@
                         info["course_id"]=course_id;
                         temp_list.push(info);
                     }
-                    localStorage.setItem("my_courses_list",JSON.stringify(temp_list));
-                    document.location.reload(true);
+                    courses = temp_list;
                 },
                 error : function(xhr){
                     console.log(xhr.responseText);
@@ -195,7 +151,64 @@
                 
             }
         )
+        return courses;
+    }
 
+    function get_token(){
+        var token = localStorage.getItem("token");
+    }
+
+    function create_course_div(course){
+        console.log(course);
+        course_id = course.course_id;
+        html = "";
+        temp = "<div>";
+        html+=temp;
+        html += "课程名："+course.title+"<br>";
+        var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
+        button=button.replace(/course_id/,course_id);
+        html += button;
+        for (var i = 0;i < 10; i++) {
+            html += "&nbsp;";
+        }
+        var _button = "<button onclick=\"showMore(\'course_id\',\'title\')\">"+"更多"+"</button>";
+        _button=_button.replace(/course_id/,course_id);
+        _button=_button.replace(/title/,course.title);
+        html += _button;
+
+        html += "<br><br>";
+        html += "</div>";
+        return html;
+    }
+
+    function show_courses(){
+        var keyword = UrlParam.paramValues('wd');
+        if (keyword == null){
+            keyword = ""
+        }else {
+            keyword = keyword[0]
+        }
+
+        var courses = search_my(keyword);
+        if (keyword){
+            $("#text").attr("placeholder",keyword);
+        }
+
+        var ulObj = document.createElement("ul");
+        for (var i=0, n=courses.length;i<n;i++){
+            course = courses[i];
+            var liObj = document.createElement("li");
+            tempHTML = create_course_div(course);
+            liObj.innerHTML = tempHTML;
+            ulObj.appendChild(liObj);
+        }
+
+        $("#course_list").append(ulObj);
+    }
+
+    function showMore(course_id,title) {
+        url = "course.html?cid="+course_id+"&title="+title;
+        window.open(url);
     }
 
 </script>

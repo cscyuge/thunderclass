@@ -202,49 +202,51 @@
         )
     }
 
-  function search_my(){
-var param = new FormData(document.getElementById("sea"));
-var keyword = param.get('keyword');
-var account = localStorage.getItem('account');
-console.log(keyword);
-$.ajax(
-{
-   url:'proxy/search_my_courses.php',
-   async: false,
-   type: 'POST',
-   dataType: 'json',
-   data:{account:account,field:keyword},
-   success : function(obj,textstatus){
-   console.log(obj.data);
-   localStorage.setItem("my_courses_keyword",keyword);
-  /* localStorage.setItem("my_courses_list",obj.data.toString());
-   alert(obj.data.toString());
-   document.location.reload(true);*/
-       var data = obj.data;
-       var temp_list =[];
-       for (var i=0, n = data.length; i< n ;i++){
-           console.log(data[i]);
-           course_id = data[i].course_id;
-           info = JSON.parse(data[i].info);
-           info["course_id"]=course_id;
-           temp_list.push(info);
-       }
-       localStorage.setItem("my_courses_list",JSON.stringify(temp_list));
-       document.location.reload(true);
-     },
-  error : function(xhr){
-   console.log(xhr.responseText);
-   }
+    function search_my(){
+        var param = new FormData(document.getElementById("sea"));
+        var keyword = param.get('keyword');
+        var account = localStorage.getItem('account');
+        console.log(keyword);
+        $.ajax(
+        {
+           url:'proxy/search_my_courses.php',
+           async: false,
+           type: 'POST',
+           dataType: 'json',
+           data:{account:account,field:keyword},
+           success : function(obj,textstatus){
+           console.log(obj.data);
+           localStorage.setItem("my_courses_keyword",keyword);
+          /* localStorage.setItem("my_courses_list",obj.data.toString());
+           alert(obj.data.toString());
+           document.location.reload(true);*/
+               var data = obj.data;
+               var temp_list =[];
+               for (var i=0, n = data.length; i< n ;i++){
+                   console.log(data[i]);
+                   course_id = data[i].course_id;
+                   info = JSON.parse(data[i].info);
+                   info["course_id"]=course_id;
+                   temp_list.push(info);
+               }
+               localStorage.setItem("my_courses_list",JSON.stringify(temp_list));
+               document.location.reload(true);
+             },
+          error : function(xhr){
+           console.log(xhr.responseText);
+           }
 
-  }
- )
-}
-  function goToClass(){
-      url = 'http://39.97.67.70:3000/#/zh-CN/whiteboard/guest/19c69690936011eaa55f91c00e8a23a4/';
-      window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
-  }
+        }
+        )
 
-  function goToEvaluate(course_id){
+    }
+
+    function goToClass(){
+        url = 'http://39.97.67.70:3000/#/zh-CN/whiteboard/guest/19c69690936011eaa55f91c00e8a23a4/';
+        window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
+    }
+
+    function goToEvaluate(course_id){
         var parm1=course_id;
         var myurl="evaluate.html"+"?"+"parm1="+parm1;
         window.location.assign(myurl);
