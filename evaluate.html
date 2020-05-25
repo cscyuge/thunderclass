@@ -52,13 +52,13 @@
         console.log(grade);
         var token = localStorage.getItem("token");
         var account = localStorage.getItem("account");
-        var info = {course_id:course_id, evaluation:evaluation,grade: grade};
+        //var info = {course_id:course_id, evaluation:evaluation,grade: grade};
         $.ajax(
             {
                 url:'proxy/course_evaluate.php',
                 type: 'POST',
                 dataType: 'json',
-                data:{account:account, token:token, info:info},
+                data:{account:account, token:token, course_id:course_id, evaluation:evaluation,grade: grade},
                 success : function(obj,textstatus){
                     console.log(obj);
                     alert("修改成功");
