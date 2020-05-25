@@ -233,7 +233,8 @@ li{
     background-color: #eeeeee;
     width:900px;
     height:100px;
-    top:-20px;
+    top:-50px;
+    left:-30px;
     margin-top:10px;
     position:relative;
 }
