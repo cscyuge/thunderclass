@@ -17,7 +17,7 @@
         $(function(){
             get_token();
             getId();
-            show_courses();
+           show_courses();
             get_time();
         });
        function get_time(){
@@ -41,8 +41,7 @@
             temp = "<div class='course_div'>";
             html+=temp;
            // var info = JSON.parse(info);
-            html += "<p>《"+info.title+"》</p>"+"<br>";
-            var button="";
+            html += "<p>《"+course.title+"》</p>"+"<br>";
             var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
             button=button.replace(/course_id/,course_id);
             html += button;
@@ -56,8 +55,8 @@
             temp = "<div class='course_div'>";
             html+=temp;
            // var info = JSON.parse(info);
-            html += "<p>《"+info.title+"》</p>"+"<br>";
-            var button="";
+            html += "<p>《"+course.title+"》</p>"+"<br>";
+            //var button="";
             var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
              button=button.replace(/course_id/,course.course_id);
             html += button;
@@ -160,7 +159,7 @@
 <br/>
 
 <section class="sys_msg" id="album">
-    <div id = "course_list" >我的课程：</div>
+    <div id = "course_list" >我的课程(i）：</div>
 </section>
 <section  class="courses_msg" id="dynamic">
     <div id = "course_list1" >我的课程计划：</div>
