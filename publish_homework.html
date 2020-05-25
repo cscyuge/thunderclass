@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>发布任务</title>
+    <title>发布作业</title>
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/publish_course.css">
@@ -10,6 +10,8 @@
     <script src="bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="js/change_section.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/getUrlParam.js"></script>
+
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
@@ -75,59 +77,51 @@
     <ul class="u_section" >
         <nav>
             <ul>
-                <li class="special"><a href="#album">发布课程</a></li>
-                <li><a href="#dynamic">已发布课程</a></li>
+                <li class="special"><a href="#album">发布作业</a></li>
+                <li><a href="#dynamic">已发布作业</a></li>
             </ul>
         </nav>
     </ul>
 </div>
 <section class="sys_msg" id="album">
-<div class="task">
-    <form id = "task">
+    <div class="task">
+        <form id = "task">
 
-        <p><span style="display:inline-block;width:100px;text-align:right;">课程名：</span>
-            <input id="title" name = "title"/>
-        </p>
+            <p><span style="display:inline-block;width:100px;text-align:right;">内容：</span>
+                <input id="title" name = "task"/>
+            </p>
 
-        <p><span style="display:inline-block;width:100px;text-align:right;">开始时间：</span>
-            <input type="date" id="start_time" name="start_time" />
-        </p>
+            <p><span style="display:inline-block;width:100px;text-align:right;">开始时间：</span>
+                <input type="date" id="start_time" name="start_time" />
+            </p>
 
-        <p><span style="display:inline-block;width:100px;text-align:right;">结束时间：</span>
-            <input type="date" id="end_time" name = "end_time"/>
-        </p>
+            <p><span style="display:inline-block;width:100px;text-align:right;">结束时间：</span>
+                <input type="date" id="end_time" name = "end_time"/>
+            </p>
 
-        <p><span style="display:inline-block;width:100px;text-align:right;">课时数：</span>
-            <input oninput = "value=value.replace(/[^\d]/g,'')" id="course_num" name = "course_num"/>
-        </p>
 
-        <p><span style="display:inline-block;width:100px;text-align:right;">课程类别：</span>
-            <select id = 'category' name = 'category' class="box">
-                <option value = "default" checked="">默认</option>
-                <option value = "Basic subjects">基础课程</option>
-                <option value = "computer">计算机科学</option>
-            </select>
-
-        </p>
-
-        <button class="btn" onclick="publish_course()" type="button">立即发布</button>
-        <button class="btn" onclick="window.open('user.html')" type="button">取消</button>
-    </form>
-</div>
+            <button class="btn" onclick="publish_homework()" type="button">立即发布</button>
+            <button class="btn" onclick="window.open('user.html')" type="button">取消</button>
+        </form>
+    </div>
 </section>
 <section class="courses_msg" id="dynamic">
     aaa
 </section>
 
+
 </body>
+
 <script>
     function goToInfo(){
         window.location.href = "info.html";
     }
 
-    function publish_course() {
+    function publish_homework() {
+        var course_id = UrlParam.paramValues('cid');
+        course_id = course_id[0];
+
         var form = new FormData( document.getElementById("task"));
-        title = form.get("title");
         start_time = form.get("start_time");
         end_time = form.get("end_time");
         start_time = new Date(start_time);
@@ -136,27 +130,25 @@
         end_time = end_time.valueOf(end_time);
         start_time /= 1000;
         end_time /= 1000;
-        course_num = form.get("course_num");
-        category = form.get("category");
-        info = {title:title,course_num:course_num};
-        console.log(info);
-        console.log(start_time);
-        console.log(end_time);
-        console.log(category);
+        task = form.get("task");
+        taskArr = new Array();
+        taskArr.push(task);
+
+
         var token = localStorage.getItem("token");
         var account = localStorage.getItem("account");
-        course_info = {info:info,start_time:start_time,finish_time: end_time,category:category};
+
         $.ajax(
             {
                 url:'proxy/publish_course.php',
                 type: 'POST',
                 dataType: 'json',
-                data:{account:account, token:token, course_info:course_info},
+                data:{account:account, token:token, course_id:course_id,task:taskArr},
                 success : function(obj,textstatus){
                     console.log(obj);
                     if (obj.code==200) {
                         alert("发布成功");
-                        location.replace("publish_course.html");
+                        location.replace("publish_homework.html");
                     }else {
                         alert("发布失败");
                     }
@@ -171,5 +163,4 @@
 
 
 </script>
-
 </html>

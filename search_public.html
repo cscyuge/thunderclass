@@ -8,7 +8,6 @@
     <script src="bootstrap/js/bootstrap.js"></script>
     <script src="js/vue.js"></script>
     <link rel="stylesheet" href="bootstrap/css/user.css">
-    
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
@@ -17,84 +16,7 @@
             get_token();
             show_courses();
         });
-        function get_token(){
-            var token = localStorage.getItem("token");
-            var account = localStorage.getItem("account");
-            if (token){
-                $("#user").attr("style","display:block;");
-                $("#login").attr("style","display:none;");    
-                $("#logout").attr("style","display:block;");
-                $("#modifypw").attr("style","display:block;");
-                $("#my_study").attr("style","display:block;");
-                $("#messages").attr("style","display:block;");
-                $("#cart").attr("style","display:block;");
-                $("#my_info").attr("style","display:block;");
-                $("#set").attr("style","display:block;");
-                $("#user").text(account);
-            }else{
-                $("#user").attr("style","display:none;");
-                $("#login").attr("style","display:block;");    
-                $("#logout").attr("style","display:none;");
-                $("#modifypw").attr("style","display:none;");
-                $("#my_study").attr("style","display:none;");
-                $("#messages").attr("style","display:none;");
-                $("#cart").attr("style","display:none;");
-                $("#my_info").attr("style","display:none;");
-                $("#set").attr("style","display:none;");
-                $("#user").text("");   
-            }
-            console.log("hello");
-            console.log("hii");
-            console.log(token);
-        }
 
-        function create_course_div(course){
-            html = "";
-            temp = "<div id = course_id>";
-            temp = temp.replace(/course_id/,course.course_id);
-            html+=temp;
-            if (course.s_account == "undefined"){
-                html+="老师发布<br>";
-                html+="教师:"+course.t_account+"<br>";
-            }else{
-                html+="学生发布<br>";
-                html+="学生:"+course.s_account+"<br>";
-            }
-            var info = JSON.parse(course.info);
-            html += "课程类别："+course.category+"<br>";
-            html += "课程名："+info.title+"<br>";
-            html += "状态："+course.status+"<br>";
-
-            var begin = new Date(course.start_time*1000);
-            var end = new Date(course.finish_time*1000);
-            html += "开始时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
-            html += "结束时间："+ (end.toLocaleDateString().replace(/\//g, "-") + " " + end.toTimeString().substr(0, 8)) + "<br>";
-            var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
-            button=button.replace(/course_id/,course.course_id);
-            html += button;
-            html += "<br><br>";
-            html += "</div>";
-            return html;
-        }
-
-        function show_courses(){
-            // console.log(Date.parse(new Date()));
-            // console.log(localStorage.getItem("public_courses_dict"));
-            var courses = localStorage.getItem("public_courses_dict");
-            courses = JSON.parse(courses);
-            var ulObj = document.createElement("ul");
-            for (var key in courses){
-                for (var i=0, n=courses[key].length;i<n;i++){
-                    course = courses[key][i];
-                    console.log(course);
-                    var liObj = document.createElement("li");
-                    tempHTML = create_course_div(course);
-                    liObj.innerHTML = tempHTML;
-                    ulObj.appendChild(liObj);
-                }
-            }
-            $("#course_list").append(ulObj);
-        }
     </script>
     <!--修改placeholder颜色，不同浏览器不同-->
     <style>
@@ -128,7 +50,7 @@
         </ul>
         <form id ="sea" class="sea" >
             <input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" style="background-color: grey;border-radius: 15px" />
-            <img type="image" src="images/search.png" id="search" onclick="search_public()" />
+            <img type="image" src="images/search.png" id="search" onclick="reload()" />
         </form>
     
         <ul class="other">
@@ -160,6 +82,9 @@
     <div id = "course_list" >搜索结果：</div>
     
 </body>
+
+<script src="js/getUrlParam.js"></script>
+
 <script>
     function logout(){
         localStorage.clear();
@@ -212,10 +137,15 @@
         } 
     }
 
-    function search_public(){
+    function reload(){
         var param = new FormData(document.getElementById("sea"));
         var keyword = param.get('keyword');
         console.log(keyword);
+        window.location.href = "search_public.html?wd="+keyword;
+    }
+
+    function search_public(keyword){
+        var courses=null;
         $.ajax(
             {
                 url:'proxy/search_public_courses.php',
@@ -225,8 +155,7 @@
                 data:{field:keyword},
                 success : function(obj,textstatus){
                     console.log(obj.data);
-                    localStorage.setItem("public_courses_dict",JSON.stringify(obj.data));
-                    document.location.reload(true);
+                    courses = obj.data;
                 },
                 error : function(xhr){
                     console.log(xhr.responseText);
@@ -234,7 +163,92 @@
                 
             }
         )
+        return courses;
+    }
 
+    function create_course_div(course){
+        html = "";
+        temp = "<div id = course_id>";
+        temp = temp.replace(/course_id/,course.course_id);
+        html+=temp;
+        if (course.s_account == "undefined"){
+            html+="老师发布<br>";
+            html+="教师:"+course.t_account+"<br>";
+        }else{
+            html+="学生发布<br>";
+            html+="学生:"+course.s_account+"<br>";
+        }
+        var info = JSON.parse(course.info);
+        html += "课程类别："+course.category+"<br>";
+        html += "课程名："+info.title+"<br>";
+        html += "状态："+course.status+"<br>";
+
+        var begin = new Date(course.start_time*1000);
+        var end = new Date(course.finish_time*1000);
+        html += "开始时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
+        html += "结束时间："+ (end.toLocaleDateString().replace(/\//g, "-") + " " + end.toTimeString().substr(0, 8)) + "<br>";
+        var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
+        button=button.replace(/course_id/,course.course_id);
+        html += button;
+        html += "<br><br>";
+        html += "</div>";
+        return html;
+    }
+
+    function show_courses(){
+        // console.log(Date.parse(new Date()));
+        // console.log(localStorage.getItem("public_courses_dict"));
+
+        var keyword = UrlParam.paramValues('wd');
+        if (keyword == null){
+            keyword = ""
+        }else {
+            keyword = keyword[0]
+        }
+        console.log(keyword);
+        var courses = search_public(keyword);
+        var ulObj = document.createElement("ul");
+        console.log(courses);
+        for (var key in courses){
+            for (var i=0, n=courses[key].length;i<n;i++){
+                course = courses[key][i];
+                console.log(course);
+                var liObj = document.createElement("li");
+                tempHTML = create_course_div(course);
+                liObj.innerHTML = tempHTML;
+                ulObj.appendChild(liObj);
+            }
+        }
+        $("#course_list").append(ulObj);
+    }
+
+    function get_token(){
+        var token = localStorage.getItem("token");
+        var account = localStorage.getItem("account");
+        if (token){
+            $("#user").attr("style","display:block;");
+            $("#login").attr("style","display:none;");
+            $("#logout").attr("style","display:block;");
+            $("#modifypw").attr("style","display:block;");
+            $("#my_study").attr("style","display:block;");
+            $("#messages").attr("style","display:block;");
+            $("#cart").attr("style","display:block;");
+            $("#my_info").attr("style","display:block;");
+            $("#set").attr("style","display:block;");
+            $("#user").text(account);
+        }else{
+            $("#user").attr("style","display:none;");
+            $("#login").attr("style","display:block;");
+            $("#logout").attr("style","display:none;");
+            $("#modifypw").attr("style","display:none;");
+            $("#my_study").attr("style","display:none;");
+            $("#messages").attr("style","display:none;");
+            $("#cart").attr("style","display:none;");
+            $("#my_info").attr("style","display:none;");
+            $("#set").attr("style","display:none;");
+            $("#user").text("");
+        }
+        console.log(token);
     }
 </script>
 
