@@ -17,7 +17,7 @@
         $(function(){
             get_token();
             getId();
-           // show_courses();
+           show_courses();
             get_time();
         });
        function get_time(){
@@ -55,16 +55,16 @@
             temp = "<div class='course_div'>";
             html+=temp;
            // var info = JSON.parse(info);
-            html += "<p>《"+info.title+"》</p>"+"<br>";
+            html += "<p>《"+course.title+"》</p>"+"<br>";
             //var button="";
             var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
              button=button.replace(/course_id/,course.course_id);
             html += button;
             div_two="<div class='course_div_two'>";
             html+=div_two;
-            //var button1 = "<button onclick=\"goToEvaluate(\'course_id\')\">"+"评价课程"+"</button>";//怎么加‘/’
-            //button1=button1.replace(/course_id/,course.course_id);
-            //html += button1;
+            var button1 = "<button onclick=\"goToEvaluate(\'course_id\')\">"+"评价课程"+"</button>";//怎么加‘/’
+            button1=button1.replace(/course_id/,course.course_id);
+            html += button1;
             var button2 = "<button onclick=\"\">"+"联系老师"+"</button>";
             html += button2;
             var button3 = "<button onclick=\"\">"+"查看课程信息"+"</button>";
