@@ -6,203 +6,27 @@
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/message.css">
-    <script src="js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <script src="js/vue.js"></script>
+    <script src="js/basic.js"></script>
+    <script src="js/message.js"></script>
+
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
     <script>
 
-        $(function(){
+        $(function () {
             getId();
-           // showSection(id);
-            get_token();
-            show_courses();
+            // showSection(id);
+            show_msgs();
         });
-        /*把相应section的id和用户点击的导航栏href值比较，改变各个section的display属性*/
-        function showSection(id) {
-            var sections = document.getElementsByTagName("section");
-            for(var i=0;i<sections.length;i++) {
-                if(sections[i].getAttribute("id") != id) {
-                    sections[i].style.display = "none";
-                }else {
-                    sections[i].style.display = "block";
-                }
-            }
-        }
-        /*把导航栏href和用户点击href比较，改变相应元素的父元素的className*/
-        function changeColor(id) {
-            var navs = document.getElementsByTagName("nav");
-            var links = navs[0].getElementsByTagName("a");
-            for (var i = 0; i <links.length; i++) {
-                var sectionId = links[i].getAttribute("href").split("#")[1];
-                if(sectionId == id){
-                    links[i].parentNode.className = "special";
-                }else {
-                    links[i].parentNode.className = "";
-                }
-            }
-        }
-        function getId() {
-            var navs = document.getElementsByTagName("nav");
-            var links = navs[0].getElementsByTagName("a");
-            for (var i = 0; i <links.length; i++) {
-                //获取导航栏的href值
-                var secId = links[i].getAttribute("href").split("#")[1];
-                if (!document.getElementById(secId)) continue;
-                //设置最初的演示
-                document.getElementById(secId).style.display = "none";
-                document.getElementById("album").style.display = "block";
-                /*这里存在作用域问题，secId是个局部变量，它在getId函数执行期间存在，
-                到时间处理函数执行的时候就不存在了，故在这里为每个链接创建了一个自定义的属性destination*/
-                links[i].destination = secId;
-                links[i].onclick = function() {
-                    showSection(this.destination);
-                    changeColor(this.destination);
-                    return false;
-                }
-            };
-        }
 
 
-        function create_course_div(course){
-            //console.log(course);
-            html = "";
-            temp = "<div id = course_id>";
-            temp = temp.replace(/course_id/,course._t);
-             html+=temp;
-             html+="系统发布<br>";
-             html+="消息:"+course.msg+"<br>";
-            var begin = new Date(course._t);
-            html += "发送时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
-           // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
-            //button=button.replace(/course_id/,course.course_id);
-           // html += button;*/
-            html += "<br><br>";
-            html += "</div>";
-            return html;
-        }
 
-        function create_course_div2(course){
-            html = "";
-            temp = "<div id = course_id >";
-            temp = temp.replace(/course_id/,course._t);
-            html+=temp;
-            html+=course.msg+"<br>";
-            var begin = new Date(course._t);
-            html += (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
-            // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
-            //button=button.replace(/course_id/,course.course_id);
-            // html += button;*/
-            html += "<br><br>";
-            html += "</div>";
-            return html;
-        }
-       function create_course_div3(course){
-            html = "";
-            temp = "<div id = course_id >";
-            temp = temp.replace(/course_id/,course._t);
-            html+=temp;
-            html+=course.msg+"<br>";
-            var begin = new Date(course._t);
-            html += (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
-            // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
-            //button=button.replace(/course_id/,course.course_id);
-            // html += button;*/
-            html += "<br><br>";
-            html += "</div>";
-            return html;
-        }
-
-       function show_courses(){
-            //console.log(Date.parse(new Date()));
-            //console.log(localStorage.getItem("public_courses_dict"));
-            var courses = localStorage.getItem("msg_list");
-           console.log("第1次");
-           console.log(courses);
-            courses = JSON.parse(courses);//解析对象之前要JSON.parse
-           console.log("第2次");
-           console.log(courses);
-           console.log(courses.length);
-            var ulObj = document.createElement("ul");
-           var ulObj2 = document.createElement("ul");
-                for (var i=0, n=courses.length;i<n;i++){
-                    course = courses[i];
-                    console.log(course);
-                    var liObj = document.createElement("li");
-                    var liObj2 = document.createElement("li");
-                    course= JSON.parse(course);
-                    var account = localStorage.getItem("account");
-                    if(course.sender=="system")
-                    { var tempHTML = create_course_div(course);}
-                    /*else if(course.sender==account)//如果是自己发的消息
-                    { var tempHTML2 = create_course_div2(course);}*/
-                    if(course.sender!="system")
-                    {  tempHTML2 = create_course_div3(course);
-                    localStorage.setItem("person_name", course.sender);}
-                    liObj.innerHTML = tempHTML;
-                    liObj2.innerHTML = tempHTML2;
-                    ulObj.appendChild(liObj);
-                    ulObj2.appendChild(liObj2);
-                }
-            $("#course_list").append(ulObj);
-           $("#course_list2").append(ulObj2);
-        }
-
-      function get_token(){
-            var token = localStorage.getItem("token");
-            var account = localStorage.getItem("account");
-            var timestamp=new Date().getTime();
-            if (token){
-                $.ajax(
-                    {
-                        url: 'proxy/get_msg.php',
-                        type: 'POST',
-                        dataType: 'json',
-                        async:true,
-                        data: {account: account,communicator:"system", token: token},
-                        success: function (obj, textstatus) {
-                            console.log(token);
-                            console.log(account);
-                            // alert(token);
-                             //alert(account);
-                            console.log(obj);
-                            if (obj.code == 200) {
-                                var data = obj.data;
-                               var l=data.length;
-                                var temp_list =[];
-                                for (var i=0, n=l; i< n;i++){
-                                    info = JSON.stringify(data[i]);
-                                    temp_list.push(info);
-                                }
-                                localStorage.setItem("msg_list",JSON.stringify(temp_list));
-                               // document.location.reload(true);
-
-                            } else {
-                                alert("获取消息错误");
-                            }
-
-                        },
-                        error: function (xhr) {
-                            // console.log(xhr.responseText);
-                            alert("服务器错误");
-                        }
-
-                    }
-                )
-            }else{
-                alert("用户认证过期，请重新登录");
-                localStorage.clear();
-                window.location.href = 'index.html';
-            }
-            console.log("helloaaa");
-        }
     </script>
 </head>
 <body>
 <ul class="nav">
-    <a href="index.html"><img src="images/logo1.png" class="logo" /></a>
+    <a href="index.html"><img src="images/logo1.png" class="logo" alt="logo"/></a>
 
     <ul class="one">
         <li>
@@ -214,9 +38,9 @@
             </ul>
         </li>
     </ul>
-    <form id ="sea" class="sea" >
-        <input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" />
-        <img type="image" src="images/search.png" id="search" onclick="search_my()" />
+    <form id="sea" class="sea">
+        <label for="text"></label><input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text"/>
+        <a href="#"><img src="images/search.png" id="search" onclick="search_my()" alt="搜"/></a>>
     </form>
 
     <ul class="other">
@@ -228,33 +52,33 @@
                 <li><a href="#">产品3</a></li>
             </ul>
         </li>
-        <li><img src="images/message.png" class="messages" onclick="" > </li>
-        <li><img src="images/cart.png" class="cart" onclick="" > </li>
+        <li><img src="images/message.png" class="messages" onclick="" alt="msg"></li>
+        <li><img src="images/cart.png" class="cart" onclick="" alt="cart"></li>
     </ul>
 </ul>
 <div class="d_msg">
-<ul class="msg" >
-    <nav>
-        <ul>
-            <li class="special"><a href="#album">● 系统消息</a></li>
-            <li><a href="#dynamic">● 课程消息</a></li>
-            <li><a href="#relationship">● 我的消息</a></li>
-           <!-- <li><a href="#collection">我的收藏</a></li>-->
-        </ul>
-    </nav>
-   <!-- <p><span style="display:inline-block;width:100px;text-align:right;">消息</span>
-        <input type="text" name="msg" id="msg" value="" required/>*</p>  -->
-</ul>
+    <ul class="msg">
+        <nav>
+            <ul>
+                <li class="special"><a href="#album">● 系统消息</a></li>
+                <li><a href="#dynamic">● 课程消息</a></li>
+                <li><a href="#relationship">● 我的消息</a></li>
+                <!-- <li><a href="#collection">我的收藏</a></li>-->
+            </ul>
+        </nav>
+        <!-- <p><span style="display:inline-block;width:100px;text-align:right;">消息</span>
+             <input type="text" name="msg" id="msg" value="" required/>*</p>  -->
+    </ul>
 </div>
 <section class="sys_msg" id="album">
-    <div id = "course_list" class="msg_background">1</div>
+    <div id="course_list" class="msg_background">1</div>
 </section>
-<section  class="courses_msg" id="dynamic">
+<section class="courses_msg" id="dynamic">
     <div class="course_msg">
-    <p><span style="font-weight: bold">上课提醒：</span> 2020年5月11日 12：00</p>
-    <p>您的课程《小学六年级语文》将在下午6：00开始上课</p>
+        <p><span style="font-weight: bold">上课提醒：</span> 2020年5月11日 12：00</p>
+        <p>您的课程《小学六年级语文》将在下午6：00开始上课</p>
     </div>
-    <div  class="course_msg">
+    <div class="course_msg">
         <p><span style="font-weight: bold">上课提醒：</span> 2020年5月11日 12：00</p>
         <p>您的课程《小学六年级语文》发布了一个作业，截至提交时间为2020年5月14日12：00</p>
     </div>
@@ -262,48 +86,19 @@
 
 <section id="relationship">
     <div class="friend">
-        <a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" > 灰灰灰 </a>
+        <a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> 灰灰灰 </a>
     </div>
     <div class="chat_area">
-        <div id = "course_list2" ></div>
+        <div id="course_list2"></div>
     </div>
     <div class="chat">
-        <form id ="dialog">
-            <textarea style="width:586px;height:100px;"  id= 'condition' name= "condition" placeholder="回复一下吧~" ></textarea>
+        <form id="dialog">
+            <label for='condition'></label><textarea style="width:586px;height:100px;" id='condition' name="condition" placeholder="回复一下吧~"></textarea>
             <button class="btnn" onclick="send()" type="button">发送</button>
         </form>
     </div>
 </section>
 
 </body>
-<script>
-    function send(){
-        var form = new FormData( document.getElementById("dialog"));
-        var condition = form.get("condition");
-        var token = localStorage.getItem("token");
-        var account = localStorage.getItem("account");
-       var person= localStorage.getItem("person_name");
-       console.log(person);
-        console.log("aqc");
-       console.log(condition);
-        var info = {account:account, receiver: person, msg:condition, token:token};
-        $.ajax(
-            {
-                url:'proxy/pub_msg.php',
-                type: 'POST',
-                dataType: 'json',
-                data:{info:info},
-                success : function(obj,textstatus){
-                    console.log(obj);
-                    alert("发送成功");
-                    location.replace("message.html");
-                },
-                error : function(xhr){
-                    console.log(xhr.responseText);
-                }
 
-            }
-        )
-    }
-</script>
 </html>

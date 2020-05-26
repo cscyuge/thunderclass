@@ -6,73 +6,23 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/reset.css">
     <link rel="stylesheet" href="bootstrap/css/info.css">
-    <script src="js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="js/getUrlParam.js"></script>
+    <script src="js/basic.js"></script>
+    <script src="js/evaluate.js"></script>
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
-    <script>
-        $(function(){
-            getparm();
-        });
-        function getparm()
-        {
-            var url=location.href;
-            var tmp1=url.split("?")[1];
-            var tmp2=tmp1.split("&")[0];
-            var tmp3=tmp2.split("=")[1];
-            var parm1=tmp3;
-            $('#txt').val(parm1);
-        }
-        </script>
 </head>
 <body>
 <form id='info'>
 
 <p><span style="display:inline-block;width:100px;text-align:right;">课程评分</span>
-        <input type = 'number'  name = 'grade' id = 'grade' class="box" /></p>
+    <label for='grade'></label><input type = 'number' name = 'grade' id = 'grade' class="box" /></p>
 <p><span style="display:inline-block;width:100px;text-align:right;">课程评价</span>
-    <textarea style="width:400px;height:100px;"  id= 'evaluation' name= "evaluation" placeholder="评价一下课程吧" ></textarea>
+    <label for='evaluation'></label><textarea style="width:400px;height:100px;" id= 'evaluation' name= "evaluation" placeholder="评价一下课程吧" ></textarea>
 
-    <button class="btn" onclick="saveinfo()" type="button">提交</button>
+    <button class="btn" onclick="evaluate_course()" type="button">提交</button>
 </p>
 </form>
 </body>
-<script>
 
-    function saveinfo(){
-        var course_id = UrlParam.paramValues("cid");
-        course_id = course_id[0];
-        var form = new FormData( document.getElementById("info"));
-        var evaluation = form.get("evaluation");
-        var grade= form.get("grade");
-        console.log(course_id);
-        console.log(evaluation);
-        console.log(grade);
-        var token = localStorage.getItem("token");
-        var account = localStorage.getItem("account");
-        //var info = {course_id:course_id, evaluation:evaluation,grade: grade};
-        $.ajax(
-            {
-                url:'proxy/course_evaluate.php',
-                type: 'POST',
-                dataType: 'json',
-                data:{account:account, token:token, course_id:course_id, evaluation:evaluation,grade: grade},
-                success : function(obj,textstatus){
-                    console.log(obj);
-                    if (obj.code==200) {
-                        alert("评价成功");
-                    }
-                   // location.replace(".html");
-                },
-                error : function(xhr){
-                    console.log(xhr.responseText);
-                }
-
-            }
-        )
-    }
-    </script>
 </html>

@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <title>首页</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <script src="js/vue.js"></script>
+    <script src="js/basic.js"></script>
+    <script src="js/index.js"></script>
     <link rel="stylesheet" href="bootstrap/css/index.css">
     
     <!-- 异步提交的库 -->
@@ -14,45 +13,16 @@
 
     <script>
         $(function(){
-            get_token();
+            show_user();
         });
-        function get_token(){
-            var token = localStorage.getItem("token");
-            var account = localStorage.getItem("account");
-         if (token) {
-                $("#user").attr("style","display:block;");
-                $("#login").attr("style","display:none;");    
-                $("#logout").attr("style","display:block;");
-                $("#modifypw").attr("style","display:block;");
-                $("#my_study").attr("style","display:block;");
-                $("#messages").attr("style","display:block;");
-                $("#cart").attr("style","display:block;");
-                $("#my_info").attr("style","display:block;");
-                $("#set").attr("style","display:block;");
-                $("#user").text(account);
-            }else{
-                $("#user").attr("style","display:none;");
-                $("#login").attr("style","display:block;");    
-                $("#logout").attr("style","display:none;");
-                $("#modifypw").attr("style","display:none;");
-                $("#my_study").attr("style","display:none;");
-                $("#messages").attr("style","display:none;");
-                $("#cart").attr("style","display:none;");
-                $("#my_info").attr("style","display:none;");
-                $("#set").attr("style","display:none;");
-                $("#user").text("");   
-            }
-            console.log("hello");
-            console.log("hii");
-            console.log(token);
-        }
+
     </script>
 
 </head>
 <body>
     <ul class="nav">
 
-        <a href="index.html"><img src="images/logo1.png" class="logo" /></a>
+        <a href="index.html"><img src="images/logo1.png" class="logo"  alt="logo"/></a>
         <ul class="one">
             <li>
                 <a href="#">课程分类</a>
@@ -65,10 +35,10 @@
 
         </ul>
         <form id ="sea" class="sea" >
-            <input class="search" type="text" name="keyword" placeholder="输入关键字搜索课程" id="text" />
-            <img type="image" src="images/search.png" id="search" onclick="search_public()" />
+            <label for="text"></label><input class="search" type="text" name="keyword" placeholder="输入关键字搜索课程" id="text" />
+            <a href="#"><img src="images/search.png" id="search" onclick="search_public()"  alt="搜"/></a>
         </form>
-    
+
         <ul class="other">
             <li id = "login">
                 <a href="#" onclick="login()">登录</a>
@@ -85,9 +55,9 @@
     </ul>
 
          <ul class = "button_one">
-             <li id = "modifypw"><a href="login.html" onclick = "modifypw()">关注领福利</a></li>
-             <li id = "logout" ><a href="#" onclick = "logout()">下载中心</a></li>
-             <li id = "logout" ><a href="#" onclick = "logout()">会员中心</a></li>
+             <li id = "follow"><a href="#">关注领福利</a></li>
+             <li id = "download_center" ><a href="#" >下载中心</a></li>
+             <li id = "vip_center" ><a href="#" >会员中心</a></li>
          </ul>
     <div class="pic"></div>
    <p>系统化学习路径 </p>
@@ -102,32 +72,32 @@
     <p class="p_live">课堂直播</p>
     <div class="d_live">
     <ul class = "class">
-         <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+         <li class="live_class"><img src="images/live.png" class="live" onclick=""  alt="img"></li>
          <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
              <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
     </ul>
     <ul class = "class">
-        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" alt="img"></li>
         <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
             <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
     </ul>
     <ul class = "class">
-        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" alt="img"></li>
         <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
             <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
     </ul>
     <ul class = "class">
-        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" alt="img"></li>
         <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
             <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
     </ul>
     <ul class = "class">
-        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" alt="img"></li>
         <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
             <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
     </ul>
     <ul class = "class">
-        <li class="live_class"><img src="images/live.png" class="live" onclick="" ></li>
+        <li class="live_class"><img src="images/live.png" class="live" onclick="" alt="img"></li>
         <li class="font">10月14日 20：00 |<a href="#" onclick = ""> 开启提醒</a><br/>设计风格大揭秘：【MBE风格设计技巧讲解】<br/>
             <a href="#" onclick = "">张小婉儿 网易特邀设计师</a></li>
     </ul>
@@ -135,27 +105,5 @@
 
 
 </body>
-<script>
-    function logout(){
-        localStorage.clear();
-        location.replace("index.html");
-    }
-    function login(){
-        window.location.href = "login.html";
-    }
-    function user(){
-        window.location.href = "user.html";
-    }
-    function modifypw(){
-        window.location.href = "modifypw.html";
-    }
-
-    function search_public(){
-        var param = new FormData(document.getElementById("sea"));
-        var keyword = param.get('keyword');
-        console.log(keyword);
-        window.location.href = "search_public.html?wd="+keyword;
-    }
-</script>
 
 </html>

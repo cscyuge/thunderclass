@@ -6,16 +6,13 @@
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/user.css">
-    <script src="js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="js/getUrlParam.js"></script>
+    <script src="js/basic.js"></script>
+    <script src="js/user.js"></script>
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
     <script>
         $(function(){
-            get_token();
             show_courses();
         });
     </script>
@@ -38,7 +35,7 @@
 </head>
 <body>
 <ul class="nav">
-    <a href="index.html"><img src="images/logo1.png" class="logo" /></a>
+    <a href="index.html"><img src="images/logo1.png" class="logo" alt="logo"/></a>
         
     <ul class="one">
         <li>
@@ -50,9 +47,9 @@
             </ul>
         </li>
     </ul> 
-    <form id ="sea" class="sea" >   
-        <input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" style="background-color: grey;border-radius: 15px" />
-        <img type="image" src="images/search.png" id="search" onclick="reload()" />
+    <form id ="sea" class="sea" >
+        <label for="text"></label><input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text" style="background-color: grey;border-radius: 15px" />
+        <a href="#"><img src="images/search.png" id="search" onclick="reload()" alt="搜"/></a>
     </form>
 
     <ul class="other">
@@ -65,152 +62,18 @@
             </ul>
         </li>
         <li><a href="publish_course.html">发布任务</a></li>
-        <li> <a href="message.html"><img src="images/message.png" class="messages" onclick="" > </a></li>
-        <li><img src="images/cart.png" class="cart" onclick="" > </li>
+        <li> <a href="message.html"><img src="images/message.png" class="messages" onclick="" alt="msg"> </a></li>
+        <li><img src="images/cart.png" class="cart" onclick="" alt="cart"> </li>
     </ul>
 </ul>
 <div class="setin" >
-    <li><a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" > </a></li>
+    <li><a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> </a></li>
     <button class="btn" type = "button" id = "my_info" onclick = "goToInfo()">个人资料</button>
     <button  class="btn" type = "button" id = "set" onclick = "goToInfo()">设置</button>
 </div>
 
 <div id = "course_list" >我的课程：</div>
-<div>
-    <button  class="" type = "button" id = "homework" onclick = "window.open('pub_homework.html')">发布作业</button>
-</div>
 
 </body>
-<script>
-    function goToInfo(){
-        window.location.href = "info.html";
-
-    }
-
-    function reload(){
-        var param = new FormData(document.getElementById("sea"));
-        var keyword = param.get('keyword');
-        console.log(keyword);
-        window.location.href = "user.html?wd="+keyword;
-    }
-
-    function goToClass(course_id){
-        var account = localStorage.getItem('account');
-        var token = localStorage.getItem('token');
-        $.ajax(
-            {
-                url:'proxy/get_room_url.php',
-                async: false,
-                type: 'POST',
-                dataType: 'json',
-                data:{account:account,token:token,course_id:course_id},
-                success : function(obj,textstatus){
-                    console.log(obj);
-                    code = obj.code;
-                    if (code == 200) {
-                        url = obj.data;
-                        window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
-                    }else{
-                        alert(obj.data);
-                    }
-                },
-                error : function(xhr){
-                    console.log(xhr.responseText);
-                }
-            }
-        )
-    }
-
-    function search_my(keyword){
-        var account = localStorage.getItem('account');
-        console.log(keyword);
-        var courses = null;
-        $.ajax(
-            {
-                url:'proxy/search_my_courses.php',
-                async: false,
-                type: 'POST',
-                dataType: 'json',
-                data:{account:account,field:keyword},
-                success : function(obj,textstatus){
-                    console.log(obj);
-                    var data = obj.data;
-                    var temp_list =[];
-                    for (var i=0, n = data.length; i< n ;i++){
-                        console.log(data[i]);
-                        course_id = data[i].course_id;
-                        info = JSON.parse(data[i].info);
-                        info["course_id"]=course_id;
-                        temp_list.push(info);
-                    }
-                    courses = temp_list;
-                },
-                error : function(xhr){
-                    console.log(xhr.responseText);
-                }
-                
-            }
-        )
-        return courses;
-    }
-
-    function get_token(){
-        var token = localStorage.getItem("token");
-    }
-
-    function create_course_div(course){
-        console.log(course);
-        course_id = course.course_id;
-        html = "";
-        temp = "<div>";
-        html+=temp;
-        html += "课程名："+course.title+"<br>";
-        var button = "<button onclick=\"goToClass(\'course_id\')\">"+"开始上课"+"</button>";
-        button=button.replace(/course_id/,course_id);
-        html += button;
-        for (var i = 0;i < 10; i++) {
-            html += "&nbsp;";
-        }
-        var _button = "<button onclick=\"showMore(\'course_id\',\'title\')\">"+"更多"+"</button>";
-        _button=_button.replace(/course_id/,course_id);
-        _button=_button.replace(/title/,course.title);
-        html += _button;
-
-        html += "<br><br>";
-        html += "</div>";
-        return html;
-    }
-
-    function show_courses(){
-        var keyword = UrlParam.paramValues('wd');
-        if (keyword == null){
-            keyword = ""
-        }else {
-            keyword = keyword[0]
-        }
-
-        var courses = search_my(keyword);
-        if (keyword){
-            $("#text").attr("placeholder",keyword);
-        }
-
-        var ulObj = document.createElement("ul");
-        for (var i=0, n=courses.length;i<n;i++){
-            course = courses[i];
-            var liObj = document.createElement("li");
-            tempHTML = create_course_div(course);
-            liObj.innerHTML = tempHTML;
-            ulObj.appendChild(liObj);
-        }
-
-        $("#course_list").append(ulObj);
-    }
-
-    function showMore(course_id,title) {
-        url = "course.html?cid="+course_id+"&title="+title;
-        window.open(url);
-    }
-
-</script>
 
 </html>

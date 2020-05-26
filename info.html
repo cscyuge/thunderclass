@@ -7,66 +7,16 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/reset.css">
     <link rel="stylesheet" href="bootstrap/css/info.css">
-    <script src="js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <script src="js/vue.js"></script>
+    <script src="js/basic.js"></script>
+    <script src="js/info.js"></script>
+
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
     <script>
         $(function(){
-            get_token();
+            show_info();
         });
-        function get_token(){
-            var token = localStorage.getItem("token");
-            var account = localStorage.getItem("account");
-            $.ajax(
-                {
-                    url:'proxy/get_user_info.php',
-                    type: 'POST',
-                    dataType: 'json',
-                    data:{account:account, token:token},
-                    success : function(obj,textstatus){
-                        console.log(obj);
-                        if (obj.code == 200){
-                            obj = obj.data;
-                            obj = $.parseJSON(obj);
-                            username = obj.username;
-                            sex = obj.sex;
-                            tel = obj.tel;
-                            condition = obj.condition;
-                            mail = obj.mail;
-                            blog = obj.blog;
-                            role = obj.role;
-                            extra = obj.extra;
-                            $('#username').attr("value",username);
-                            if (sex == 0){
-                                $('#female').attr("checked","");
-                            }else if (sex == 1){
-                                $('#male').attr("checked","");
-                            }else{
-                                $('#unknown').attr("checked","");    
-                            }
-                            $('#mail').attr("value",mail);
-                            $('#tel').attr("value",tel);
-                            $('#condition').val(condition);
-                            $('#role').val(role);
-                            
-
-                        }else{
-                            alert("用户认证过期，请重新登录");
-                            localStorage.clear();
-                            window.location.href = 'index.html';
-                        }  
-                    },
-                    error : function(xhr){
-                        console.log(xhr.responseText);
-                    }
-                    
-                }
-            )
-        }
-
 
     </script>
 
@@ -74,7 +24,7 @@
 <body>
 
     <ul class="nav">
-        <a href="index.html"><img src="images/logo1.png" class="logo" /></a>
+        <a href="index.html"><img src="images/logo1.png" class="logo" alt="logo"/></a>
         
         <ul class="one">
         <li>
@@ -86,10 +36,6 @@
             </ul>
         </li>
         </ul>
-       <form action="" method="post" class="sea" >
-            <input class="search" type="text" name="keyword" placeholder="请输入关键词" id="text" />
-           <a href="user.html"><img type="image" src="images/search.png" id="search"  /></a>
-        </form>
 
          <ul class="other">
         <li>
@@ -100,8 +46,8 @@
                 <li><a href="#">产品3</a></li>
             </ul>
         </li>
-             <li> <a href="message.html"><img src="images/message.png" class="messages" onclick="" ></a> </li>
-        <li> <a href="message.html"><img src="images/cart.png" class="cart" onclick="" ></a>  </li>
+             <li> <a href="message.html"><img src="images/message.png" class="messages" onclick="" alt="msg"></a> </li>
+        <li> <a href="#"><img src="images/cart.png" class="cart" onclick="" alt="cart"></a>  </li>
          </ul>
     </ul>
     <div class="setin" >资料设置</div>
@@ -109,7 +55,7 @@
         <div class="info"><p>个人信息</p></div>
        <div class="name">
          <p><span style="display:inline-block;width:100px;text-align:right;">昵称</span>  <!--span让输入框对齐-->
-             <input type="text" name="username" id="username" value="" required/>*</p>
+             <label for="username"></label><input type="text" name="username" id="username" value="" required/>*</p>
         <br/>
 
            <br/>
@@ -123,22 +69,22 @@
        </div>
        <br/>
            <p><span style="display:inline-block;width:100px;text-align:right;">个性宣言</span>
-               <textarea style="width:400px;height:100px;"  id= 'condition' name= "condition" placeholder="用一段话介绍自己，会在你的个人页面显示，最多输入80字" ></textarea>
+               <label for='condition'></label><textarea style="width:400px;height:100px;" id= 'condition' name= "condition" placeholder="用一段话介绍自己，会在你的个人页面显示，最多输入80字" ></textarea>
             </p>
        </div>
         <br/>
         <div class="info"><p>个人认证</p></div>
         <div class="name">
             <p><span style="display:inline-block;width:100px;text-align:right;">常用邮箱</span>
-                <input type = 'text'  name = 'mail' id = 'mail' class="box" /></p>
+                <label for='mail'></label><input type = 'text' name = 'mail' id = 'mail' class="box" /></p>
         <br/>
 
             <p><span style="display:inline-block;width:100px;text-align:right;">手机号</span>
-                <input type = 'text' name = 'tel' id = 'tel' class="box" /></p>
+                <label for='tel'></label><input type = 'text' name = 'tel' id = 'tel' class="box" /></p>
         <br/>
 
             <p><span style="display:inline-block;width:100px;text-align:right;">身份</span>
-        <select id = 'role' name = 'role' class="box">
+                <label for='role'></label><select id = 'role' name = 'role' class="box">
             <option value ="admin">管理员</option>
             <option value ="student">学生</option>
             <option value ="teacher">老师</option>
@@ -147,44 +93,11 @@
         </div>
         <br/>
 
-        <button class="btn" onclick="saveinfo()" type="button">提交</button>
+        <button class="btn" onclick="saveInfo()" type="button">提交</button>
         
     </form>
 
 
 </body>
-<script>
-    function saveinfo(){
-        var form = new FormData( document.getElementById("info"));
-        username = form.get("username"); 
-        sex = form.get('sex');
-        condition = form.get("condition");
-        mail = form.get("mail");
-        tel = form.get("tel");
-        role = form.get("role");
-        console.log(condition);
-        var token = localStorage.getItem("token");
-        var account = localStorage.getItem("account");
-        var info = { username:username, sex: sex, tel: tel, condition:condition, mail:mail, blog:"", role:role, extra:"{}"};
-        $.ajax(
-            {
-                url:'proxy/set_user_info.php',
-                type: 'POST',
-                dataType: 'json',
-                data:{account:account, token:token, info:info},
-                success : function(obj,textstatus){
-                    console.log(obj);
-                    alert("修改成功");
-                    location.replace("info.html");
-                },
-                error : function(xhr){
-                    console.log(xhr.responseText);
-                }
-                
-            }
-        )
-    }
-
-</script>
 
 </html>
