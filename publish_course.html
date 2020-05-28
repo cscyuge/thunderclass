@@ -15,9 +15,9 @@
 
     <script>
         $(function(){
-            //getId();
+            getId();
             //get_token();
-            show_courses();
+           // show_courses();
         });
         function get_token(){
             var token = localStorage.getItem("token");
@@ -157,7 +157,7 @@
         <nav>
             <ul>
                 <li class="special"><a href="#album">发布课程</a></li>
-                <li><a href="#dynamic" >已发布课程</a></li>
+                <li><a href="#dynamic" onclick="show_courses()">已发布课程</a></li>
             </ul>
         </nav>
     </ul>
