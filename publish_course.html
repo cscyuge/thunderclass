@@ -24,7 +24,7 @@
         }
 
 
-        function search_public(keyword){
+      /*  function search_public(keyword){
             var courses=null;
             console.log("3");
             $.ajax(
@@ -102,7 +102,7 @@
                 }
             }
             $("#course_list").append(ulObj);
-        }
+        }*/
 
     </script>
     <!--修改placeholder颜色，不同浏览器不同-->
@@ -196,9 +196,7 @@
     </form>
 </div>
 </section>
-<section class="courses_msg" id="dynamic">
-    skyaa
-    
+<section class="courses_msg" id="dynamic">skyaa
 </section>
 
 </body>
@@ -248,13 +246,6 @@
         )
     }
 
-
-    function reload(){
-        var param = new FormData(document.getElementById("sea"));
-        var keyword = param.get('keyword');
-        console.log(keyword);
-        window.location.href = "search_public.html?wd="+keyword;
-    }
 
 </script>
 
