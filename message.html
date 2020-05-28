@@ -292,7 +292,7 @@
                 url:'proxy/pub_msg.php',
                 type: 'POST',
                 dataType: 'json',
-                data:{account:account, receiver:"guiyutong.sky", msg:condition, token:token},
+                data:{account:account, receiver:person, msg:condition, token:token},
                 success : function(obj,textstatus){
                     console.log(obj);
                     alert("发送成功");
