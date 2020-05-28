@@ -17,14 +17,14 @@
         $(function(){
             getId();
             get_token();
-           // show_courses();
+            show_courses();
         });
         function get_token(){
             var token = localStorage.getItem("token");
         }
 
 
-      /*  function search_public(keyword){
+       function search_public(keyword){
             var courses=null;
             console.log("3");
             $.ajax(
@@ -102,7 +102,7 @@
                 }
             }
             $("#course_list").append(ulObj);
-        }*/
+        }
 
     </script>
     <!--修改placeholder颜色，不同浏览器不同-->
@@ -197,6 +197,7 @@
 </div>
 </section>
 <section class="courses_msg" id="dynamic">skyaa
+    <div id = "course_list" >搜索结果：</div>
 </section>
 
 </body>
