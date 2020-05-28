@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>修改密码</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <script src="js/vue.js"></script>
+    <script src="js/basic.js"></script>
+    <script src="js/md5.js"></script>
+    <script src="js/modifypw.js"></script>
+
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
     <style>
@@ -29,7 +30,7 @@
     </style>
 </head>
 <body>
-<div class="container", id ='modifypw'>
+<div class="container" id ='modifypw'>
 
     <form id="form">
 
@@ -38,9 +39,9 @@
             <input type="text" class="form-control" v-model="formObj.password" id="exampleInputUsername" name="oldpw"
                    placeholder="原密码">
             <label for="exampleInputUsername" class="sr-only">新密码</label>
-            <input type="password" class="form-control" v-model="formObj.password" id="exampleInputPassword"
-                   name="newpw"
-                   placeholder="新密码">
+            <label for="exampleInputPassword"></label><input type="password" class="form-control" v-model="formObj.password" id="exampleInputPassword"
+                                                             name="newpw"
+                                                             placeholder="新密码">
            
             <div class="checkbox">
                 <label>
@@ -57,97 +58,4 @@
 </div>
 </body>
 
-<script src="js/common.js"></script>
-<script src="js/md5.js"></script>
-
-<script>
-    function back(){
-        window.location.href = 'index.html  ';
-    }
-
-    function modify() {
-      
-        var param = new FormData(document.getElementById("form"));
-        var oldpw = param.get('oldpw');
-        var account = localStorage.getItem('account');
-        var timestamp = Date.parse(new Date());
-        var access_key = null;
-
-        $.ajax(
-            {
-                url:'proxy/get_access_key.php',
-                type: 'POST',
-                dataType: 'json',
-                data:{account:account, _t:timestamp},
-                success : function(obj,textstatus){
-                    code = obj.code;
-                    if (code == 200){
-                        access_key = obj.data.access_key;
-                        var nonce = Math.ceil(Math.random()*100000000);
-                        var enc = hex_md5(account + oldpw + access_key + nonce + timestamp);
-                        $.ajax(
-                            {
-                                url:'proxy/get_token.php',
-                                type: 'POST',
-                                dataType: 'json',
-                                data:{account:account, _t:timestamp, access_key: access_key, nonce: nonce, enc:enc},
-                                success : function(obj,textstatus){
-                                    code = obj.code;
-                                    if (code == 200){
-                                        token = obj.data;
-                                        localStorage.setItem("token",token);
-                                        
-                                        var newpw = param.get('newpw');
-                                        var enc_oldpw = str2int(oldpw);
-                                        var enc_newpw = str2int(newpw);
-                                        var enc_token = str2int(token);
-
-                                        var enc_pw = enc_oldpw.xor(enc_token).xor(enc_newpw).toString();
-                                        $.ajax(
-                                            {
-                                                url:'proxy/modify_password.php',
-                                                type: 'POST',
-                                                dataType: 'json',
-                                                data:{account:account, token:token, enc_password: enc_pw},
-                                                success : function(obj,textstatus){
-                                                    console.log(obj);
-                                                    localStorage.clear();
-                                                    window.location.href = 'index.html  ';
-                                                },
-                                                error : function(xhr){
-                                                    console.log(xhr.responseText);
-                                                }
-                                            }
-                                        )
-                                    }else{
-                                        alert("原密码错误!");
-                                    }
-                                },
-                                error : function(xhr){
-                                    console.log(xhr.responseText);
-                                    document.getElementById('login').innerHTML=xhr.responseText;
-                                }
-                                
-                            }
-                        )
-                    }else{
-                        alert("认证过于频繁，请稍后再试");
-                    }
-                },
-                error : function(xhr){
-                    console.log(xhr.responseText)
-                    alert("get access_key failed!");
-                }
-                
-            }
-        )
-
-
-        
-        
-
-        return false;
-    }
-
-</script>
 </html>

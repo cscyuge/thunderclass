@@ -6,26 +6,13 @@
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/publish_course.css">
-    <script src="js/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/change_section.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="js/getUrlParam.js"></script>
+    <script src="js/basic.js"></script>
+    <script src="js/publish_course.js"></script>
+
 
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
-    <script>
-        $(function(){
-            getId();
-            get_token();
-
-        });
-        function get_token(){
-            var token = localStorage.getItem("token");
-        }
-
-    </script>
     <!--修改placeholder颜色，不同浏览器不同-->
     <style>
         input::-webkit-input-placeholder{
@@ -44,7 +31,7 @@
 </head>
 <body>
 <ul class="nav">
-    <a href="index.html"><img src="images/logo1.png" class="logo" /></a>
+    <a href="index.html"><img src="images/logo1.png" class="logo" alt="logo"/></a>
 
     <ul class="one">
         <li>
@@ -67,8 +54,8 @@
             </ul>
         </li>
         <li><a href="publish_course.html">发布任务</a></li>
-        <li> <a href="message.html"><img src="images/message.png" class="messages" onclick="" > </a></li>
-        <li><img src="images/cart.png" class="cart" onclick="" > </li>
+        <li> <a href="message.html"><img src="images/message.png" class="messages" onclick="" alt="msg"> </a></li>
+        <li><img src="images/cart.png" class="cart" onclick="" alt="cart"> </li>
     </ul>
 </ul>
 
@@ -88,15 +75,15 @@
         <form id = "task">
 
             <p><span style="display:inline-block;width:100px;text-align:right;">内容：</span>
-                <input id="title" name = "task"/>
+                <label for="title"></label><input id="title" name = "task"/>
             </p>
 
             <p><span style="display:inline-block;width:100px;text-align:right;">开始时间：</span>
-                <input type="date" id="start_time" name="start_time" />
+                <label for="start_time"></label><input type="date" id="start_time" name="start_time" />
             </p>
 
             <p><span style="display:inline-block;width:100px;text-align:right;">结束时间：</span>
-                <input type="date" id="end_time" name = "end_time"/>
+                <label for="end_time"></label><input type="date" id="end_time" name = "end_time"/>
             </p>
 
 
@@ -112,55 +99,4 @@
 
 </body>
 
-<script>
-    function goToInfo(){
-        window.location.href = "info.html";
-    }
-
-    function publish_homework() {
-        var course_id = UrlParam.paramValues('cid');
-        course_id = course_id[0];
-
-        var form = new FormData( document.getElementById("task"));
-        start_time = form.get("start_time");
-        end_time = form.get("end_time");
-        start_time = new Date(start_time);
-        start_time = start_time.valueOf(start_time);
-        end_time = new Date(end_time);
-        end_time = end_time.valueOf(end_time);
-        start_time /= 1000;
-        end_time /= 1000;
-        task = form.get("task");
-        taskArr = new Array();
-        taskArr.push(task);
-
-
-        var token = localStorage.getItem("token");
-        var account = localStorage.getItem("account");
-
-        $.ajax(
-            {
-                url:'proxy/publish_course.php',
-                type: 'POST',
-                dataType: 'json',
-                data:{account:account, token:token, course_id:course_id,task:taskArr},
-                success : function(obj,textstatus){
-                    console.log(obj);
-                    if (obj.code==200) {
-                        alert("发布成功");
-                        location.replace("publish_homework.html");
-                    }else {
-                        alert("发布失败");
-                    }
-                },
-                error : function(xhr){
-                    console.log(xhr.responseText);
-                }
-
-            }
-        )
-    }
-
-
-</script>
 </html>

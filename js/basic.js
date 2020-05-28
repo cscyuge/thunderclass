@@ -1,0 +1,6 @@
+document.write("<script src='js/BigInteger.min.js'></script>")
+document.write("<script src='js/jquery.js'></script>")
+document.write("<script src='bootstrap/js/bootstrap.js'></script>")
+document.write("<script src='js/vue.js'></script>")
+document.write("<script src='js/common.js'></script>")
+document.write("<script type='text/javascript' src='js/change_section.js'></script>")
