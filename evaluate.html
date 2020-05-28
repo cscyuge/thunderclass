@@ -26,7 +26,8 @@
             var parm1=tmp3;
             $('#txt').val(parm1);
         }
-        </script>
+
+    </script>
 </head>
 <body>
 <form id='info'>
@@ -37,6 +38,7 @@
     <textarea style="width:400px;height:100px;"  id= 'evaluation' name= "evaluation" placeholder="评价一下课程吧" ></textarea>
 
     <button class="btn" onclick="saveinfo()" type="button">提交</button>
+    <!--<button class="btn" onclick="goToEvaluate()"  type="button">查看课程评价</button>       //等后端接口做好-->
 </p>
 </form>
 </body>
@@ -73,6 +75,10 @@
 
             }
         )
+    }
+    function goToEvaluate(course_id){
+        var myurl="get_evaluation.html"+"?"+"cid="+course_id;
+        window.location.assign(myurl);
     }
     </script>
 </html>

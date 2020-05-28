@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看评价</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/reset.css">
+    <link rel="stylesheet" href="bootstrap/css/info.css">
+    <script src="js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/getUrlParam.js"></script>
+    <!-- 异步提交的库 -->
+    <script src="js/vue-resource.js"></script>
+
+    <script>
+
+        $(function(){
+            get_token();
+        });
+        function get_token(){
+            var course_id = UrlParam.paramValues("cid");
+            course_id = course_id[0];
+            var token = localStorage.getItem("token");
+            var account = localStorage.getItem("account");
+            $.ajax(
+                {
+                    url:'proxy/get_evaluation.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:{course_id:course_id},
+                    success : function(obj,textstatus){
+                        console.log(obj);
+                        if (obj.code == 200){
+                            obj = obj.data;
+                            obj = $.parseJSON(obj);
+                            console.log(obj);
+                            grade = obj.grade;
+                            evaluation=obj.evaluation;
+
+                        }else{
+                            alert("用户认证过期，请重新登录");
+                            localStorage.clear();
+                            window.location.href = 'index.html';
+                        }
+                    },
+                    error : function(xhr){
+                        console.log(xhr.responseText);
+                    }
+
+                }
+            )
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
