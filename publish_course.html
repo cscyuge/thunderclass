@@ -15,9 +15,9 @@
 
     <script>
         $(function(){
-           // getId();
-           // get_token();
-            show_courses();
+            getId();
+            get_token();
+           // show_courses();
         });
         function get_token(){
             var token = localStorage.getItem("token");
@@ -81,7 +81,7 @@
         function show_courses(){
             // console.log(Date.parse(new Date()));
             // console.log(localStorage.getItem("public_courses_dict"));
-            var  keyword = "";
+            var keyword = "1";
             console.log(keyword);
             console.log("1");
             var account = localStorage.getItem("account");
