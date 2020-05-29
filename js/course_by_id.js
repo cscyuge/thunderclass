@@ -53,6 +53,26 @@ function search_my(keyword){
     return courses;
 }
 
+function search_intro(course_id){
+    let intro1 = null;
+    let url = 'proxy/get_introduction.php';
+    let data = {course_id:course_id};
+    let res = http_request(url,data);
+    if (res){
+        if (res.code === 200){
+            let data = res.data;
+            let intro=data.introduction;
+            console.log(intro);
+            intro1=intro;
+        }else if (res.code===500){
+            restart();
+        }else{
+            alert(res.message);
+        }
+    }
+    return intro1;
+}
+
 function create_course_div(course){
     let course_id = course.course_id;
     let html = "";
@@ -111,28 +131,17 @@ function showMore(course_id,title) {
     let url = "course.html?cid="+course_id+"&title="+title;
     window.open(url);
 }
+
 function show_info(){
     let my_course_id = UrlParam.paramValues("cd");
-    let courses = null;
-    let url = 'proxy/get_introduction.php';
-    let data = {course_id:my_course_id};
-    let res = http_request(url,data);
-    if (res){
-        console.log(res);
-        if (res.code === 200){
-            let data = res.data;
-            let course_introduction = data.introduction;
-            let ulObj = document.createElement("ul");
+    console.log(my_course_id);
+    let introduction = search_intro(my_course_id);
+    let ulObj = document.createElement("ul");
             let liObj = document.createElement("li");
-            liObj.innerHTML = create_introduction_div(course_introduction);
+            liObj.innerHTML = create_introduction_div(introduction);
             ulObj.appendChild(liObj);
-            $("#introduction").append(ulObj);
-            }
-        }else if (res.code===500){
-            restart();
-        }else{
-            alert(res.message);
-        }
+
+    $("#course_list").append(ulObj);
 }
 function create_introduction_div(course_introduction){
     let introduction= course_introduction;
