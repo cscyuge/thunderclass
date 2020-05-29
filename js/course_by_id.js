@@ -58,9 +58,9 @@ function search_intro(course_id){
     let url = 'proxy/get_introduction.php';
     let data = {course_id:course_id};
     let res = http_request(url,data);
-    console.log(1a);
+    console.log("1a");
     if (res){
-        console.log(2b);
+        console.log("2b");
         if (res.code === 200){
             let data = res.data;
             let intro=data.introduction;
