@@ -136,14 +136,14 @@ li{
 }
 .msg li {
     width:100px;
-    margin-bottom:60px;
     margin-top:10px;
     left:100px;
     display:block;
 }
 .msg li a{
     position:relative;
-    top:30px;
+    top:15px; /*调整字的位置，使之在中间，绿色框是不动的。*/
+    left:20px;
 }
 .sys_msg{
     position:relative;
@@ -233,15 +233,33 @@ li{
 }
 .d_msg .msg li{
     display: block;
-     height:50px;
+    height:50px;
     width:100px;
     line-height:31px;
     float:left
 }
-.d_msg msg li a {
-
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    -webkit-user-select: none;
-    -moz-user-focus: none;
-    -moz-user-select: none;
+.my_class{
+    top:-550px;
+    left:300px;
+    position: relative;
+}
+.get_homework{
+    top:-550px;
+    left:300px;
+    position: relative;
+}
+.get_playback{
+    top:-550px;
+    left:300px;
+    position: relative;
+}
+.set_evaluation{
+    top:-550px;
+    left:300px;
+    position: relative;
+}
+.buy_course_div{
+    top:-550px;
+    left:300px;
+    position: relative;
 }

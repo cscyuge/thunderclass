@@ -31,7 +31,9 @@ function check(course_id){
     }
 
 }
-
+function more(course_id) {
+    window.location.href = "all_course.html?cd="+course_id;
+}
 function reload(){
     let param = new FormData(document.getElementById("sea"));
     let keyword = param.get('keyword');
@@ -78,6 +80,7 @@ function create_course_div(course){
     html += "开始时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
     html += "结束时间："+ (end.toLocaleDateString().replace(/\//g, "-") + " " + end.toTimeString().substr(0, 8)) + "<br>";
     let button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
+    let button1 = "<button onclick=\"详细信息(\'course_id\')\">"+"more"+"</button>";
     button=button.replace(/course_id/,course.course_id);
     html += button;
     html += "<br><br>";

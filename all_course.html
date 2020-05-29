@@ -9,6 +9,8 @@
     <script src="js/basic.js"></script>
     <script src="js/message.js"></script>
     <script src="js/user.js"></script>
+    <script src="js/course_by_id.js"></script>
+    <script src="js/evaluate.js"></script>
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
@@ -16,7 +18,6 @@
 
         $(function () {
             getId();
-            // showSection(id);
             show_msgs();
         });
 
@@ -61,9 +62,9 @@
         <nav>
             <ul>
                 <li class="special"><a href="#album">课程介绍</a></li>
-                <li><a href="#dynamic">课程资料</a></li>
+                <li><a href="#dynamic"> 课程资料</button></a></li>
                 <!--<li><a href="#relationship">● 我的消息</a></li>-->
-                <li><a href="#gotoclass" onclick="show_courses();return false;">上课</a></li>
+                <li><a href="#gotoclass" ><button onclick="show_courses()">上课</button></a></li>
                 <li><a href="#homework" >作业</a></li>
                 <li><a href="#playback" >回看</a></li>
                 <li><a href="#evaluate" >评价</a></li>
@@ -76,7 +77,7 @@
     </ul>
 </div>
 <section class="sys_msg" id="album">
-    <div id="introduction" class="msg_background">1</div>
+    <div id="introduction" class="msg_background">111</div>
 </section>
 <section class="courses_msg" id="dynamic">
     <div class="course_msg">
@@ -90,19 +91,31 @@
 </section>
 
 <section  id="gotoclass">
-    <div id = "course_list" >我的课程：</div>
+    <div class="my_class" id = "course_list" >上课：</div>
 </section>
-<section  id="homework">
-    homework
+<section  id="homework" >
+    <div  class="get_homework">homework应该是学生查看作业</div>
 </section>
 <section  id="playback">
-   playback
+    <div  class="get_playback">playback</div>
 </section>
 <section  id="evaluate">
-    evaluate
+    <form id='info' class="set_evaluation">
+
+        <p><span style="display:inline-block;width:100px;text-align:right;">课程评分</span>
+            <label for='grade'></label><input type = 'number' name = 'grade' id = 'grade' class="box" /></p>
+        <p><span style="display:inline-block;width:100px;text-align:right;">课程评价</span>
+            <label for='evaluation'></label><textarea style="width:400px;height:100px;" id= 'evaluation' name= "evaluation" placeholder="评价一下课程吧" ></textarea>
+
+
+            <button class="btn" onclick="evaluate_course()" type="button">提交</button>
+            <!--<button class="btn" onclick="goToEvaluate()"  type="button">查看课程评价</button>       //等后端接口做好-->
+
+        </p>
+    </form>
 </section>
 <section  id="buy_course">
-    buy_course
+    <div  class="buy_course_div">buy course</div>
 </section>
 </body>
 
