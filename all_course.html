@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息</title>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/all_course.css">
+    <script src="js/basic.js"></script>
+    <script src="js/message.js"></script>
+    <script src="js/user.js"></script>
+    <!-- 异步提交的库 -->
+    <script src="js/vue-resource.js"></script>
+
+    <script>
+
+        $(function () {
+            getId();
+            // showSection(id);
+            show_msgs();
+        });
+
+
+
+    </script>
+</head>
+<body>
+<ul class="nav">
+    <a href="index.html"><img src="images/logo1.png" class="logo" alt="logo"/></a>
+
+    <ul class="one">
+        <li>
+            <a href="#">课程分类</a>
+            <ul class="nav2">
+                <li><a href="#">产品1</a></li>
+                <li><a href="#">产品2</a></li>
+                <li><a href="#">产品3</a></li>
+            </ul>
+        </li>
+    </ul>
+    <form id="sea" class="sea">
+        <label for="text"></label><input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text"/>
+        <a href="#"><img src="images/search.png" id="search" onclick="search_my()" alt="搜"/></a>>
+    </form>
+
+    <ul class="other">
+        <li>
+            <a href="#">我的学习</a>
+            <ul class="nav2">
+                <li><a href="#">产品1</a></li>
+                <li><a href="#">产品2</a></li>
+                <li><a href="#">产品3</a></li>
+            </ul>
+        </li>
+        <li><img src="images/message.png" class="messages" onclick="" alt="msg"></li>
+        <li><img src="images/cart.png" class="cart" onclick="" alt="cart"></li>
+    </ul>
+</ul>
+<div class="d_msg">
+    <ul class="msg">
+        <nav>
+            <ul>
+                <li class="special"><a href="#album">课程介绍</a></li>
+                <li><a href="#dynamic">课程资料</a></li>
+                <!--<li><a href="#relationship">● 我的消息</a></li>-->
+                <li><a href="#gotoclass" onclick="show_courses();return false;">上课</a></li>
+                <li><a href="#homework" >作业</a></li>
+                <li><a href="#playback" >回看</a></li>
+                <li><a href="#evaluate" >评价</a></li>
+                <li><a href="#buy_course" >购买课程</a></li>
+                <!-- <li><a href="#collection">我的收藏</a></li>-->
+            </ul>
+        </nav>
+        <!-- <p><span style="display:inline-block;width:100px;text-align:right;">消息</span>
+             <input type="text" name="msg" id="msg" value="" required/>*</p>  -->
+    </ul>
+</div>
+<section class="sys_msg" id="album">
+    <div id="introduction" class="msg_background">1</div>
+</section>
+<section class="courses_msg" id="dynamic">
+    <div class="course_msg">
+        <p><span style="font-weight: bold">上课提醒：</span> 2020年5月11日 12：00</p>
+        <p>您的课程《小学六年级语文》将在下午6：00开始上课</p>
+    </div>
+    <div class="course_msg">
+        <p><span style="font-weight: bold">上课提醒：</span> 2020年5月11日 12：00</p>
+        <p>您的课程《小学六年级语文》发布了一个作业，截至提交时间为2020年5月14日12：00</p>
+    </div>
+</section>
+
+<section  id="gotoclass">
+    <div id = "course_list" >我的课程：</div>
+</section>
+<section  id="homework">
+    homework
+</section>
+<section  id="playback">
+   playback
+</section>
+<section  id="evaluate">
+    evaluate
+</section>
+<section  id="buy_course">
+    buy_course
+</section>
+</body>
+
+</html>
