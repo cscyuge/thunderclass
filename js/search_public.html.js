@@ -80,7 +80,7 @@ function create_course_div(course){
     html += "开始时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
     html += "结束时间："+ (end.toLocaleDateString().replace(/\//g, "-") + " " + end.toTimeString().substr(0, 8)) + "<br>";
     let button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
-    let button1 = "<button onclick=\"详细信息(\'course_id\')\">"+"more"+"</button>";
+    let button1 = "<button onclick=\"more(\'course_id\')\">"+"详细信息"+"</button>";
     button=button.replace(/course_id/,course.course_id);
     button1=button1.replace(/course_id/,course.course_id);
     html += button;

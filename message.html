@@ -40,8 +40,10 @@ function get_token(){
                 url = 'proxy/get_token.php';
                 data = {account:account, _t:timestamp, access_key: access_key, nonce: nonce, enc:enc};
                 res = http_request(url,data);
+                console.log(res);
                 if (res){
                     if (res.code === 200){
+                        console.log("here");
                         token = res.data;
                         localStorage.setItem("token",token);
                         localStorage.setItem("account",account.toString());
