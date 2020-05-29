@@ -62,14 +62,16 @@ function search_intro(course_id){
     if (res){
         console.log("2b");
         if (res.code === 200){
+            console.log("2.0b");
             let data = res.data;
-            let intro=data.introduction;
-            console.log(intro);
-            intro1=intro;
+            console.log(data);
+            intro1=data;
         }else if (res.code===500){
+            console.log("3c");
             console.log(res);
             restart();
         }else{
+            console.log("4d");
             console.log(res);
             alert(res.message);
         }
