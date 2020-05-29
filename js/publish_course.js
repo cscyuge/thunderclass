@@ -11,7 +11,8 @@ function publish_course() {
     end_time /= 1000;
     let course_num = form.get("course_num");
     let category = form.get("category");
-    let info = {title:title,course_num:course_num};
+    let introduction=form.get("introduction");
+    let info = {title:title,course_num:course_num,introduction:introduction};
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let course_info = {info:info,start_time:start_time,finish_time: end_time,category:category};
