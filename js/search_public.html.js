@@ -82,7 +82,9 @@ function create_course_div(course){
     let button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
     let button1 = "<button onclick=\"详细信息(\'course_id\')\">"+"more"+"</button>";
     button=button.replace(/course_id/,course.course_id);
+    button1=button1.replace(/course_id/,course.course_id);
     html += button;
+    html += button1;
     html += "<br><br>";
     html += "</div>";
     return html;

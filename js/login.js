@@ -30,6 +30,7 @@ function ajaxLogin() {
                     token = res.data;
                     localStorage.setItem("token",token);
                     localStorage.setItem("account",account.toString());
+                    localStorage.setItem("password",password.toString());
                     window.location.href='index.html';
                 }else{
                     alert("用户名或密码错误!");

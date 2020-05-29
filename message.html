@@ -24,6 +24,7 @@
 
 function get_token(){
     let account = localStorage.getItem("account");
+    let password = localStorage.getItem("password");
     timestamp = (new Date()).valueOf();
     timestamp /= 1000;
     let access_key = null;
