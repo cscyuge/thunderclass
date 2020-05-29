@@ -58,6 +58,8 @@ function search_intro(course_id){
     let url = 'proxy/get_introduction.php';
     let data = {course_id:course_id};
     let res = http_request(url,data);
+    console.log("0d");
+    console.log(res);
     console.log("1a");
     if (res){
         console.log("2b");
@@ -141,6 +143,7 @@ function showMore(course_id,title) {
 
 function show_info(){
     let my_course_id = UrlParam.paramValues("cd");
+    my_course_id = my_course_id[0];
     console.log(my_course_id);
     let introduction = search_intro(my_course_id);
     let ulObj = document.createElement("ul");
