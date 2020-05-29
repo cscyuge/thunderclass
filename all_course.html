@@ -61,7 +61,7 @@
     <ul class="msg">
         <nav>
             <ul>
-                <li class="special"><a href="#album">课程介绍</a></li>
+                <li class="special"><a href="#album"><button onclick="show_info()">课程介绍</button></a></li>
                 <li><a href="#dynamic"> 课程资料</button></a></li>
                 <!--<li><a href="#relationship">● 我的消息</a></li>-->
                 <li><a href="#gotoclass" ><button onclick="show_courses()">上课</button></a></li>
@@ -101,16 +101,12 @@
 </section>
 <section  id="evaluate">
     <form id='info' class="set_evaluation">
-
         <p><span style="display:inline-block;width:100px;text-align:right;">课程评分</span>
             <label for='grade'></label><input type = 'number' name = 'grade' id = 'grade' class="box" /></p>
         <p><span style="display:inline-block;width:100px;text-align:right;">课程评价</span>
             <label for='evaluation'></label><textarea style="width:400px;height:100px;" id= 'evaluation' name= "evaluation" placeholder="评价一下课程吧" ></textarea>
-
-
             <button class="btn" onclick="evaluate_course()" type="button">提交</button>
             <!--<button class="btn" onclick="goToEvaluate()"  type="button">查看课程评价</button>       //等后端接口做好-->
-
         </p>
     </form>
 </section>

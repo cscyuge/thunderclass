@@ -111,3 +111,36 @@ function showMore(course_id,title) {
     let url = "course.html?cid="+course_id+"&title="+title;
     window.open(url);
 }
+function show_info(){
+    let my_course_id = UrlParam.paramValues("cd");
+    let courses = null;
+    let url = 'proxy/get_introduction.php';
+    let data = {course_id:my_course_id};
+    let res = http_request(url,data);
+    if (res){
+        console.log(res);
+        if (res.code === 200){
+            let data = res.data;
+            let course_introduction = data.introduction;
+            let ulObj = document.createElement("ul");
+            let liObj = document.createElement("li");
+            liObj.innerHTML = create_introduction_div(course_introduction);
+            ulObj.appendChild(liObj);
+            $("#introduction").append(ulObj);
+            }
+        }else if (res.code===500){
+            restart();
+        }else{
+            alert(res.message);
+        }
+}
+function create_introduction_div(course_introduction){
+    let introduction= course_introduction;
+    let html = "";
+    let temp = "<div>";
+    html+=temp;
+    html += "课程介绍："+introduction+"<br>";
+    html += "<br><br>";
+    html += "</div>";
+    return html;
+}
