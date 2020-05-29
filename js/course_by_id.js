@@ -61,6 +61,7 @@ function search_intro(course_id){
     console.log("1a");
     if (res){
         console.log("2b");
+        console.log(res.code);
         if (res.code === 200){
             console.log("2.0b");
             let data = res.data;
