@@ -11,7 +11,7 @@ function search_public(keyword){
             success : function(obj,textstatus){
                 console.log(obj.data);
                 courses = obj.data;
-                alert("success")
+                //alert("success")
             },
             error : function(xhr){
                 console.log(xhr.responseText);
@@ -74,5 +74,5 @@ function show_the_course(){
                 ulObj.appendChild(liObj);}
         }
     }
-    $("#course_list").append(ulObj);
+    $("#the_course").append(ulObj);
 }
