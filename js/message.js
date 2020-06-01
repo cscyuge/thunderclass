@@ -184,8 +184,7 @@ function send() {
     let person = localStorage.getItem("person_name");
     console.log(person);
     console.log(condition);
-    let info = {account: account,token: token,receiver: person, msg: condition};
-    let data = {info:info};
+    let data = {account: account,token: token,receiver: person, msg: condition};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
