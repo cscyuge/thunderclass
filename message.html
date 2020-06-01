@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="bootstrap/css/message.css">
     <script src="js/basic.js"></script>
     <script src="js/message.js"></script>
+    <script src="js/get_token.js"></script>
     <script src="js/md5.js"></script>
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
@@ -15,14 +16,14 @@
     <script>
 
         $(function () {
-            get_token();
+            ajaxLogin();
             getId();
             // showSection(id);
             show_msgs();
         });
 
 
-function get_token(){
+/*function get_token(){
     let account = localStorage.getItem("account");
     let password = localStorage.getItem("password");
     timestamp = (new Date()).valueOf();
@@ -55,7 +56,7 @@ function get_token(){
                 alert("用户名错误或登录过于频繁，请稍后再试1");
             }
         }
-}
+}*/
     </script>
 </head>
 <body>

@@ -283,5 +283,6 @@ button:focus{
     background-color:#62c462;
 }
 .intro_div{
-    left:-200px;
+    position:relative;
+    left:-400px;
 }
