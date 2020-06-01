@@ -78,7 +78,9 @@ function get_user_msg(){
         if (res.code === 200){
             let data = res.data;
             msg_list = data;
+            console.log("1");
             console.log(data);
+            console.log("2");
             localStorage.setItem("msg_list1",JSON.stringify(data));
         }else if (res.code === 500){
             restart();
@@ -112,14 +114,18 @@ function show_msgs(){
     $("#course_list2").append(ulObj2);
 }
 function show_user_msgs(){
+    console.log("3");
     let msg_list1 = get_user_msg();
+    console.log("4");
     let ulObj = document.createElement("ul");
     let ulObj2 = document.createElement("ul");
     for (let i = 0, n = msg_list1.length; i < n; i++) {
         let msg = msg_list1[i];
         let liObj2 = document.createElement("li");
         let tempHTML2;
+        console.log("5");
             tempHTML2 = create_msg_div3(msg);
+        console.log("6");
             localStorage.setItem("person_name", msg.sender);
         liObj2.innerHTML = tempHTML2;
         ulObj2.appendChild(liObj2);
