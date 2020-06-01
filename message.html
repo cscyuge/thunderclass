@@ -18,6 +18,7 @@
         $(function () {
             ajaxLogin();
             getId();
+
             // showSection(id);
             show_msgs();
             show_user_msgs();
@@ -98,7 +99,7 @@
             <ul>
                 <li class="special"><a href="#album">● 系统消息</a></li>
                 <li><a href="#dynamic">● 课程消息</a></li>
-                <li><a href="#relationship">● 我的消息</a></li>
+                <li><a href="#relationship"><button onclick="getId2()">● 我的消息</button></a></li>
                 <!-- <li><a href="#collection">我的收藏</a></li>-->
             </ul>
         </nav>
@@ -122,9 +123,15 @@
 
 <section id="relationship">
     <div class="friend">
-        <a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> 灰灰灰 </a>
+        <nav>
+            <ul>
+                <li class="special"><a href="#user1"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> 归与通 </a></li>
+                <li><a href="#user2"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> 江水平 </a></li>
+            </ul>
+        </nav>
     </div>
-    <div class="chat_area">
+
+   <!-- <div class="chat_area">
         <div id="course_list2"></div>
     </div>
     <div class="chat">
@@ -132,9 +139,14 @@
             <label for='condition'></label><textarea style="width:586px;height:100px;" id='condition' name="condition" placeholder="回复一下吧~"></textarea>
             <button class="btnn" onclick="send()" type="button">发送</button>
         </form>
-    </div>
+    </div>-->
 </section>
-
+<section class="" id="user1">
+    <div class="ab"></div>
+</section>
+<section class="" id="user2">
+    <div class="ac"></div>
+</section>
 </body>
 
 </html>

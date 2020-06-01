@@ -42,3 +42,23 @@ function getId() {
         }
     };
 }
+function getId2() {
+    var navs = document.getElementsByTagName("nav");
+    var links = navs[0].getElementsByTagName("a");
+    for (var i = 0; i <links.length; i++) {
+        //获取导航栏的href值
+        var secId = links[i].getAttribute("href").split("#")[1];
+        if (!document.getElementById(secId)) continue;
+        //设置最初的演示
+        document.getElementById(secId).style.display = "none";
+        document.getElementById("user1").style.display = "block";
+        /*这里存在作用域问题，secId是个局部变量，它在getId函数执行期间存在，
+        到时间处理函数执行的时候就不存在了，故在这里为每个链接创建了一个自定义的属性destination*/
+        links[i].destination = secId;
+        links[i].onclick = function() {
+            showSection(this.destination);
+            changeColor(this.destination);
+            return false;
+        }
+    };
+}
