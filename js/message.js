@@ -71,7 +71,7 @@ function get_user_msg(){
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
-    let data = {account: account,communicator:"all", token: token};
+    let data = {account: account,communicator:"guiyutong.sky", token: token};
     let res = http_request(url,data);
     let msg_list = null;
     if (res){
@@ -93,41 +93,29 @@ function get_user_msg(){
 function show_msgs(){
     let msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
-    let ulObj2 = document.createElement("ul");
     for (let i = 0, n = msg_list.length; i < n; i++) {
         let msg = msg_list[i];
         let liObj = document.createElement("li");
-        let liObj2 = document.createElement("li");
-        let tempHTML,tempHTML2;
-        if (msg.sender === "system") {
-            tempHTML = create_msg_div(msg);
-        }else{
-            tempHTML2 = create_msg_div3(msg);
-            localStorage.setItem("person_name", msg.sender);
-        }
+        let tempHTML;
+        tempHTML = create_msg_div(msg);
         liObj.innerHTML = tempHTML;
-        liObj2.innerHTML = tempHTML2;
         ulObj.appendChild(liObj);
-        ulObj2.appendChild(liObj2);
     }
     $("#course_list").append(ulObj);
-    $("#course_list2").append(ulObj2);
     console.log("0");
 }
 function show_user_msgs(){
     console.log("3");
     let msg_list1 = get_user_msg();
     console.log("4");
-    let ulObj = document.createElement("ul");
     let ulObj2 = document.createElement("ul");
     for (let i = 0, n = msg_list1.length; i < n; i++) {
         let msg = msg_list1[i];
         let liObj2 = document.createElement("li");
         let tempHTML2;
-        console.log("5");
-            tempHTML2 = create_msg_div3(msg);
+        tempHTML2 = create_msg_div3(msg);
         console.log("6");
-            localStorage.setItem("person_name", msg.sender);
+        localStorage.setItem("person_name", msg.sender);
         liObj2.innerHTML = tempHTML2;
         ulObj2.appendChild(liObj2);
     }
