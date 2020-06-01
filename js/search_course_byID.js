@@ -30,12 +30,14 @@ function create_course_div(course){
     html+=temp;
     if (course.s_account == "undefined"){
         html+="老师发布<br>";
+        html+="<a><img src="images/tescher_image.png" class="portrait1"></a>";
         html+="教师:"+course.t_account+"<br>";
     }else{
         html+="学生发布<br>";
         html+="学生:"+course.s_account+"<br>";
     }
     var info = JSON.parse(course.info);
+    html += "课程概述："+info.introduction+"<br>";
     html += "课程类别："+course.category+"<br>";
     html += "课程名："+info.title+"<br>";
     html += "状态："+course.status+"<br>";

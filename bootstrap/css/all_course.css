@@ -177,6 +177,12 @@ li{
     margin-left:70px;
     display:inline-block;
 }
+.portrait1{
+    position: relative;
+    width:80px;
+    height:80px;
+    border-radius: 50%;
+}
 .friend{
     position:relative;
     background-color: #eeeeee;
@@ -275,4 +281,7 @@ button:hover{
 }
 button:focus{
     background-color:#62c462;
+}
+.intro_div{
+    left:-200px;
 }
