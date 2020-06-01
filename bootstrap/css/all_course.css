@@ -151,11 +151,7 @@ li{
     width:900px;
     height:100px;
     top:-550px;
-    left:300px;
-}
-.sys_msg p{
-    padding-top: 10px;
-    padding-left: 5px;
+    left:400px;
 }
 .courses_msg{
     display: block;
@@ -175,11 +171,9 @@ li{
 }
 .portrait{
     position: relative;
-    width:60px;
-    height:60px;
-    border-radius: 50%;
-    margin-left:10px;
-    margin-top: 10px;
+    width:180px;
+    height:100px;
+    margin-left:70px;
     display:inline-block;
 }
 .friend{
@@ -219,7 +213,7 @@ li{
     top:-550px;
     left:300px;
 }
-.sys_msg .msg_background div{
+.sys_msg .msg_background {
     background-color: #eeeeee;
     width:900px;
     height:100px;
@@ -228,7 +222,7 @@ li{
     margin-top:10px;
     position:relative;
 }
-.d_msg .msg li:hover{
+/*.d_msg .msg li:hover{
     background-color:#62c462;
 }
 .d_msg .msg li{
@@ -237,7 +231,7 @@ li{
     width:100px;
     line-height:31px;
     float:left
-}
+}*/
 .my_class{
     top:-550px;
     left:300px;
@@ -262,4 +256,22 @@ li{
     top:-550px;
     left:300px;
     position: relative;
+}
+.d_msg .msg li button{
+    width:180px;
+    height:50px;
+    margin-top:0;
+}
+section div{
+    margin-left:300px;
+}
+.set_evaluation p{
+    position:relative;
+    left:300px;
+}
+button:hover{
+    background-color:#62c462;
+}
+button:focus{
+    background-color:#62c462;
 }

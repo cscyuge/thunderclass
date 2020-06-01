@@ -150,8 +150,7 @@ function show_info(){
             let liObj = document.createElement("li");
             liObj.innerHTML = create_introduction_div(introduction);
             ulObj.appendChild(liObj);
-
-    $("#course_list").append(ulObj);
+            $("#course_list").append(ulObj);
 }
 function create_introduction_div(course_introduction){
     let introduction= course_introduction;

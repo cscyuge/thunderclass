@@ -32,9 +32,6 @@ function create_homework_div(homework){
     t = dateFormat("YYYY-mm-dd HH:MM",t);
     html += t;
     html += "<div><br>";
-
-
-
     return html;
 }
 

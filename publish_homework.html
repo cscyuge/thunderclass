@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="bootstrap/css/publish_course.css">
     <script src="js/basic.js"></script>
     <script src="js/publish_course.js"></script>
-
+    <script src="js/homework.js"></script>
 
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
@@ -65,7 +65,7 @@
         <nav>
             <ul>
                 <li class="special"><a href="#album">发布作业</a></li>
-                <li><a href="#dynamic">已发布作业</a></li>
+                <li><a href="#dynamic"><button onclick="show_homework()">已发布作业</button></a></li>
             </ul>
         </nav>
     </ul>
@@ -93,7 +93,9 @@
     </div>
 </section>
 <section class="courses_msg" id="dynamic">
-    aaa
+    查看已发布作业
+    <button onclick="show_courses()">点击查询</button>
+    <div id = "course_list" >搜索结果：</div>
 </section>
 
 

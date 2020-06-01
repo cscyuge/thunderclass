@@ -3,12 +3,13 @@ function saveInfo(){
     let username = form.get("username");
     let sex = form.get('sex');
     let condition = form.get("condition");
+    let realName=form.get("realName");
     let mail = form.get("mail");
     let tel = form.get("tel");
     let role = form.get("role");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
-    let info = { username:username, sex: sex, tel: tel, condition:condition, mail:mail, blog:"", role:role, extra:"{}"};
+    let info = { username:username, sex: sex, tel: tel, condition:condition,realName:realName, mail:mail, blog:"", role:role, extra:"{}"};
     let url = 'proxy/set_user_info.php';
     let data = {account:account, token:token, info:info};
     let res = http_request(url,data);
@@ -39,6 +40,7 @@ function show_info(){
         let condition = obj.condition;
         let mail = obj.mail;
         let role = obj.role;
+        let realName=obj.realName;
         // let extra = obj.extra;
         // let blog = obj.blog;
 
@@ -50,6 +52,7 @@ function show_info(){
         }else{
             $('#unknown').attr("checked","");
         }
+        $('#realName').attr("value",realName);
         $('#mail').attr("value",mail);
         $('#tel').attr("value",tel);
         $('#condition').val(condition);
