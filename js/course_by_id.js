@@ -107,6 +107,7 @@ function create_course_div(course){
 function show_courses(){
     var keyword=null;
     let my_course_id = UrlParam.paramValues("cd");
+    my_course_id = my_course_id[0];
     if (keyword == null){
         keyword = ""
     }else {

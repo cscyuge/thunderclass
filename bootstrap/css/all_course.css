@@ -64,6 +64,7 @@ li{
     top: 40px;
     float:left;
     left:-25px;
+    z-index:2;
 }
 .logo{
     position:relative;
