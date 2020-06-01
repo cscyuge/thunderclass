@@ -30,7 +30,6 @@ function create_course_div(course){
     html+=temp;
     if (course.s_account == "undefined"){
         html+="老师发布<br>";
-        html+="<a><img src="images/tescher_image.png" class="portrait1"></a>";
         html+="教师:"+course.t_account+"<br>";
     }else{
         html+="学生发布<br>";
