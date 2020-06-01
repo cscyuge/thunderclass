@@ -45,6 +45,7 @@ function changeColor(id) {
     }
 }
 
+
 function get_sys_msg(){
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
@@ -66,7 +67,27 @@ function get_sys_msg(){
     }
     return msg_list;
 }
-
+function get_user_msg(){
+    let token = localStorage.getItem("token");
+    let account = localStorage.getItem("account");
+    let url =  'proxy/get_msg.php';
+    let data = {account: account,communicator:"all", token: token};
+    let res = http_request(url,data);
+    let msg_list = null;
+    if (res){
+        if (res.code === 200){
+            let data = res.data;
+            msg_list = data;
+            console.log(data);
+            localStorage.setItem("msg_list1",JSON.stringify(data));
+        }else if (res.code === 500){
+            restart();
+        }else{
+            alert(res.message);
+        }
+    }
+    return msg_list;
+}
 function show_msgs(){
     let msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
@@ -90,11 +111,25 @@ function show_msgs(){
     $("#course_list").append(ulObj);
     $("#course_list2").append(ulObj2);
 }
-
+function show_user_msgs(){
+    let msg_list1 = get_user_msg();
+    let ulObj = document.createElement("ul");
+    let ulObj2 = document.createElement("ul");
+    for (let i = 0, n = msg_list1.length; i < n; i++) {
+        let msg = msg_list1[i];
+        let liObj2 = document.createElement("li");
+        let tempHTML2;
+            tempHTML2 = create_msg_div3(msg);
+            localStorage.setItem("person_name", msg.sender);
+        liObj2.innerHTML = tempHTML2;
+        ulObj2.appendChild(liObj2);
+    }
+    $("#course_list2").append(ulObj2);
+}
 function create_msg_div(msg) {
     let html = "";
-    let temp = "<div id = course_id>";
-    temp = temp.replace(/course_id/, msg._t);
+    let temp = "<div id = t>";
+    temp = temp.replace(/t/, msg._t);
     html += temp;
     html += "系统发布<br>";
     html += "消息:" + msg.msg + "<br>";
@@ -111,8 +146,8 @@ function create_msg_div(msg) {
 
 function create_msg_div2(msg) {
     let html = "";
-    let temp = "<div id = course_id >";
-    temp = temp.replace(/course_id/, msg._t);
+    let temp = "<div id = t >";
+    temp = temp.replace(/t/, msg._t);
     html += temp;
     html += msg.msg + "<br>";
     let t = new Date(msg._t*1000);
@@ -149,7 +184,7 @@ function send() {
     let person = localStorage.getItem("person_name");
     console.log(person);
     console.log(condition);
-    let info = {account: account, receiver: person, msg: condition, token: token};
+    let info = {account: account,token: token,receiver: person, msg: condition};
     let data = {info:info};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);

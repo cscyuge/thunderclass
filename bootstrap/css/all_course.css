@@ -286,3 +286,29 @@ button:focus{
     position:relative;
     left:-400px;
 }
+.d_msg{
+    display:inline-block;
+    top:-100px;
+    left:-400px;
+}
+.line_one{
+    display: inline-block;
+    position:relative;
+    left:-300px;
+    top:-20px;
+    z-index:1;
+}
+.line_two{
+    display: inline-block;
+    position:relative;
+    left:-300px;
+    top:-20px;
+    z-index:1;
+}
+.line_three{
+    position:relative;
+    top:80px;
+    left:-2px;
+
+}
+
