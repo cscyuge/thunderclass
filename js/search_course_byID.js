@@ -67,7 +67,7 @@ function show_the_course(){
         for (var i=0, n=courses[key].length;i<n;i++){
             course = courses[key][i];
             console.log(course);
-            if(course.id==my_course_id)
+            if(course.course_id==my_course_id)
             {var liObj = document.createElement("li");
                 tempHTML = create_course_div(course);
                 liObj.innerHTML = tempHTML;
