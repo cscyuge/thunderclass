@@ -112,6 +112,7 @@ function show_msgs(){
     }
     $("#course_list").append(ulObj);
     $("#course_list2").append(ulObj2);
+    console.log("0");
 }
 function show_user_msgs(){
     console.log("3");
