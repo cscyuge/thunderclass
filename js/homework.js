@@ -59,10 +59,13 @@ function get_homework(course_id){
     if (res) {
         if (res.code === 200) {
             homework = res.data;
+            console.log("是200");
         } else if (res.code === 500) {
             restart();
+            console.log("是500");
         } else {
             alert(res.message);
+            console.log("啥也不是");
         }
     }
     return homework;
