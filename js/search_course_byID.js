@@ -22,29 +22,31 @@ function search_public(keyword){
     console.log("4");
     return courses;
 }
+function teacher_information(t_account){
 
+}
 function create_course_div(course){
     html = "";
     temp = "<div id = course_id>";
     temp = temp.replace(/course_id/,course.course_id);
     html+=temp;
     if (course.s_account == "undefined"){
-        html+="老师发布<br>";
-        html+="教师:"+course.t_account+"<br>";
+        html+="<img src='images/teacher_image.png'>";
+        html+="授课教师:"+course.t_account+"<br>";
+        html+=teacher_information(t_account);
     }else{
         html+="学生发布<br>";
         html+="学生:"+course.s_account+"<br>";
     }
     var info = JSON.parse(course.info);
-    html += "课程概述："+info.introduction+"<br>";
+    html += "课程介绍："+info.introduction+"<br><br>";
     html += "课程类别："+course.category+"<br>";
     html += "课程名："+info.title+"<br>";
-    html += "状态："+course.status+"<br>";
 
     var begin = new Date(course.start_time*1000);
     var end = new Date(course.finish_time*1000);
-    html += "开始时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) + "<br>";
-    html += "结束时间："+ (end.toLocaleDateString().replace(/\//g, "-") + " " + end.toTimeString().substr(0, 8)) + "<br>";
+    html += "开始时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) ;
+    html += "  结束时间："+ (end.toLocaleDateString().replace(/\//g, "-") + " " + end.toTimeString().substr(0, 8)) + "<br>";
     html += "<br><br>";
     html += "</div>";
     return html;
@@ -53,7 +55,8 @@ function create_course_div(course){
 function show_the_course(){
     // console.log(Date.parse(new Date()));
     // console.log(localStorage.getItem("public_courses_dict"));
-    let my_course_id = UrlParam.paramValues("cd");
+    if(a==0)
+    { let my_course_id = UrlParam.paramValues("cd");
     my_course_id = my_course_id[0];
     var keyword = "1";
     console.log(keyword);
@@ -72,5 +75,5 @@ function show_the_course(){
                 ulObj.appendChild(liObj);}
         }
     }
-    $("#the_course").append(ulObj);
+    $("#the_course").append(ulObj);}
 }
