@@ -1,7 +1,6 @@
 function publish_homework() {
     let course_id = UrlParam.paramValues('cid');
     course_id = course_id[0];
-
     let form = new FormData( document.getElementById("task"));
     let start_time = form.get("start_time");
     let end_time = form.get("end_time");
@@ -14,7 +13,8 @@ function publish_homework() {
     let task = form.get("task");
     let taskArr = [];
     taskArr.push(task);
-
+    console.log(task);
+    console.log(taskArr);
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url = 'proxy/publish_course.php';
