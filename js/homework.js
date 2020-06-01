@@ -15,7 +15,11 @@ function create_homework_div(homework){
 
     html += "<div>分数：";
     let score = homework['score'];
-    html += score.toString();
+    if (score === undefined){
+        html += "未打分";
+    }else {
+        html += score.toString();
+    }
     html += "<div><br>";
 
 

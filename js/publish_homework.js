@@ -17,13 +17,13 @@ function publish_homework() {
     console.log(taskArr);
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
-    let url = 'proxy/publish_course.php';
+    let url = 'proxy/publish_homework.php';
     let data = {account:account, token:token, course_id:course_id,task:taskArr, start_time:start_time,finish_time:end_time};
     let res = http_request(url,data);
     if (res) {
         if (res.code === 200) {
             alert("发布成功");
-            location.replace("publish_homework.html");
+            location.replace("publish_homework.html?cid="+course_id.toString());
         } else if (res.code === 500) {
             restart();
         } else {
