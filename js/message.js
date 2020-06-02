@@ -184,7 +184,7 @@ function create_msg_div3(msg) {
 }
 
 function send() {
-    let form = new FormData(document.getElementById("dialog2"));
+    let form = new FormData(document.getElementById("dialog1"));
     let condition = form.get("condition2");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
@@ -210,7 +210,7 @@ function send() {
 }
 
 function send_one() {
-    let form = new FormData(document.getElementById("dialog1"));
+    let form = new FormData(document.getElementById("dialog2"));
     let condition = form.get("condition1");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
