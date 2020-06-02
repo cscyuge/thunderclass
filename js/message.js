@@ -92,7 +92,8 @@ function get_user_msg(){
 function show_msgs(){
     let msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
-    for (let i = 0, n = msg_list.length; i < n; i++) {
+    var n = msg_list1.length;
+    for (let i = n-1 ; i >=0; i--) {
         let msg = msg_list[i];
         let liObj = document.createElement("li");
         let tempHTML;
@@ -108,7 +109,8 @@ function show_user_msgs(){
     console.log("4");
     let ulObj1 = document.createElement("ul");
     let ulObj2 = document.createElement("ul");
-    for (let i = 0, n = msg_list1.length; i < n; i++) {
+    var n = msg_list1.length;
+    for (let i = n-1; i >=0; i--) {
         let msg = msg_list1[i];
         let liObj1 = document.createElement("li");
         let liObj2 = document.createElement("li");
@@ -182,7 +184,7 @@ function create_msg_div3(msg) {
 }
 
 function send() {
-    let form = new FormData(document.getElementById("dialog1"));
+    let form = new FormData(document.getElementById("dialog2"));
     let condition = form.get("condition");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
@@ -208,7 +210,7 @@ function send() {
 }
 
 function send_one() {
-    let form = new FormData(document.getElementById("dialog2"));
+    let form = new FormData(document.getElementById("dialog1"));
     let condition = form.get("condition");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
