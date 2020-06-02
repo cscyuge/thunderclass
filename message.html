@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>信息</title>
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/message.css">
     <script src="js/basic.js"></script>
@@ -13,52 +14,35 @@
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
-    <script>
+    <script type="text/javascript">
 
         $(function () {
             ajaxLogin();
             getId();
+            $('#course_list2').hide();
+            $('#hidden_enent1').hide();
+            $('#click_event').click(function(){
+                if($('#course_list2').is(':hidden')){
+                    $('#course_list2').show();
+                    $('#hidden_enent1').hide();
+                }
+                else{
+                    $('#course_list2').show();
+                }
+            });
 
-            // showSection(id);
+            $('#click_event1').click(function(){
+                if($('#hidden_enent1').is(':hidden')){
+                    $('#hidden_enent1').show();
+                    $('#course_list2').hide();
+                }
+                else{
+                    $('#hidden_enent1').show();
+                }
+            });
             show_msgs();
             show_user_msgs();
-        });
-
-
-/*function get_token(){
-    let account = localStorage.getItem("account");
-    let password = localStorage.getItem("password");
-    timestamp = (new Date()).valueOf();
-    timestamp /= 1000;
-    let access_key = null;
-    let token = null;
-        let url = 'proxy/get_access_key.php';
-        let data = {account:account, _t:timestamp};
-        let res = http_request(url,data);
-        if (res) {
-            if (res.code === 200){
-                access_key = res.data.access_key;
-                let nonce = Math.ceil(Math.random()*100000000);
-                let enc = hex_md5(account + password + access_key + nonce + timestamp);
-                url = 'proxy/get_token.php';
-                data = {account:account, _t:timestamp, access_key: access_key, nonce: nonce, enc:enc};
-                res = http_request(url,data);
-                console.log(res);
-                if (res){
-                    if (res.code === 200){
-                        console.log("here");
-                        token = res.data;
-                        localStorage.setItem("token",token);
-                        localStorage.setItem("account",account.toString());
-                    }else{
-                        alert("用户名或密码错误1!");
-                    }
-                }
-            }else{
-                alert("用户名错误或登录过于频繁，请稍后再试1");
-            }
-        }
-}*/
+        })
     </script>
 </head>
 <body>
@@ -99,7 +83,7 @@
             <ul>
                 <li class="special"><a href="#album">● 系统消息</a></li>
                 <li><a href="#dynamic">● 课程消息</a></li>
-                <li><a href="#relationship"><button onclick="getId2()">● 我的消息</button></a></li>
+                <li><a href="#relationship">● 我的消息</a></li>
                 <!-- <li><a href="#collection">我的收藏</a></li>-->
             </ul>
         </nav>
@@ -125,27 +109,22 @@
     <div class="friend">
         <nav>
             <ul>
-                <li class="special"><a href="#user1"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> 归与通 </a></li>
-                <li><a href="#user2"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> 江水平 </a></li>
+                <li class="special"><a href="#user1"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> <input type="button" id="click_event" value="江水平"/> </a></li>
+                <li><a href="#user2"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> <input type="button" id="click_event1" value="归与通"/> </a></li>
             </ul>
         </nav>
     </div>
 
-   <!-- <div class="chat_area">
+   <div class="chat_area">
         <div id="course_list2"></div>
     </div>
+    <div id="hidden_enent1">gui</div>
     <div class="chat">
         <form id="dialog">
             <label for='condition'></label><textarea style="width:586px;height:100px;" id='condition' name="condition" placeholder="回复一下吧~"></textarea>
             <button class="btnn" onclick="send()" type="button">发送</button>
         </form>
-    </div>-->
-</section>
-<section class="" id="user1">
-    <div class="ab"></div>
-</section>
-<section class="" id="user2">
-    <div class="ac"></div>
+    </div>
 </section>
 </body>
 
