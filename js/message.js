@@ -206,15 +206,15 @@ function send() {
     }
 }
 
-function send1() {
+function send_one() {
     let form = new FormData(document.getElementById("dialog"));
     let condition = form.get("condition");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
-    let person1 = localStorage.getItem("person_name1");
-    console.log(person);
+    let person_one = localStorage.getItem("person_name1");
+    console.log(person_one);
     console.log(condition);
-    let data = {account: account,token: token,receiver:person1, msg: condition};
+    let data = {account: account,token: token,receiver:person_one, msg: condition};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
