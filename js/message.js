@@ -92,7 +92,7 @@ function get_user_msg(){
 function show_msgs(){
     let msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
-    var n = msg_list1.length;
+    var n = msg_list.length;
     for (let i = n-1 ; i >=0; i--) {
         let msg = msg_list[i];
         let liObj = document.createElement("li");
