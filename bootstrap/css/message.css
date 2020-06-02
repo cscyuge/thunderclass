@@ -225,10 +225,22 @@ li{
     top:-1050px;
     left:510px;
 }
-.chat{
+#chat{
     position:relative;
     top:-1050px;
     left:511px;
+}
+#chat1{
+    position:relative;
+    top:-1050px;
+    left:511px;
+    color: #0e90d2;
+}
+#chat2{
+    position:relative;
+    top:-1050px;
+    left:511px;
+    color: #d59392;
 }
 .btnn{
     position:relative;
