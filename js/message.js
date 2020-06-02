@@ -116,11 +116,11 @@ function show_user_msgs(){
         let tempHTML2;
         if(msg.sender=="jiangshuiping.sky")
         { tempHTML1 = create_msg_div3(msg);
-          localStorage.setItem("person_name", msg.sender);
+            localStorage.setItem("person_name", msg.sender);
         }
         if(msg.sender=="guiyutong.sky")
         {tempHTML2 = create_msg_div3(msg);
-         localStorage.setItem("person_name1", msg.sender);
+            localStorage.setItem("person_name1", msg.sender);
         }
         console.log("6");
         liObj1.innerHTML = tempHTML1;
@@ -189,7 +189,7 @@ function send() {
     let person = localStorage.getItem("person_name");
     console.log(person);
     console.log(condition);
-    let data = {account: account,token: token,receiver: person, msg: condition};
+    let data = {account: account,token: token,receiver:person, msg: condition};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
@@ -205,6 +205,7 @@ function send() {
         }
     }
 }
+
 function send1() {
     let form = new FormData(document.getElementById("dialog"));
     let condition = form.get("condition");
@@ -213,7 +214,7 @@ function send1() {
     let person1 = localStorage.getItem("person_name1");
     console.log(person);
     console.log(condition);
-    let data = {account: account,token: token,receiver: person1, msg: condition};
+    let data = {account: account,token: token,receiver:person1, msg: condition};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
@@ -228,5 +229,4 @@ function send1() {
             alert(res.message);
         }
     }
-
 }
