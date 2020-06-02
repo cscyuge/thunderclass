@@ -186,7 +186,7 @@ function send() {
     let condition = form.get("condition");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
-    let person = localStorage.getItem("person_name");
+    let person = localStorage.getItem("person_name1");
     console.log(person);
     console.log(condition);
     let data = {account: account,token: token,receiver: person, msg: condition};
@@ -204,6 +204,7 @@ function send() {
             alert(res.message);
         }
     }
+    location.replace(location.href);
 }
 
 function send_one() {
@@ -211,7 +212,7 @@ function send_one() {
     let condition = form.get("condition");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
-    let person_one = localStorage.getItem("person_name1");
+    let person_one = localStorage.getItem("person_name");
     console.log(person_one);
     console.log(condition);
     let data = {account: account,token: token,receiver:person_one, msg: condition};
@@ -229,4 +230,5 @@ function send_one() {
             alert(res.message);
         }
     }
+    location.replace(location.href);
 }
