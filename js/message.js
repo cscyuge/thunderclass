@@ -178,7 +178,7 @@ function create_msg_div3(msg) {
     return html;
 }
 
-function send(sender) {
+function send() {
     let form = new FormData(document.getElementById("dialog"));
     let condition = form.get("condition");
     let token = localStorage.getItem("token");
@@ -186,7 +186,31 @@ function send(sender) {
     let person = localStorage.getItem("person_name");
     console.log(person);
     console.log(condition);
-    let data = {account: account,token: token,receiver: sender, msg: condition};
+    let data = {account: account,token: token,receiver: "jiangshuiping.sky", msg: condition};
+    let url = 'proxy/pub_msg.php';
+    let res = http_request(url,data);
+    if (res){
+        if (res.code === 200){
+            console.log(res);
+            alert('发送成功');
+        }else if (res.code === 500){
+            // restart();
+            console.log(res);
+            alert('发送失败');
+        }else{
+            alert(res.message);
+        }
+    }
+}
+function send1() {
+    let form = new FormData(document.getElementById("dialog"));
+    let condition = form.get("condition");
+    let token = localStorage.getItem("token");
+    let account = localStorage.getItem("account");
+    let person = localStorage.getItem("person_name");
+    console.log(person);
+    console.log(condition);
+    let data = {account: account,token: token,receiver: "guiyutong.sky", msg: condition};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
