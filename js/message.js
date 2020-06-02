@@ -115,11 +115,14 @@ function show_user_msgs(){
         let tempHTML1;
         let tempHTML2;
         if(msg.sender=="jiangshuiping.sky")
-        { tempHTML1 = create_msg_div3(msg);}
+        { tempHTML1 = create_msg_div3(msg);
+          localStorage.setItem("person_name", msg.sender);
+        }
         if(msg.sender=="guiyutong.sky")
-        {tempHTML2 = create_msg_div3(msg);}
+        {tempHTML2 = create_msg_div3(msg);
+         localStorage.setItem("person_name1", msg.sender);
+        }
         console.log("6");
-        localStorage.setItem("person_name", msg.sender);
         liObj1.innerHTML = tempHTML1;
         liObj2.innerHTML = tempHTML2;
         ulObj1.appendChild(liObj1);
@@ -186,7 +189,7 @@ function send() {
     let person = localStorage.getItem("person_name");
     console.log(person);
     console.log(condition);
-    let data = {account: account,token: token,receiver: "jiangshuiping.sky", msg: condition};
+    let data = {account: account,token: token,receiver: person, msg: condition};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
@@ -207,10 +210,10 @@ function send1() {
     let condition = form.get("condition");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
-    let person = localStorage.getItem("person_name");
+    let person1 = localStorage.getItem("person_name1");
     console.log(person);
     console.log(condition);
-    let data = {account: account,token: token,receiver: "guiyutong.sky", msg: condition};
+    let data = {account: account,token: token,receiver: person1, msg: condition};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
