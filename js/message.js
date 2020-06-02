@@ -204,7 +204,7 @@ function send() {
             alert(res.message);
         }
     }
-    location.replace(location.href);
+    window.location.reload()
 }
 
 function send_one() {
@@ -230,5 +230,5 @@ function send_one() {
             alert(res.message);
         }
     }
-    location.replace(location.href);
+    window.location.reload()
 }
