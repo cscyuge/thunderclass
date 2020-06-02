@@ -24,10 +24,12 @@
             $('#click_event').click(function(){
                 if($('chat_area1').is(':hidden')){
                     $('chat_area1').show();
+                    $('chat_area').hide();
                     $('chat_area2').hide();
                 }
                 else{
                     $('chat_area1').show();
+                    $('chat_area').hide();
                 }
             });
 
@@ -35,9 +37,11 @@
                 if($('chat_area2').is(':hidden')){
                     $('chat_area2').show();
                     $('chat_area1').hide();
+                    $('chat_area').hide();
                 }
                 else{
                     $('chat_area2').show();
+                    $('chat_area').hide();
                 }
             });
             show_msgs();
@@ -114,8 +118,7 @@
             </ul>
         </nav>
     </div>
-    <div class="chat_area">
-    </div>
+    <div class="chat_area"></div>
    <div class="chat_area1">
         <div id="course_list2"></div>
     </div>
