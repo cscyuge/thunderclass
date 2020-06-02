@@ -71,7 +71,7 @@ function get_user_msg(){
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
-    let data = {account: account,communicator:"all", token: token};
+    let data = {account: account,communicator:"guiyutong.sky", token: token};
     let res = http_request(url,data);
     let msg_list = null;
     if (res){
