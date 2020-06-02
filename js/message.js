@@ -182,14 +182,14 @@ function create_msg_div3(msg) {
 }
 
 function send() {
-    let form = new FormData(document.getElementById("dialog"));
+    let form = new FormData(document.getElementById("dialog1"));
     let condition = form.get("condition");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let person = localStorage.getItem("person_name");
     console.log(person);
     console.log(condition);
-    let data = {account: account,token: token,receiver:person, msg: condition};
+    let data = {account: account,token: token,receiver: person, msg: condition};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
@@ -207,7 +207,7 @@ function send() {
 }
 
 function send_one() {
-    let form = new FormData(document.getElementById("dialog"));
+    let form = new FormData(document.getElementById("dialog2"));
     let condition = form.get("condition");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
