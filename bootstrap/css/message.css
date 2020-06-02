@@ -209,6 +209,22 @@ li{
     top:-1050px;
     left:510px;
 }
+.chat_area1{
+    position:relative;
+    background-color: #eeeeee;
+    width:600px;
+    height:400px;
+    top:-1050px;
+    left:510px;
+}
+.chat_area2{
+    position:relative;
+    background-color: #eeeeee;
+    width:600px;
+    height:400px;
+    top:-1050px;
+    left:510px;
+}
 .chat{
     position:relative;
     top:-1050px;

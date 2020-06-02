@@ -19,25 +19,25 @@
         $(function () {
             ajaxLogin();
             getId();
-            $('#course_list2').hide();
-            $('#hidden_enent1').hide();
+            $('chat_area1').hide();
+            $('chat_area2').hide();
             $('#click_event').click(function(){
-                if($('#course_list2').is(':hidden')){
-                    $('#course_list2').show();
-                    $('#hidden_enent1').hide();
+                if($('chat_area1').is(':hidden')){
+                    $('chat_area1').show();
+                    $('chat_area2').hide();
                 }
                 else{
-                    $('#course_list2').show();
+                    $('chat_area1').show();
                 }
             });
 
             $('#click_event1').click(function(){
-                if($('#hidden_enent1').is(':hidden')){
-                    $('#hidden_enent1').show();
-                    $('#course_list2').hide();
+                if($('chat_area2').is(':hidden')){
+                    $('chat_area2').show();
+                    $('chat_area1').hide();
                 }
                 else{
-                    $('#hidden_enent1').show();
+                    $('chat_area2').show();
                 }
             });
             show_msgs();
@@ -114,11 +114,12 @@
             </ul>
         </nav>
     </div>
-
-   <div class="chat_area">
+    <div class="chat_area">
+    </div>
+   <div class="chat_area1">
         <div id="course_list2"></div>
     </div>
-    <div class="chat_area">
+    <div class="chat_area2">
         <div id="hidden_enent1"></div>
     </div>
     <div class="chat">
