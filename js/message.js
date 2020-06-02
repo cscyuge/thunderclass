@@ -110,7 +110,7 @@ function show_user_msgs(){
     let ulObj1 = document.createElement("ul");
     let ulObj2 = document.createElement("ul");
     var n = msg_list1.length;
-    for (let i = n-1; i >=0; i--) {
+    for (let i = n-1; i >=5; i--) {
         let msg = msg_list1[i];
         let liObj1 = document.createElement("li");
         let liObj2 = document.createElement("li");
