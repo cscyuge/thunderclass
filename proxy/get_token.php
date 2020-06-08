@@ -9,5 +9,5 @@ $url = "http://47.94.201.157:9090/api/dkt/login/get_token/";
 $res = http_request($method,$url,$_POST,$headers);
 $res = json_encode($res);
 echo $res;
-
 ?>
+

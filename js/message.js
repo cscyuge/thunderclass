@@ -45,11 +45,11 @@ function changeColor(id) {
     }
 }
 
-function get_sys_msg(){
+function get_msg(communicator){
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
-    let data = {account: account,communicator:"system", token: token};
+    let data = {account: account,communicator:communicator, token: token};
     let res = http_request(url,data);
     let msg_list = null;
     if (res){
@@ -67,28 +67,18 @@ function get_sys_msg(){
     return msg_list;
 }
 
-function show_msgs(){
-    let msg_list = get_sys_msg();
+function show_sys_msgs(){
+    let sys_msg_list = get_msg("system");
     let ulObj = document.createElement("ul");
-    let ulObj2 = document.createElement("ul");
-    for (let i = 0, n = msg_list.length; i < n; i++) {
-        let msg = msg_list[i];
-        let liObj = document.createElement("li");
-        let liObj2 = document.createElement("li");
-        let tempHTML,tempHTML2;
+    for (let i = 0, n = sys_msg_list.length; i < n; i++) {
+        let msg = sys_msg_list[i];
         if (msg.sender === "system") {
-            tempHTML = create_msg_div(msg);
-        }else{
-            tempHTML2 = create_msg_div3(msg);
-            localStorage.setItem("person_name", msg.sender);
+            let liObj = document.createElement("li");
+            liObj.innerHTML = create_msg_div(msg);
+            ulObj.appendChild(liObj);
         }
-        liObj.innerHTML = tempHTML;
-        liObj2.innerHTML = tempHTML2;
-        ulObj.appendChild(liObj);
-        ulObj2.appendChild(liObj2);
     }
     $("#course_list").append(ulObj);
-    $("#course_list2").append(ulObj2);
 }
 
 function create_msg_div(msg) {
@@ -96,7 +86,7 @@ function create_msg_div(msg) {
     let temp = "<div id = course_id>";
     temp = temp.replace(/course_id/, msg._t);
     html += temp;
-    html += "系统发布<br>";
+    html += msg.sender+"发布<br>";
     html += "消息:" + msg.msg + "<br>";
     let t = new Date(msg._t*1000);
     html += "发送时间：" + (t.toLocaleDateString().replace(/\//g, "-") + " " + t.toTimeString().substr(0, 8)) + "<br>";
@@ -149,8 +139,7 @@ function send() {
     let person = localStorage.getItem("person_name");
     console.log(person);
     console.log(condition);
-    let info = {account: account, receiver: person, msg: condition, token: token};
-    let data = {info:info};
+    let data = {account: account, token: token, receiver: person,msg:condition};
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){

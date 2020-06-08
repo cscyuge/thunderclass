@@ -33,7 +33,7 @@ function create_course_div(course){
     if (course.s_account == "undefined"){
         html+="<img src='images/teacher_image.png'>";
         html+="授课教师:"+course.t_account+"<br>";
-       // html+=teacher_information(t_account);
+       // html+=teacher_inform  ation(t_account);
     }else{
         html+="学生发布<br>";
         html+="学生:"+course.s_account+"<br>";
