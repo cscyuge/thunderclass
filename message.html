@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>信息</title>
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/message.css">
     <script src="js/basic.js"></script>
@@ -12,49 +13,82 @@
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
-    <script>
+    <script type="text/javascript">
 
         $(function () {
+<<<<<<< HEAD
             getId();
             // showSection(id);
             show_sys_msgs();
         });
+=======
+          //  ajaxLogin();
+            getId();
+>>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
 
-
-/*function get_token(){
-    let account = localStorage.getItem("account");
-    let password = localStorage.getItem("password");
-    timestamp = (new Date()).valueOf();
-    timestamp /= 1000;
-    let access_key = null;
-    let token = null;
-        let url = 'proxy/get_access_key.php';
-        let data = {account:account, _t:timestamp};
-        let res = http_request(url,data);
-        if (res) {
-            if (res.code === 200){
-                access_key = res.data.access_key;
-                let nonce = Math.ceil(Math.random()*100000000);
-                let enc = hex_md5(account + password + access_key + nonce + timestamp);
-                url = 'proxy/get_token.php';
-                data = {account:account, _t:timestamp, access_key: access_key, nonce: nonce, enc:enc};
-                res = http_request(url,data);
-                console.log(res);
-                if (res){
-                    if (res.code === 200){
-                        console.log("here");
-                        token = res.data;
-                        localStorage.setItem("token",token);
-                        localStorage.setItem("account",account.toString());
-                    }else{
-                        alert("用户名或密码错误1!");
-                    }
+           $('#click_event').click(function(){
+                if($('#chat_area1').is(':hidden')){
+                    $('#chat_area1').show();
+                    $('#chat1').show();
+                    $('#chat').hide();
+                    $('#chat_area').hide();
+                    $('#chat_area2').hide();
                 }
-            }else{
-                alert("用户名错误或登录过于频繁，请稍后再试1");
-            }
+                else{
+                    $('#chat_area1').show();
+                    $('#chat1').show();
+                    $('#chat').hide();
+                    $('#chat_area').hide();
+                }
+               if($('#chat1').is(':hidden')){
+                   $('#chat1').show();
+                   $('#chat').hide();
+                   $('#chat2').hide();
+               }
+               else{
+                   $('#chat1').show();
+                   $('#chat2').hide();
+                   $('#chat').hide();
+               }
+            });
+
+            $('#click_event1').click(function(){
+                if($('#chat_area2').is(':hidden')){
+                    $('#chat_area2').show();
+                    $('#chat2').show();
+                    $('#chat').hide();
+                    $('#chat_area').hide();
+                    $('#chat_area1').hide();
+                }
+                else{
+                    $('#chat_area2').show();
+                    $('#chat2').show();
+                    $('#chat').hide();
+                    $('#chat_area').hide();
+                }
+                if($('#chat2').is(':hidden')){
+                    $('#chat2').show();
+                    $('#chat').hide();
+                    $('#chat1').hide();
+                }
+                else{
+                    $('#chat2').show();
+                    $('#chat').hide();
+                    $('#chat1').hide();
+                }
+            });
+
+            show_msgs();
+            show_user_msgs();
+        });
+        function hide(){
+            $('#chat_area').show();
+            $('#chat').show();
+            $('#chat_area1').hide();
+            $('#chat_area2').hide();
+            $('#chat1').hide();
+            $('#chat2').hide();
         }
-}*/
     </script>
 </head>
 <body>
@@ -95,7 +129,7 @@
             <ul>
                 <li class="special"><a href="#album">● 系统消息</a></li>
                 <li><a href="#dynamic">● 课程消息</a></li>
-                <li><a href="#relationship">● 我的消息</a></li>
+                <li><a href="#relationship"><button onclick="hide()">● 我的消息</button></a></li>
                 <!-- <li><a href="#collection">我的收藏</a></li>-->
             </ul>
         </nav>
@@ -119,19 +153,41 @@
 
 <section id="relationship">
     <div class="friend">
-        <a href="info.html"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> 灰灰灰 </a>
+        <nav>
+            <ul>
+                <li ><a href="#user1"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> <input type="button" id="click_event" value="江水平"/> </a></li>
+                <li><a href="#user2"><img src="images/portrait.png" class="portrait" onclick="" alt="info"> <input type="button" id="click_event1" value="归与通"/> </a></li>
+            </ul>
+        </nav>
     </div>
-    <div class="chat_area">
-        <div id="course_list2"></div>
+    <div id="chat_area">初始化</div>
+    <div id="chat_area1">
+       <div id="course_list2"></div>
     </div>
-    <div class="chat">
+
+    <div id="chat_area2">
+    <div id="hidden_enent1"></div>
+    </div>
+
+   <div id="chat">
         <form id="dialog">
             <label for='condition'></label><textarea style="width:586px;height:100px;" id='condition' name="condition" placeholder="回复一下吧~"></textarea>
             <button class="btnn" onclick="send()" type="button">发送</button>
         </form>
     </div>
+    <div id="chat1">
+        <form id="dialog1">
+            <label for='condition'></label><textarea style="width:586px;height:100px;" id='condition1' name="condition1" placeholder="回复一下吧~"></textarea>
+            <button class="btnn" onclick="send()" type="button">发送</button>
+        </form>
+    </div>
+    <div id="chat2">
+        <form id="dialog2">
+            <label for='condition'></label><textarea style="width:586px;height:100px;" id='condition2' name="condition2" placeholder="回复一下~"></textarea>
+            <button class="btnn" onclick="send_one()" type="button">发送</button>
+        </form>
+    </div>
 </section>
-
 </body>
 
 </html>

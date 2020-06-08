@@ -45,7 +45,12 @@ function changeColor(id) {
     }
 }
 
+<<<<<<< HEAD
 function get_msg(communicator){
+=======
+
+function get_sys_msg(){
+>>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
@@ -66,6 +71,7 @@ function get_msg(communicator){
     }
     return msg_list;
 }
+<<<<<<< HEAD
 
 function show_sys_msgs(){
     let sys_msg_list = get_msg("system");
@@ -79,12 +85,78 @@ function show_sys_msgs(){
         }
     }
     $("#course_list").append(ulObj);
+=======
+function get_user_msg(){
+    let token = localStorage.getItem("token");
+    let account = localStorage.getItem("account");
+    let url =  'proxy/get_msg.php';
+    let data = {account: account,communicator:"guiyutong.sky", token: token};
+    let res = http_request(url,data);
+    let msg_list = null;
+    if (res){
+        if (res.code === 200){
+            let data = res.data;
+            msg_list = data;
+            console.log("1");
+            console.log(data);
+            localStorage.setItem("msg_list1",JSON.stringify(data));
+        }else if (res.code === 500){
+            restart();
+        }else{
+            alert(res.message);
+        }
+    }
+    return msg_list;
 }
-
+function show_msgs(){
+    let msg_list = get_sys_msg();
+    let ulObj = document.createElement("ul");
+    var n = msg_list.length;
+    for (let i = n-1 ; i >=0; i--) {
+        let msg = msg_list[i];
+        let liObj = document.createElement("li");
+        let tempHTML;
+        tempHTML = create_msg_div(msg);
+        liObj.innerHTML = tempHTML;
+        ulObj.appendChild(liObj);
+    }
+    $("#course_list").append(ulObj);
+    console.log("0");
+}
+function show_user_msgs(){
+    let msg_list1 = get_user_msg();
+    console.log("4");
+    let ulObj1 = document.createElement("ul");
+    let ulObj2 = document.createElement("ul");
+    var n = msg_list1.length;
+    for (let i = 3; i >=0; i--) {
+        let msg = msg_list1[i];
+        let liObj1 = document.createElement("li");
+        let liObj2 = document.createElement("li");
+        let tempHTML1;
+        let tempHTML2;
+        if(msg.sender=="jiangshuiping.sky")
+        { tempHTML1 = create_msg_div3(msg);
+            localStorage.setItem("person_name", msg.sender);
+        }
+        if(msg.sender=="guiyutong.sky")
+        {tempHTML2 = create_msg_div3(msg);
+            localStorage.setItem("person_name1", msg.sender);
+        }
+        console.log("6");
+        liObj1.innerHTML = tempHTML1;
+        liObj2.innerHTML = tempHTML2;
+        ulObj1.appendChild(liObj1);
+        ulObj2.appendChild(liObj2);
+    }
+    $("#course_list2").append(ulObj1);
+    $("#hidden_enent1").append(ulObj2);
+>>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
+}
 function create_msg_div(msg) {
     let html = "";
-    let temp = "<div id = course_id>";
-    temp = temp.replace(/course_id/, msg._t);
+    let temp = "<div id = t>";
+    temp = temp.replace(/t/, msg._t);
     html += temp;
     html += msg.sender+"发布<br>";
     html += "消息:" + msg.msg + "<br>";
@@ -101,8 +173,8 @@ function create_msg_div(msg) {
 
 function create_msg_div2(msg) {
     let html = "";
-    let temp = "<div id = course_id >";
-    temp = temp.replace(/course_id/, msg._t);
+    let temp = "<div id = t >";
+    temp = temp.replace(/t/, msg._t);
     html += temp;
     html += msg.msg + "<br>";
     let t = new Date(msg._t*1000);
@@ -132,14 +204,18 @@ function create_msg_div3(msg) {
 }
 
 function send() {
-    let form = new FormData(document.getElementById("dialog"));
-    let condition = form.get("condition");
+    let form = new FormData(document.getElementById("dialog1"));
+    let condition = form.get("condition1");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
-    let person = localStorage.getItem("person_name");
+    let person = localStorage.getItem("person_name1");
     console.log(person);
     console.log(condition);
+<<<<<<< HEAD
     let data = {account: account, token: token, receiver: person,msg:condition};
+=======
+    let data = {account: account,token: token,receiver: person, msg: condition};
+>>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
@@ -154,5 +230,31 @@ function send() {
             alert(res.message);
         }
     }
+    window.location.reload()
+}
 
+function send_one() {
+    let form = new FormData(document.getElementById("dialog2"));
+    let condition = form.get("condition2");
+    let token = localStorage.getItem("token");
+    let account = localStorage.getItem("account");
+    let person_one = localStorage.getItem("person_name");
+    console.log(person_one);
+    console.log(condition);
+    let data = {account: account,token: token,receiver:person_one, msg: condition};
+    let url = 'proxy/pub_msg.php';
+    let res = http_request(url,data);
+    if (res){
+        if (res.code === 200){
+            console.log(res);
+            alert('发送成功');
+        }else if (res.code === 500){
+            // restart();
+            console.log(res);
+            alert('发送失败');
+        }else{
+            alert(res.message);
+        }
+    }
+    window.location.reload()
 }

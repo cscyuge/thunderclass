@@ -286,6 +286,7 @@ button:focus{
     position:relative;
     left:-400px;
 }
+<<<<<<< HEAD
 
 
 .btn-numbox {
@@ -329,3 +330,31 @@ button:focus{
     border-left: 0;
     border-right: 0;
 }
+=======
+.d_msg{
+    display:inline-block;
+    top:-100px;
+    left:-400px;
+}
+.line_one{
+    display: inline-block;
+    position:relative;
+    left:-300px;
+    top:-20px;
+    z-index:1;
+}
+.line_two{
+    display: inline-block;
+    position:relative;
+    left:-300px;
+    top:-20px;
+    z-index:1;
+}
+.line_three{
+    position:relative;
+    top:80px;
+    left:-2px;
+
+}
+
+>>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c

@@ -45,7 +45,7 @@ function create_course_div(course){
 
     var begin = new Date(course.start_time*1000);
     var end = new Date(course.finish_time*1000);
-    html += "开始时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) ;
+    html += "开始时间："+ (begin.toLocaleDateString().replace(/\//g, "-") + " " + begin.toTimeString().substr(0, 8)) +"<br>";
     html += "  结束时间："+ (end.toLocaleDateString().replace(/\//g, "-") + " " + end.toTimeString().substr(0, 8)) + "<br>";
     html += "<br><br>";
     html += "</div>";
