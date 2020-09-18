@@ -123,10 +123,13 @@ function show_user_msgs(){
     let msg_list1 = get_user_msg();
     console.log("4");
     let ulObj1 = document.createElement("ul");
-    var i=0;
+    console.log("4.1");
     for(var key in friend){
+        console.log("4.2");
+        if(!friend.hasOwnProperty(key)) continue;
         let liObj3 = document.createElement("li");//好友列表
         let tempHTML3;
+        console.log(friend[key]);
         tempHTML3 = friend_list(friend[key]);
         console.log("消息数组的长度");
         console.log(msg_list1.length());
