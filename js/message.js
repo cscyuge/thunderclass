@@ -47,12 +47,12 @@ function changeColor(id) {
 
 
 
-function get_sys_msg(sender){
+function get_sys_msg(){
 
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
-    let data = {account: account,communicator:sender, token: token};
+    let data = {account: account,communicator:"system", token: token};
     let res = http_request(url,data);
     let msg_list = null;
     if (res){
@@ -72,7 +72,7 @@ function get_sys_msg(sender){
 
 
 function show_sys_msgs() {
-    let sys_msg_list = get_sys_msg("system");
+    let sys_msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
@@ -108,7 +108,7 @@ function get_user_msg(){
 }
 function show_msgs(){
     let msg_list = get_sys_msg("system");
-    console.log("111 line");
+    console.log("111line");
     let ulObj = document.createElement("ul");
     var n = msg_list.length;
     for (let i = n-1 ; i >=0; i--) {
