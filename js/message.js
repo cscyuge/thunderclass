@@ -124,7 +124,7 @@ function show_user_msgs(){
     console.log("4");
     let ulObj1 = document.createElement("ul");
     console.log("4.1");
-    for(var key in friend){
+    for(const key in friend){
         console.log("4.2");
         if(!friend.hasOwnProperty(key)) continue;
         let liObj3 = document.createElement("li");//好友列表
