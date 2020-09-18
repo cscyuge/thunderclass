@@ -72,11 +72,14 @@ function get_sys_msg(){
 
 
 function show_sys_msgs() {
+    let i=1;
     let sys_msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
-        if (msg.sender === "system") {
+       if (msg.sender === "system") {
+           i++;
+           console.log(i);
             let liObj = document.createElement("li");
             liObj.innerHTML = create_msg_div(msg);
             ulObj.appendChild(liObj);
@@ -89,6 +92,7 @@ function get_user_msg(){
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
     let data = {account: account,communicator:"guiyutong.sky", token: token};
+    console.log("111line");
     let res = http_request(url,data);
     let msg_list = null;
     if (res){
@@ -107,7 +111,7 @@ function get_user_msg(){
     return msg_list;
 }
 function show_msgs(){
-    let msg_list = get_sys_msg("system");
+    let msg_list = get_sys_msg();
     console.log("111line");
     let ulObj = document.createElement("ul");
     var n = msg_list.length;
