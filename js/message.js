@@ -133,7 +133,7 @@ function show_user_msgs(){
     let ulObj1 = document.createElement("ul");
     let ulObj2 = document.createElement("ul");
     var n = msg_list1.length;
-    for (let i = 3; i >=0; i--) {
+    for (let i = n; i >=0; i--) {
         let msg = msg_list1[i];
         let liObj1 = document.createElement("li");
         let liObj2 = document.createElement("li");
@@ -146,6 +146,7 @@ function show_user_msgs(){
         if(msg.sender==="guiyutong.sky")
         {tempHTML2 = create_msg_div3(msg);
             localStorage.setItem("person_name1", msg.sender);
+            console.log("5");
         }
         console.log("6");
         liObj1.innerHTML = tempHTML1;
@@ -192,16 +193,20 @@ function create_msg_div2(msg) {
 }
 
 function create_msg_div3(msg) {
+    console.log("7");
     let html = "";
     let temp = "<div id = course_id >";
     temp = temp.replace(/course_id/, msg._t);
     html += temp;
     html += msg.msg + "<br>";
+    console.log("8");
     let t = new Date(msg._t*1000);
+    console.log("9");
     html += (t.toLocaleDateString().replace(/\//g, "-") + " " + t.toTimeString().substr(0, 8)) + "<br>";
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
     //button=button.replace(/course_id/,course.course_id);
     // html += button;*/
+    console.log("10");
     html += "<br><br>";
     html += "</div>";
     return html;

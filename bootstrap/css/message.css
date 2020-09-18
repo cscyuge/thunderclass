@@ -211,7 +211,7 @@ li{
 }
 #chat_area1{
     position:relative;
-    background-color: #0e90d2;
+    background-color: #eeeeee;
     width:600px;
     height:400px;
     top:-1050px;
@@ -219,7 +219,7 @@ li{
 }
 #chat_area2{
     position:relative;
-    background-color: #d59392;
+    background-color: #eeeeee;
     width:600px;
     height:400px;
     top:-1050px;
