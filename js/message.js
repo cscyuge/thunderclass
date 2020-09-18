@@ -47,12 +47,12 @@ function changeColor(id) {
 
 
 
-function get_sys_msg(){
+function get_sys_msg(sender){
 
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
-    let data = {account: account,communicator:communicator, token: token};
+    let data = {account: account,communicator:sender, token: token};
     let res = http_request(url,data);
     let msg_list = null;
     if (res){
@@ -72,7 +72,7 @@ function get_sys_msg(){
 
 
 function show_sys_msgs() {
-    let sys_msg_list = get_msg("system");
+    let sys_msg_list = get_sys_msg("system");
     let ulObj = document.createElement("ul");
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
@@ -107,7 +107,8 @@ function get_user_msg(){
     return msg_list;
 }
 function show_msgs(){
-    let msg_list = get_sys_msg();
+    let msg_list = get_sys_msg("system");
+    console.log("111 line");
     let ulObj = document.createElement("ul");
     var n = msg_list.length;
     for (let i = n-1 ; i >=0; i--) {
@@ -162,7 +163,7 @@ function create_msg_div(msg) {
     html += "发送时间：" + (t.toLocaleDateString().replace(/\//g, "-") + " " + t.toTimeString().substr(0, 8)) + "<br>";
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
     //button=button.replace(/course_id/,course.course_id);
-    // html += button;*/
+    // html += button;
     html += "<br><br>";
     html += "</div>";
     return html;
