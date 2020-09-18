@@ -123,7 +123,6 @@ function show_user_msgs(){
     let msg_list1 = get_user_msg();
     console.log("4");
     let ulObj1 = document.createElement("ul");
-    let ulObj2 = document.createElement("ul");
     var i=0;
     for(var key in friend){
         let liObj3 = document.createElement("li");//好友列表
@@ -145,9 +144,9 @@ function show_user_msgs(){
             liObj3.innerHTML = tempHTML3;
             ulObj1.appendChild(liObj1);
         }
+        $("#ulins").append(liObj3);
     }
     $("#course_list2").append(ulObj1);
-    $("#ulins").append(liObj3);
 
 }
 function create_msg_div(msg) {
