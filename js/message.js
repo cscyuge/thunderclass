@@ -45,12 +45,10 @@ function changeColor(id) {
     }
 }
 
-<<<<<<< HEAD
-function get_msg(communicator){
-=======
+
 
 function get_sys_msg(){
->>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
+
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
@@ -71,9 +69,9 @@ function get_sys_msg(){
     }
     return msg_list;
 }
-<<<<<<< HEAD
 
-function show_sys_msgs(){
+
+function show_sys_msgs() {
     let sys_msg_list = get_msg("system");
     let ulObj = document.createElement("ul");
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
@@ -85,7 +83,7 @@ function show_sys_msgs(){
         }
     }
     $("#course_list").append(ulObj);
-=======
+}
 function get_user_msg(){
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
@@ -151,7 +149,7 @@ function show_user_msgs(){
     }
     $("#course_list2").append(ulObj1);
     $("#hidden_enent1").append(ulObj2);
->>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
+
 }
 function create_msg_div(msg) {
     let html = "";
@@ -211,11 +209,8 @@ function send() {
     let person = localStorage.getItem("person_name1");
     console.log(person);
     console.log(condition);
-<<<<<<< HEAD
     let data = {account: account, token: token, receiver: person,msg:condition};
-=======
-    let data = {account: account,token: token,receiver: person, msg: condition};
->>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
+
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
