@@ -116,11 +116,11 @@ function show_user_msgs(){
         let liObj2 = document.createElement("li");
         let tempHTML1;
         let tempHTML2;
-        if(msg.sender=="jiangshuiping.sky")
+        if(msg.sender==="jiangshuiping.sky")
         { tempHTML1 = create_msg_div3(msg);
             localStorage.setItem("person_name", msg.sender);
         }
-        if(msg.sender=="guiyutong.sky")
+        if(msg.sender==="guiyutong.sky")
         {tempHTML2 = create_msg_div3(msg);
             localStorage.setItem("person_name1", msg.sender);
         }

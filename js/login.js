@@ -1,6 +1,8 @@
 function ajaxLogin() {
-    let param = new FormData(document.getElementById("form")), account = param.get('username'),
-        password = param.get('password'), timestamp = (new Date()).valueOf();
+    let param = new FormData(document.getElementById("form")),
+        account = param.get('username'),
+        password = param.get('password'),
+        timestamp = (new Date()).valueOf();
     timestamp /= 1000;
     let access_key = null;
     let token = null;

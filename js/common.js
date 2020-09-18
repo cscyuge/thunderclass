@@ -104,7 +104,7 @@ function http_request(url, data, async=false){
                 console.log(xhr.responseText);
             }
         }
-    )
+    );
     return res;
 }
 

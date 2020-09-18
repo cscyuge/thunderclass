@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/basic.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{msg}}</h1>
+    <!-- v-bind 只能实现数据的单向绑定 从 M 自动绑定到 V中去 无法实现数据的双向绑定 -->
+    <!-- 使用v-model指令 可以实现表单元素和model中数据的双向数据绑定 -->
+    <!-- v-model 只能用在表单元素中 -->
+    <!-- input text address  -->
+    <input type="text" v-model='msg'>
+</div>
+
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:'你好啊'
+        },
+    })
+</script>
+</body>
+</html>
