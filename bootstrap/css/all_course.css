@@ -286,6 +286,51 @@ button:focus{
     position:relative;
     left:-400px;
 }
+<<<<<<< HEAD
+
+
+.btn-numbox {
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.btn-numbox li {
+    float: left;
+}
+
+.btn-numbox li .number{
+    display: inline-block;
+    font-size: 12px;
+    color: #808080;
+    vertical-align: sub;
+}
+
+.btn-numbox .count {
+    overflow: hidden;
+    margin: 0 16px 0 -20px;
+}
+
+.btn-numbox .count .num-jian,
+.input-num,
+.num-jia {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+    border: 1px solid #e6e6e6;
+}
+.btn-numbox .count .input-num {
+    width: 58px;
+    height: 26px;
+    color: #333;
+    border-left: 0;
+    border-right: 0;
+}
+=======
 .d_msg{
     display:inline-block;
     top:-100px;
@@ -312,3 +357,4 @@ button:focus{
 
 }
 
+>>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c

@@ -12,6 +12,7 @@
     <script src="js/course_by_id.js"></script>
     <script src="js/evaluate.js"></script>
     <script src="js/search_course_byID.js"></script>
+    <script src="js/all_course.js"></script>
     <!-- 异步提交的库 -->
     <script src="js/vue-resource.js"></script>
 
@@ -19,7 +20,9 @@
 
         $(function () {
             getId();
-            show_msgs();
+            init_car();
+
+            // show_msgs();
         });
     var a=0;
 
@@ -42,7 +45,7 @@
     </ul>
     <form id="sea" class="sea">
         <label for="text"></label><input class="search" type="text" name="keyword" placeholder="搜索我的课程" id="text"/>
-        <a href="#"><img src="images/search.png" id="search" onclick="search_my()" alt="搜"/></a>>
+        <a href="#"><img src="images/search.png" id="search" onclick="search_my()" alt="搜"/></a>
     </form>
 
     <ul class="other">
@@ -82,7 +85,7 @@
 </div>
 <div class="line_two" style="width:1px;height:700px;margin:0px auto;padding:0px;background-color:#595959;overflow:hidden;"></div>
 <section class="sys_msg" id="album">
-    <div id="introduction" class="msg_background">111</div>
+    <div id="introduction" class="msg_background"></div>
     <div  class="intro_div" id = "the_course" ></div>
 </section>
 <section class="courses_msg" id="dynamic">
@@ -117,7 +120,70 @@
     </form>
 </section>
 <section  id="buy_course">
-    <div  class="buy_course_div">buy course</div>
+    <div  class="buy_course_div">已发布 &nbsp;<font size="6" color="#dc143c">5</font>&nbsp;课时
+        <br><br><br>
+    <table id = 'car' cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <td></td>
+                <td>课程
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>购买课时/课程
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>单价
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>总价
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input id = 'choose1' type="checkbox" onclick="choose_class()"/></td>
+                <td id = "course_name">课程名</td>
+                <td>
+                    <ul class = "btn-numbox">
+                        <li>
+                            <li><span class="number">数量</span></li>
+                            <ul class="count">
+                                <li><span id="num-jian" class="num-jian">-</span></li>
+                                <li><input type="text" class="input-num" id="input-num" value="0" /></li>
+                                <li><span id="num-jia" class="num-jia">+</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+                <td>150</td>
+                <td><span id = 'sum_price'>0</span></td>
+            </tr>
+
+            <tr>
+                <td><input id = 'choose2' type="checkbox" onclick="choose_class()"/></td>
+                <td id = "course_name_all">课程名</td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    全课程
+                </td>
+                <td>750</td>
+                <td>750</td>
+            </tr>
+        </tbody>
+    </table>
+        <br><br>
+        <span >总价为: ¥ <font id = 'all_price'>0</font></span>
+        <br>
+        <button onclick="buy()">加入购物车</button>
+    </div>
 </section>
 </body>
 

@@ -13,7 +13,6 @@ if (!function_exists('http_request')) {
     function http_request($method, $url, $args = [], $headers = [])
     {
         $res = [];
-        
         switch ( strtoupper($method) ) {
             case 'GET':
                 $ch = curl_init ();
@@ -41,7 +40,6 @@ if (!function_exists('http_request')) {
                 );
                 curl_setopt ( $ch, CURLOPT_TIMEOUT, 60 );
                 $result = curl_exec ( $ch );
-                
                 curl_close ( $ch );
                 break;
             default:

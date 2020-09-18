@@ -45,12 +45,16 @@ function changeColor(id) {
     }
 }
 
+<<<<<<< HEAD
+function get_msg(communicator){
+=======
 
 function get_sys_msg(){
+>>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
-    let data = {account: account,communicator:"system", token: token};
+    let data = {account: account,communicator:communicator, token: token};
     let res = http_request(url,data);
     let msg_list = null;
     if (res){
@@ -67,6 +71,21 @@ function get_sys_msg(){
     }
     return msg_list;
 }
+<<<<<<< HEAD
+
+function show_sys_msgs(){
+    let sys_msg_list = get_msg("system");
+    let ulObj = document.createElement("ul");
+    for (let i = 0, n = sys_msg_list.length; i < n; i++) {
+        let msg = sys_msg_list[i];
+        if (msg.sender === "system") {
+            let liObj = document.createElement("li");
+            liObj.innerHTML = create_msg_div(msg);
+            ulObj.appendChild(liObj);
+        }
+    }
+    $("#course_list").append(ulObj);
+=======
 function get_user_msg(){
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
@@ -132,13 +151,14 @@ function show_user_msgs(){
     }
     $("#course_list2").append(ulObj1);
     $("#hidden_enent1").append(ulObj2);
+>>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
 }
 function create_msg_div(msg) {
     let html = "";
     let temp = "<div id = t>";
     temp = temp.replace(/t/, msg._t);
     html += temp;
-    html += "系统发布<br>";
+    html += msg.sender+"发布<br>";
     html += "消息:" + msg.msg + "<br>";
     let t = new Date(msg._t*1000);
     html += "发送时间：" + (t.toLocaleDateString().replace(/\//g, "-") + " " + t.toTimeString().substr(0, 8)) + "<br>";
@@ -191,7 +211,11 @@ function send() {
     let person = localStorage.getItem("person_name1");
     console.log(person);
     console.log(condition);
+<<<<<<< HEAD
+    let data = {account: account, token: token, receiver: person,msg:condition};
+=======
     let data = {account: account,token: token,receiver: person, msg: condition};
+>>>>>>> 80668234ef91afa3703faa69e9d08a1bcde5c51c
     let url = 'proxy/pub_msg.php';
     let res = http_request(url,data);
     if (res){
