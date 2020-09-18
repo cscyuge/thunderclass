@@ -82,7 +82,7 @@ function show_sys_msgs() {
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
         let str=msg.sender;
-        if(friend.has(j)&&str!=="system")
+        if(!friend.has(j)&&str!=="system")
         { friend.set(j,str);
         j++;
         console.log(friend.get(j));
