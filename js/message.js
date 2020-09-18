@@ -52,7 +52,7 @@ function get_sys_msg(){
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
-    let data = {account: account,communicator:"system", token: token};
+    let data = {account: account,communicator:"guiyutong.sky", token: token};
     let res = http_request(url,data);
     let msg_list = null;
     if (res){
@@ -76,11 +76,11 @@ function show_sys_msgs() {
     let ulObj = document.createElement("ul");
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
-        if (msg.sender === "system") {
+        //if (msg.sender === "system") {
             let liObj = document.createElement("li");
             liObj.innerHTML = create_msg_div(msg);
             ulObj.appendChild(liObj);
-        }
+       // }
     }
     $("#course_list").append(ulObj);
 }
