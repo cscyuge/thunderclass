@@ -79,8 +79,8 @@ function show_sys_msgs() {
      sys_msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
     console.log("所有消息数量");
-    console.log(sys_msg_list.length());
-    for (let i = 0, n = sys_msg_list.length(); i < n; i++) {
+    console.log(sys_msg_list.length);
+    for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
         let str=msg.sender;
         console.log(str);
@@ -136,8 +136,8 @@ function show_user_msgs(){
         console.log(friend[key]);
         tempHTML3 = friend_list(friend[key]);
         console.log("消息数组的长度");
-        console.log(msg_list1.length());
-        for(var q=0;q<msg_list1.length();q++) {
+        console.log(msg_list1.length);
+        for(var q=0;q<msg_list1.length;q++) {
             let msg = msg_list1[q];
             let liObj1 = document.createElement("li");
             let tempHTML1;
