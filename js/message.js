@@ -1,4 +1,4 @@
-var friend = new Map();
+const friend = new Map();
 let sys_msg_list;
 function getId() {
     let navs = document.getElementsByTagName("nav");
