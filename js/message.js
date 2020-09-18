@@ -78,10 +78,12 @@ function show_sys_msgs() {
     let j=1;
      sys_msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
-    console.log(sys_msg_list.length);
-    for (let i = 0, n = sys_msg_list.length; i < n; i++) {
+    console.log("所有消息数量");
+    console.log(sys_msg_list.length());
+    for (let i = 0, n = sys_msg_list.length(); i < n; i++) {
         let msg = sys_msg_list[i];
         let str=msg.sender;
+        console.log(str);
         if(!friend.has(j)&&str!=="system")
         { friend.set(j,str);
         j++;
