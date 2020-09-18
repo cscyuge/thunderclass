@@ -72,13 +72,14 @@ function get_sys_msg(){
 
 
 function show_sys_msgs() {
-    let i=1;
+    let b=1;
     let sys_msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
+    console.log(sys_msg_list.length);
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
        if (msg.sender === "system") {
-           i++;
+           b++;
            console.log(i);
             let liObj = document.createElement("li");
             liObj.innerHTML = create_msg_div(msg);
