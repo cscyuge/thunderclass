@@ -86,8 +86,8 @@ function show_sys_msgs() {
         console.log(str);
         if(!friend.has(j)&&str!=="system")
         { friend.set(j,str);
-        j++;
         console.log(friend.get(j));
+            j++;
         }
        if (msg.sender === "system") {
            b++;
