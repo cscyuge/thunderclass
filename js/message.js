@@ -82,9 +82,11 @@ function show_sys_msgs() {
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
         let str=msg.sender;
-        if(friend.has(str)&&str!=="system")
-        { friend.set(str,j);
-        j++;}
+        if(friend.has(j)&&str!=="system")
+        { friend.set(j,str);
+        j++;
+        console.log(friend.get(j));
+        }
        if (msg.sender === "system") {
            b++;
            console.log(i);
@@ -124,7 +126,7 @@ function show_user_msgs(){
     console.log("4");
     let ulObj1 = document.createElement("ul");
     console.log("4.1");
-    for(const key of friend){
+    for(const key in friend){
         console.log("4.2");
         if(!friend.hasOwnProperty(key)) continue;
         let liObj3 = document.createElement("li");//好友列表
