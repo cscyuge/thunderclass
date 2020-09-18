@@ -1,3 +1,5 @@
+var friend = new Map();
+let sys_msg_list;
 function getId() {
     let navs = document.getElementsByTagName("nav");
     let links = navs[0].getElementsByTagName("a");
@@ -73,11 +75,16 @@ function get_sys_msg(){
 
 function show_sys_msgs() {
     let b=1;
-    let sys_msg_list = get_sys_msg();
+    let j=1;
+     sys_msg_list = get_sys_msg();
     let ulObj = document.createElement("ul");
     console.log(sys_msg_list.length);
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
+        let str=msg.sender;
+        if(friend.has(str)&&str!=="system")
+        { friend.set(str,j);
+        j++;}
        if (msg.sender === "system") {
            b++;
            console.log(i);
@@ -92,7 +99,7 @@ function get_user_msg(){
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
     let url =  'proxy/get_msg.php';
-    let data = {account: account,communicator:"guiyutong.sky", token: token};
+    let data = {account: account,communicator:"all", token: token};
     console.log("111line");
     let res = http_request(url,data);
     let msg_list = null;
@@ -111,51 +118,36 @@ function get_user_msg(){
     }
     return msg_list;
 }
-function show_msgs(){
-    let msg_list = get_sys_msg();
-    console.log("111line");
-    let ulObj = document.createElement("ul");
-    var n = msg_list.length;
-    for (let i = n-1 ; i >=0; i--) {
-        let msg = msg_list[i];
-        let liObj = document.createElement("li");
-        let tempHTML;
-        tempHTML = create_msg_div(msg);
-        liObj.innerHTML = tempHTML;
-        ulObj.appendChild(liObj);
-    }
-    $("#course_list").append(ulObj);
-    console.log("0");
-}
+
 function show_user_msgs(){
     let msg_list1 = get_user_msg();
     console.log("4");
     let ulObj1 = document.createElement("ul");
     let ulObj2 = document.createElement("ul");
-    var n = msg_list1.length;
-    for (let i = n; i >=0; i--) {
-        let msg = msg_list1[i];
-        let liObj1 = document.createElement("li");
-        let liObj2 = document.createElement("li");
-        let tempHTML1;
-        let tempHTML2;
-        if(msg.sender==="jiangshuiping.sky")
-        { tempHTML1 = create_msg_div3(msg);
-            localStorage.setItem("person_name", msg.sender);
+    var i=0;
+    for(var key in friend){
+        let liObj3 = document.createElement("li");//好友列表
+        let tempHTML3;
+        tempHTML3 = friend_list(friend[key]);
+        console.log("消息数组的长度");
+        console.log(msg_list1.length());
+        for(var q=0;q<msg_list1.length();q++) {
+            let msg = msg_list1[q];
+            let liObj1 = document.createElement("li");
+            let tempHTML1;
+            if (msg.sender === friend[key]) {
+                tempHTML1 = create_msg_div3(msg);
+                localStorage.setItem("person_name", msg.sender);
+            }
+
+            console.log("6");
+            liObj1.innerHTML = tempHTML1;
+            liObj3.innerHTML = tempHTML3;
+            ulObj1.appendChild(liObj1);
         }
-        if(msg.sender==="guiyutong.sky")
-        {tempHTML2 = create_msg_div3(msg);
-            localStorage.setItem("person_name1", msg.sender);
-            console.log("5");
-        }
-        console.log("6");
-        liObj1.innerHTML = tempHTML1;
-        liObj2.innerHTML = tempHTML2;
-        ulObj1.appendChild(liObj1);
-        ulObj2.appendChild(liObj2);
     }
     $("#course_list2").append(ulObj1);
-    $("#hidden_enent1").append(ulObj2);
+    $("#ulins").append(liObj3);
 
 }
 function create_msg_div(msg) {
@@ -192,23 +184,43 @@ function create_msg_div2(msg) {
     return html;
 }
 
-function create_msg_div3(msg) {
-    console.log("7");
+function show_friend_msg(value){
+    let ulObj = document.createElement("ul");
+    console.log("系统数组的长度为");
+    console.log(sys_msg_list.length());
+    for (let i = 0, n = sys_msg_list.length(); i < n; i++) {
+        let msg = sys_msg_list[i];
+        let str=msg.sender;
+        if (str === value) {
+            let liObj = document.createElement("li");
+            liObj.innerHTML = create_msg_div(msg);
+            ulObj.appendChild(liObj);
+        }
+    }
+    $("#course_list2").append(ulObj);
+}
+function friend_list(value) {
+    console.log("77");
     let html = "";
-    let temp = "<div id = course_id >";
-    temp = temp.replace(/course_id/, msg._t);
+    let temp = "<a>";
     html += temp;
-    html += msg.msg + "<br>";
-    console.log("8");
+    console.log("77.5");
+//<img src="images/portrait.png" class="portrait" onclick="" alt="info">
+    let temp1 = "<img src=\"images/portrait.png\" class=\"portrait\" onclick=f alt=\"info\"><input type= a value= t/>";
+    temp1 = temp1.replace(/f/, "show_friend_msg(value)");
+    temp1 = temp1.replace(/a/, "button");
+    temp1 = temp1.replace(/t/, value);
+    console.log("88");
     let t = new Date(msg._t*1000);
-    console.log("9");
+    console.log("99");
+    html += temp1;
     html += (t.toLocaleDateString().replace(/\//g, "-") + " " + t.toTimeString().substr(0, 8)) + "<br>";
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
     //button=button.replace(/course_id/,course.course_id);
     // html += button;*/
-    console.log("10");
+    console.log("1010");
     html += "<br><br>";
-    html += "</div>";
+    html += "</a>";
     return html;
 }
 
