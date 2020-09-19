@@ -1,5 +1,19 @@
 var friend = new Map();
 let sys_msg_list;
+var friend1 = new Map();
+
+function test_map(){
+    var j=1;
+    friend1.set(j,"wangjiaqi");
+    j++;
+    for(var key in friend1) {
+        console.log("4.22");
+        if (!friend1.hasOwnProperty(key)) continue;
+        console.log(friend1[key]);
+    }
+
+}
+
 function getId() {
     let navs = document.getElementsByTagName("nav");
     let links = navs[0].getElementsByTagName("a");
