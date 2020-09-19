@@ -233,20 +233,16 @@ function show_friend_msg(value){
 function friend_list(value) {
     console.log("77");
     let html = "";
-    let temp = "<a>";
-    html += temp;
+    let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(t)\">";
     console.log("77.5");
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
    // let temp1 = "<img src = p class= c onclick = f >"
-    let temp1 = " <button> ";
    // temp1 = temp1.replace(/p/,  "images/portrait.png");
    // temp1 = temp1.replace(/c/,  "portrait");
   //  onclick="show_friend_msg('value')"
-    //temp1 = temp1.replace(/value/, value);
+    temp = temp.replace(/t/, value);
     console.log("88");
-    html += temp1;
-    temp1="</button>";
-    html+=temp1;
+    html+=temp;
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
     //button=button.replace(/course_id/,course.course_id);
     // html += button;*/
