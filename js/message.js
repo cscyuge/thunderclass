@@ -4,7 +4,9 @@ var friend1 = new Map();
 
 function test_map(){
     var j=1;
+    console.log("?");
     friend1.set(j,"wangjiaqi");
+    console.log("??");
     j++;
     for(var key in friend1) {
         console.log("4.22");
