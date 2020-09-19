@@ -159,7 +159,7 @@ function show_user_msgs(){
         tempHTML3 = friend_list(value);
         console.log("消息数组的长度");
         console.log(msg_list1.length);
-        for(var q=0;q<msg_list1.length;q++) {
+      /*  for(var q=0;q<msg_list1.length;q++) {
             let msg = msg_list1[q];
             let liObj1 = document.createElement("li");
             let tempHTML1;
@@ -172,10 +172,10 @@ function show_user_msgs(){
             liObj1.innerHTML = tempHTML1;
             liObj3.innerHTML = tempHTML3;
             ulObj1.appendChild(liObj1);
-        }
+        }*/
         $("#ulins").append(liObj3);
     }
-    $("#course_list2").append(ulObj1);
+    //$("#course_list2").append(ulObj1);
 
 }
 function create_msg_div(msg) {
@@ -197,6 +197,7 @@ function create_msg_div(msg) {
 
 
 function create_msg_div2(msg) {
+    console.log("进来了");
     let html = "";
     let temp = "<div id = t >";
     temp = temp.replace(/t/, msg._t);
@@ -209,19 +210,21 @@ function create_msg_div2(msg) {
     // html += button;*/
     html += "<br><br>";
     html += "</div>";
+    console.log("出来了");
     return html;
+
 }
 
 function show_friend_msg(value){
     let ulObj = document.createElement("ul");
     console.log("系统数组的长度为");
-    console.log(sys_msg_list.length());
-    for (let i = 0, n = sys_msg_list.length(); i < n; i++) {
+    console.log(sys_msg_list.length);
+    for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
         let str=msg.sender;
         if (str === value) {
             let liObj = document.createElement("li");
-            liObj.innerHTML = create_msg_div(msg);
+            liObj.innerHTML = create_msg_div2(msg);
             ulObj.appendChild(liObj);
         }
     }
@@ -234,10 +237,10 @@ function friend_list(value) {
     html += temp;
     console.log("77.5");
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
-    let temp1 = "<img src=\"images/portrait.png\" class=\"portrait\" onclick=f alt=\"info\"><input type= a value= t/>";
+    let temp1 = "<img src = p class= c onclick = f >"
+    temp1 = temp1.replace(/p/,  "images/portrait.png");
+    temp1 = temp1.replace(/c/,  "portrait");
     temp1 = temp1.replace(/f/, "show_friend_msg(value)");
-    temp1 = temp1.replace(/a/, "button");
-    temp1 = temp1.replace(/t/, value);
     console.log("88");
     html += temp1;
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
