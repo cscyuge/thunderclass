@@ -247,7 +247,7 @@ function friend_list(value) {
     // html += button;*/
     console.log("1010");
     html += "<br><br>";
-    html += "</a>";
+    html += "oooo</a>";
     return html;
 }
 
