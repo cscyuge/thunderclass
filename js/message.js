@@ -1,4 +1,4 @@
-const friend = new Map();
+var friend = new Map();
 let sys_msg_list;
 function getId() {
     let navs = document.getElementsByTagName("nav");
@@ -128,7 +128,7 @@ function show_user_msgs(){
     console.log("4");
     let ulObj1 = document.createElement("ul");
     console.log("4.1");
-    for(const key in friend){
+    for(var key in friend){
         console.log("4.2");
         if(!friend.hasOwnProperty(key)) continue;
         let liObj3 = document.createElement("li");//好友列表
