@@ -155,8 +155,7 @@ function show_user_msgs(){
         console.log(value);
        // if(!friend.hasOwnProperty(key)) continue;
         let liObj3 = document.createElement("li");//好友列表
-        let tempHTML3;
-        tempHTML3 = friend_list(value);
+        liObj3.innerHTML = friend_list(value);
         console.log("消息数组的长度");
         console.log(msg_list1.length);
       /*  for(var q=0;q<msg_list1.length;q++) {
