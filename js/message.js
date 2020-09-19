@@ -232,14 +232,14 @@ function show_friend_msg(value){
 function friend_list(value) {
     console.log("77");
     let html = "";
-    let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(t)\">";
+    let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(z)\">";
     console.log("77.5");
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
    // let temp1 = "<img src = p class= c onclick = f >"
    // temp1 = temp1.replace(/p/,  "images/portrait.png");
    // temp1 = temp1.replace(/c/,  "portrait");
   //  onclick="show_friend_msg('value')"
-    temp = temp.replace(/t/, value);
+    temp = temp.replace(/z/, value);
     console.log("88");
     html+=temp;
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
