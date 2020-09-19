@@ -230,6 +230,7 @@ function show_friend_msg(value){
     $("#course_list2").append(ulObj);
 }
 function friend_list(value) {
+    console.log(value);
     console.log("77");
     let html = "";
     let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(z)\">";
