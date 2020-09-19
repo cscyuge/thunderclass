@@ -2,7 +2,7 @@ var friend = new Map();
 let sys_msg_list;
 var friend1 = new Map();
 
-function test_map(){
+function test_map(){   //测试map遍历是否成功
     var j=1;
     console.log("?");
     friend1.set(j,"wangjiaqi");
@@ -148,21 +148,23 @@ function show_user_msgs(){
     console.log("4");
     let ulObj1 = document.createElement("ul");
     console.log("4.1");
-    for(var key in friend){
+    var values = friend.values();
+    for (var i = 0; i < friend.size; i++) {   //for(key in)遍历不成功
         console.log("4.2");
-        if(!friend.hasOwnProperty(key)) continue;
+        value = values.next().value;
+        console.log(value);
+       // if(!friend.hasOwnProperty(key)) continue;
         let liObj3 = document.createElement("li");//好友列表
         let tempHTML3;
-        console.log(friend[key]);
-        tempHTML3 = friend_list(friend[key]);
+        tempHTML3 = friend_list(value);
         console.log("消息数组的长度");
         console.log(msg_list1.length);
         for(var q=0;q<msg_list1.length;q++) {
             let msg = msg_list1[q];
             let liObj1 = document.createElement("li");
             let tempHTML1;
-            if (msg.sender === friend[key]) {
-                tempHTML1 = create_msg_div3(msg);
+            if (msg.sender === value) {
+                tempHTML1 = create_msg_div(msg);
                 localStorage.setItem("person_name", msg.sender);
             }
 
