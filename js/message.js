@@ -241,6 +241,7 @@ function friend_list(value) {
    // temp1 = temp1.replace(/c/,  "portrait");
   //  onclick="show_friend_msg('value')"
     temp = temp.replace(/z/, value);
+    console.log(temp);
     console.log("88");
     html+=temp;
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
