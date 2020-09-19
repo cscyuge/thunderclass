@@ -238,10 +238,11 @@ function friend_list(value) {
     console.log("77.5");
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
    // let temp1 = "<img src = p class= c onclick = f >"
-    let temp1 = " <button onclick=\"show_friend_msg(\'value\')\"> ";
+    let temp1 = " <button> ";
    // temp1 = temp1.replace(/p/,  "images/portrait.png");
    // temp1 = temp1.replace(/c/,  "portrait");
-    temp1 = temp1.replace(/value/, value);
+  //  onclick="show_friend_msg('value')"
+    //temp1 = temp1.replace(/value/, value);
     console.log("88");
     html += temp1;
     temp1="按我</button>";
