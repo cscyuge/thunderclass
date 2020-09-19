@@ -11,10 +11,11 @@ function test_map(){
     j++;
     friend1.set(j,"tannanle");
     console.log("??");
-    for(var key in friend1) {
+    var values = friend1.values();
+    for (var i = 0; i < friend1.size; i++) {
         console.log("4.22");
-        if (!friend1.hasOwnProperty(key)) continue;
-        console.log(friend1[key]);
+        value = values.next().value;
+        console.log(value);
     }
 
 }
