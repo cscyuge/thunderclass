@@ -239,10 +239,7 @@ function friend_list(value) {
     temp1 = temp1.replace(/a/, "button");
     temp1 = temp1.replace(/t/, value);
     console.log("88");
-    let t = new Date(msg._t*1000);
-    console.log("99");
     html += temp1;
-    html += (t.toLocaleDateString().replace(/\//g, "-") + " " + t.toTimeString().substr(0, 8)) + "<br>";
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
     //button=button.replace(/course_id/,course.course_id);
     // html += button;*/
