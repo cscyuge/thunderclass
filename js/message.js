@@ -245,7 +245,7 @@ function friend_list(value) {
     //temp1 = temp1.replace(/value/, value);
     console.log("88");
     html += temp1;
-    temp1="按我</button>";
+    temp1="</button>";
     html+=temp1;
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
     //button=button.replace(/course_id/,course.course_id);
