@@ -233,7 +233,7 @@ function friend_list(value) {
     console.log(value);
     console.log("77");
     let html = "";
-    let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(z)\">";
+    let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(\"z\")\">";
     console.log("77.5");
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
    // let temp1 = "<img src = p class= c onclick = f >"
