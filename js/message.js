@@ -238,7 +238,7 @@ function friend_list(value) {
     console.log("77.5");
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
    // let temp1 = "<img src = p class= c onclick = f >"
-    let temp1 = ' <img src="images/portrait.png" class="portrait" onclick= "show_friend_msg(value)" alt="info"> ';
+    let temp1 = " <img src=\"images/portrait.png\" class=\"portrait\" onclick= \"show_friend_msg(value)\" alt=\"info\"> ";
    // temp1 = temp1.replace(/p/,  "images/portrait.png");
    // temp1 = temp1.replace(/c/,  "portrait");
    // temp1 = temp1.replace(/f/, "show_friend_msg(value)");
