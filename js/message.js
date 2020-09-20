@@ -237,7 +237,7 @@ function friend_list(value) {
     html+=temp;
     //let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(\"guiyutong.sky\")\">";
    // temp="<button  onclick="show_friend_msg("z")">";
-    temp="<button  onclick='show_friend_msg('z')'>";
+    temp="<button  onclick='show_friend_msg(z)'>";
     console.log("77.5");
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
    // let temp1 = "<img src = p class= c onclick = f >"
