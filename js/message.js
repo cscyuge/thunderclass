@@ -254,13 +254,13 @@ function friend_list(value) {
     html+=temp;
     temp="'";
     html+=temp;
-    console.log(temp);
+    console.log(html);
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
     //button=button.replace(/course_id/,course.course_id);
     // html += button;*/
     console.log("1010");
    // html += "<br><br>";
-    html += "点击我";
+    html += "??????";
     html += "</button>";
     html += "</a>";
     return html;
