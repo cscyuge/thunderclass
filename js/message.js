@@ -248,8 +248,9 @@ function friend_list(value) {
     //button=button.replace(/course_id/,course.course_id);
     // html += button;*/
     console.log("1010");
-    html += "<br><br>";
-    html += "oooo</a>";
+   // html += "<br><br>";
+    html += "点击我";
+    html += "</a>";
     return html;
 }
 
