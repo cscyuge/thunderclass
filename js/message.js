@@ -233,14 +233,17 @@ function friend_list(value) {
     console.log(value);
     console.log("77");
     let html = "";
-    let temp = "<a  onclick=\"show_friend_msg(\"guiyutong.sky\")\">";
+    let temp="<a>";
+    html+=temp;
+    //let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(\"guiyutong.sky\")\">";
+    temp="<button  onclick=\"show_friend_msg(\"z\")\">";
     console.log("77.5");
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
    // let temp1 = "<img src = p class= c onclick = f >"
    // temp1 = temp1.replace(/p/,  "images/portrait.png");
    // temp1 = temp1.replace(/c/,  "portrait");
   //  onclick="show_friend_msg('value')"
-    //temp = temp.replace(/z/, value);
+    temp = temp.replace(/z/, value);
     console.log(temp);
     console.log("88");
     html+=temp;
@@ -250,6 +253,7 @@ function friend_list(value) {
     console.log("1010");
    // html += "<br><br>";
     html += "点击我";
+    html += "</button>";
     html += "</a>";
     return html;
 }
