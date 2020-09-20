@@ -252,7 +252,7 @@ function friend_list(value) {
     // html += button;*/
     console.log("1010");
    // html += "<br><br>";
-    html += "点击我";
+    //html += "点击我";
     html += "</button>";
     html += "</a>";
     return html;
