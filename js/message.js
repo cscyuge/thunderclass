@@ -237,7 +237,7 @@ function friend_list(value) {
     html+=temp;
     //let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(\"guiyutong.sky\")\">";
    // temp="<button  onclick="show_friend_msg("z")">";
-    temp="<button  id= z>";
+    temp="<button  id= buttonn>";
     console.log("77.5");
 
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
@@ -245,7 +245,7 @@ function friend_list(value) {
    // temp1 = temp1.replace(/p/,  "images/portrait.png");
    // temp1 = temp1.replace(/c/,  "portrait");
   //  onclick="show_friend_msg('value')"
-    temp = temp.replace(/z/, value);
+    //temp = temp.replace(/z/, value);
     console.log(temp);
     console.log("88");
     html+=temp;
