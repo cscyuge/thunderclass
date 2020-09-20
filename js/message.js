@@ -237,18 +237,24 @@ function friend_list(value) {
     html+=temp;
     //let temp = "<a href=\"javascript:void(0);\" onclick=\"show_friend_msg(\"guiyutong.sky\")\">";
    // temp="<button  onclick="show_friend_msg("z")">";
-    temp="<button  id= buttonn>";
+    temp="<button  onclick= ";
     console.log("77.5");
-
+    html+=temp;
+    temp="'";
+    html+=temp;
+    temp="show_friend_msg(z)";
 //<img src="images/portrait.png" class="portrait" onclick="" alt="info">
    // let temp1 = "<img src = p class= c onclick = f >"
    // temp1 = temp1.replace(/p/,  "images/portrait.png");
    // temp1 = temp1.replace(/c/,  "portrait");
   //  onclick="show_friend_msg('value')"
-    //temp = temp.replace(/z/, value);
-    console.log(temp);
+    temp = temp.replace(/z/, value);
+   // console.log(temp);
     console.log("88");
     html+=temp;
+    temp="'";
+    html+=temp;
+    console.log(temp);
     // var button = "<button onclick=\"check(\'course_id\')\">"+"check"+"</button>";
     //button=button.replace(/course_id/,course.course_id);
     // html += button;*/
