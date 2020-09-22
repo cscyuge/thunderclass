@@ -53,8 +53,8 @@
                    $('#chat').hide();
                }*/
             });
-
-            $('#click_event1').click(function(){
+        $("div").delegate("click_event1", "click", function(){
+          //  $('#click_event1').click(function(){
                 if($('#chat_area').is(':hidden')){
                     console.log("发现隐藏1");
                     $('#chat_area').show();
@@ -83,7 +83,7 @@
                 }*/
             });
                 function hide(){
-        console.log("隐藏");
+                    console.log("隐藏");
                    // $('#chat_area').show();
                    // $('#chat').show();
                     $('#chat_area1').hide();
@@ -164,8 +164,10 @@
                <li> <a><button onclick="show_friend_msg('guiyutong.sky')">19</button></a></li>-->
                <!-- <li> <a href="javascript:void(0);" id="click_event" >归与通</a></li>
                 <li> <a href="javascript:void(0);"  id="click_event1" >江水平</a></li>-->
-                <li ><a href="#user1"><input type="button" id="click_event" value="江水平"/> </a></li>
-                <li><a href="#user2"><input type="button" id="click_event1" value="归与通"/></li>
+               <div>
+                   <button id="click_event" >j</button>
+                <button id="click_event1" >g</button>
+               </div>
             </ul>
         </nav>
     </div>
