@@ -21,6 +21,8 @@
             // showSection(id);
             show_sys_msgs();
             show_user_msgs();
+            hide()
+
         });
 
            $('#click_event').click(function(){
@@ -72,17 +74,16 @@
                     $('#chat2').show();
                     $('#chat').hide();
                     $('#chat1').hide();
-                }
-                function hide(){
-                    $('#chat_area').show();
-                    $('#chat').show();
-                    $('#chat_area1').hide();
-                    $('#chat_area2').hide();
-                    $('#chat1').hide();
-                    $('#chat2').hide();
                 }*/
             });
-
+                function hide(){
+                   // $('#chat_area').show();
+                   // $('#chat').show();
+                    $('#chat_area1').hide();
+                    $('#chat_area').hide();
+                   // $('#chat1').hide();
+                   // $('#chat2').hide();
+                }
 
     </script>
 </head>
