@@ -1,7 +1,8 @@
 var friend = new Map();
 let sys_msg_list;
 var friend1 = new Map();
-
+var flag=0;
+var flag1=0;
 function test_map(){   //测试map遍历是否成功
     var j=1;
     console.log("?");
@@ -218,16 +219,40 @@ function show_friend_msg(value){
     let ulObj = document.createElement("ul");
     console.log("系统数组的长度为");
     console.log(sys_msg_list.length);
+    if(flag===0)
+    {
     for (let i = 0, n = sys_msg_list.length; i < n; i++) {
         let msg = sys_msg_list[i];
-        let str=msg.sender;
+        let str = msg.sender;
         if (str === value) {
+            flag = 1;
             let liObj = document.createElement("li");
             liObj.innerHTML = create_msg_div2(msg);
             ulObj.appendChild(liObj);
         }
     }
     $("#course_list2").append(ulObj);
+    }
+}
+
+function show_friend_msg1(value){
+    let ulObj = document.createElement("ul");
+    console.log("系统数组的长度为");
+    console.log(sys_msg_list.length);
+    if(flag1===0)
+    {
+        for (let i = 0, n = sys_msg_list.length; i < n; i++) {
+            let msg = sys_msg_list[i];
+            let str = msg.sender;
+            if (str === value) {
+                flag1 = 1;
+                let liObj = document.createElement("li");
+                liObj.innerHTML = create_msg_div2(msg);
+                ulObj.appendChild(liObj);
+            }
+        }
+        $("#course_list1").append(ulObj);
+    }
 }
 function friend_list(value) {
     console.log(value);
