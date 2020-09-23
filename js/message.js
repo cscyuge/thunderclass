@@ -238,7 +238,7 @@ function show_friend_msg1(value){
     let ulObj = document.createElement("ul");
     console.log("系统数组的长度为");
     console.log(sys_msg_list.length);
-    //if(flag1===0){
+    if(flag1===0){
         for (let i = 0, n = sys_msg_list.length; i < n; i++) {
             let msg = sys_msg_list[i];
             let str = msg.sender;
@@ -250,7 +250,7 @@ function show_friend_msg1(value){
             }
         }
         $("#course_list1").append(ulObj);
-   // }
+   }
 }
 function friend_list(value) {
     console.log(value);
