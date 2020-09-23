@@ -24,14 +24,14 @@
             hide();
 
            $('#click_event').click(function(){
-                if($('#chat_area1').is(':hidden')){
+                if($('#chat_area').is(':hidden')){
                     console.log("发现隐藏");
-                    $('#chat_area1').show();
+                    $('#chat_area').show();
                     console.log("展示出来");
                    // $('#chat1').show();
                    // $('#chat').hide();
-                    $('#chat_area').hide();
-                    show_friend_msg('guiyutong.sky');
+                    $('#chat_area1').hide();
+                    show_friend_msg('jiangshuiping.sky');//放到了course_list2里面
                    // $('#chat_area2').hide();
                 }
                /* else{
@@ -53,15 +53,15 @@
             });
         $("div").delegate("click_event1", "click", function(){
           //  $('#click_event1').click(function(){
-                if($('#chat_area').is(':hidden')){
+                if($('#chat_area1').is(':hidden')){
                     console.log("发现隐藏1");
-                    $('#chat_area').show();
+                    $('#chat_area1').show();
                     console.log("展示出来1");
                     /*$('#chat2').show();
                     $('#chat').hide();
                     $('#chat_area').hide();*/
-                    $('#chat_area1').hide();
-                    show_friend_msg1('jiangshuiping.sky');
+                    $('#chat_area').hide();
+                    show_friend_msg1('guiyutong.sky');
                 }
                /* else{
                     $('#chat_area2').show();
