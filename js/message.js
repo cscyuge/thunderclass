@@ -1,5 +1,4 @@
 var friend = new Map();
-let sys_msg_list;
 var friend1 = new Map();
 var flag=0;
 var flag1=0;
@@ -149,16 +148,13 @@ function show_user_msgs(){
     console.log("4");
     let ulObj1 = document.createElement("ul");
     console.log("4.1");
-    var values = friend.values();
-    for (var i = 0; i < friend.size; i++) {   //for(key in)遍历不成功
-        console.log("4.2");
-        value = values.next().value;
+   // var values = friend.values();
+    for (var i = 0; i <msg_list1.length; i++) {   //for(key in)遍历不成功
+       // value = values.next().value;
         console.log(value);
        // if(!friend.hasOwnProperty(key)) continue;
-        let liObj3 = document.createElement("li");//好友列表
-        liObj3.innerHTML = friend_list(value);
-        console.log("消息数组的长度");
-        console.log(msg_list1.length);
+       // let liObj3 = document.createElement("li");//好友列表
+       // liObj3.innerHTML = friend_list(value);
       /*  for(var q=0;q<msg_list1.length;q++) {
             let msg = msg_list1[q];
             let liObj1 = document.createElement("li");
@@ -173,7 +169,7 @@ function show_user_msgs(){
             liObj3.innerHTML = tempHTML3;
             ulObj1.appendChild(liObj1);
         }*/
-        $("#ulins").append(liObj3);
+      //  $("#ulins").append(liObj3);
     }
     //$("#course_list2").append(ulObj1);
 
@@ -216,12 +212,13 @@ function create_msg_div2(msg) {
 }
 
 function show_friend_msg(value){
+    let msg_list1 = get_user_msg();
     let ulObj = document.createElement("ul");
     console.log("系统数组的长度为");
-    console.log(sys_msg_list.length);
-   // if(flag===0) {
-    for (let i = 0, n = sys_msg_list.length; i < n; i++) {
-        let msg = sys_msg_list[i];
+    console.log(msg_list1.length);
+    if(flag===0) {
+    for (let i = 0, n = msg_list1.length; i < n; i++) {
+        let msg = msg_list1[i];
         let str = msg.sender;
         if (str === value) {
             flag = 1;
@@ -231,16 +228,17 @@ function show_friend_msg(value){
         }
     }
     $("#course_list2").append(ulObj);
-    //}
+    }
 }
 
 function show_friend_msg1(value){
+    let msg_list1 = get_user_msg();
     let ulObj = document.createElement("ul");
     console.log("系统数组的长度为");
     console.log(sys_msg_list.length);
     if(flag1===0){
-        for (let i = 0, n = sys_msg_list.length; i < n; i++) {
-            let msg = sys_msg_list[i];
+        for (let i = 0, n = msg_list1.length; i < n; i++) {
+            let msg = msg_list1[i];
             let str = msg.sender;
             if (str === value) {
                 flag1 = 1;
