@@ -282,12 +282,12 @@ function friend_list(value) {
     return html;
 }
 
-function send() {
-    let form = new FormData(document.getElementById("dialog1"));
-    let condition = form.get("condition1");
+function send(person) {
+    let form = new FormData(document.getElementById("dialog"));
+    let condition = form.get("condition");
     let token = localStorage.getItem("token");
     let account = localStorage.getItem("account");
-    let person = localStorage.getItem("person_name1");
+   // let person = localStorage.getItem("person_name1");
     console.log(person);
     console.log(condition);
     let data = {account: account, token: token, receiver: person,msg:condition};

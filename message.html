@@ -80,6 +80,35 @@
                     $('#chat1').hide();
                 }*/
             });
+            $('#press_btn').click(function(){
+                //  $('#click_event1').click(function(){
+                if($('#chat_area1').is(':show')){
+                    console.log("点击1");
+                    send('guiyutong.sky');
+                    console.log("发送1");
+                }
+                if($('#chat_area').is(':show')){
+                    console.log("点击");
+                    send('jiangshuiping.sky');
+                    console.log("发送");
+                }
+                /* else{
+                     $('#chat_area2').show();
+                     $('#chat2').show();
+                     $('#chat').hide();
+                     $('#chat_area').hide();
+                 }
+                 if($('#chat2').is(':hidden')){
+                     $('#chat2').show();
+                     $('#chat').hide();
+                     $('#chat1').hide();
+                 }
+                 else{
+                     $('#chat2').show();
+                     $('#chat').hide();
+                     $('#chat1').hide();
+                 }*/
+            });
         });
                 function hide(){
                     console.log("隐藏");
@@ -184,7 +213,7 @@
    <div id="chat">
         <form id="dialog">
             <label for='condition'></label><textarea style="width:586px;height:100px;" id='condition' name="condition" placeholder="回复一下吧~"></textarea>
-            <button class="btnn" onclick="send()" type="button">发送</button>
+            <button class="btnn" onclick="send()" id="press_btn" type="button">发送</button>
         </form>
     </div>
     <!--<div id="chat1">
